@@ -16,10 +16,11 @@ def run(args):
     reader = readers[args.format](args.infile)
     doc_id = path.splitext(path.basename(args.infile))[0]
     line_no = 1
+    outfile = open(args.outfile, 'w', encoding='utf-8')
     for page in reader.pages():
         for blk in reader.blocks(page):
-            print(
-                'doc_id={} block_id={} bbox={},{},{},{} {} {}'.format(
+            outfile.write(
+                'doc_id={} block_id={} bbox={},{},{},{} {} {}\n'.format(
                     doc_id,
                     blk.id,
                     blk.llx,
@@ -38,10 +39,10 @@ def run(args):
             #     print('</tabularized>')
             # else:
             for i, line in enumerate(respace(blk)):
-                print('line={}:{}'.format(line_no+i, line))
+                outfile.write('line={}:{}\n'.format(line_no+i, line))
             line_no += len(blk.lines)
             #print('\n'.join(respace(blk)))
-            print()
+            outfile.write('\n')
 
         # lines = reader.group_lines()
         # respace(lines)
@@ -123,6 +124,7 @@ def main(arglist=None):
         '-f', '--format',
         choices=('tetml','pdfminer'), default='tetml'
     )
+    parser.add_argument('outfile')
     args = parser.parse_args(arglist)
     logging.basicConfig(level=50-(args.verbosity*10))
     run(args)
