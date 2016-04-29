@@ -1,12 +1,17 @@
 
 from collections import Counter
+from gzip import GzipFile
 from xml.etree import ElementTree as ET
 
 from .base import FrekiReader, Token, Page
 
 class TetmlReader(FrekiReader):
     def __init__(self, tetml_file):
-        self.file = tetml_file
+        if tetml_file.endswith('.gz'):
+            f = GzipFile(tetml_file)
+        else:
+            f = tetml_file
+        self.file = f
         self._pages = {}
         self.init_pages()
 
