@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from os import path
 from collections import defaultdict, Counter
@@ -83,11 +83,27 @@ def tabularize(block):
 
 
 def respace(block):
-    l_margin = min(t.llx for line in block.lines for t in line.tokens)
-    char_dx = (
-        sum(t.width for line in block.lines for t in line.tokens)
-        / float(sum(len(t.text) for line in block.lines for t in line.tokens))
-    )
+    t = list((t.llx for line in block.lines for t in line.tokens))
+    l_margin = 0 if not t else min(t)
+
+    # -------------------------------------------
+    # We want to calculate the average character
+    # width for a block. The numerator is the sum of
+    # the point widths of the characters
+    # -------------------------------------------
+    char_num = sum(t.width for line in block.lines for t in line.tokens)
+
+    # -------------------------------------------
+    # The denominator is the number of characters
+    # in the text in the block.
+    # -------------------------------------------
+    char_den = 0
+    for line in block.lines:
+        for t in line.tokens:
+            if t.text is not None:
+                char_den += len(t.text)
+
+    char_dx = char_num / char_den if char_den > 0 else 0
     min_dx = char_dx / 3
     lines = []
     prev = {}
@@ -98,11 +114,13 @@ def respace(block):
             llx = t.llx - l_margin
             if (llx - last_x) < min_dx:
                 dx = 0
+            elif char_dx == 0:
+                dx = 0
             else:
                 # dist from last char (at least 1)
                 dx = int(((llx - last_x) / char_dx) + 0.5) or 1
             cur_line.append(' ' * dx)
-            cur_line.append(t.text)
+            cur_line.append(t.text if t.text is not None else '')
             last_x = t.urx - l_margin
         lines.append(''.join(cur_line))
         prev = {}

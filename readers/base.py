@@ -119,20 +119,36 @@ class Block(namedtuple('Block', ('id', 'lines'))):
         return indices
 
     @property
+    def _llxs(self):
+        return list((line.llx for line in self.lines))
+
+    @property
+    def _llys(self):
+        return list((line.lly for line in self.lines))
+
+    @property
+    def _urxs(self):
+        return list((line.urx for line in self.lines))
+
+    @property
+    def _urys(self):
+        return list((line.ury for line in self.lines))
+
+    @property
     def llx(self):
-        return min(line.llx for line in self.lines)
+        return  0 if not len(self._llxs) else min(self._llxs)
 
     @property
     def lly(self):
-        return min(line.lly for line in self.lines)
+        return 0 if not self._llys else min(self._llys)
 
     @property
     def urx(self):
-        return max(line.urx for line in self.lines)
+        return 0 if not self._urxs else max(self._urxs)
 
     @property
     def ury(self):
-        return max(line.ury for line in self.lines)
+        return 0 if not self._urys else max(self._urys)
 
 
 class FrekiReader(object):
