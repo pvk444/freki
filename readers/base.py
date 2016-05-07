@@ -203,10 +203,18 @@ class FrekiReader(object):
         yield block
 
     def page_xmin(self, page):
-        return sorted(page.tokens, key=lambda x: x.llx)[0].llx
+        tokens = page.tokens
+        if len(tokens) == 0:
+            return 0
+        else:
+            return sorted(tokens, key=lambda x: x.llx)[0].llx
 
     def page_xmax(self, page):
-        return sorted(page.tokens, key=lambda x: x.urx)[-1].urx
+        tokens = page.tokens
+        if len(tokens) == 0:
+            return 0
+        else:
+            return sorted(tokens, key=lambda x: x.urx)[-1].urx
 
     def page_baselines(self, page):
         return sorted(set([t.lly for t in page.tokens]))
