@@ -1,6 +1,12 @@
 
 from collections import namedtuple, defaultdict, Counter
 
+import sys
+
+import collections
+
+import statistics
+
 min_line_overlap = 0.2
 
 class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
@@ -94,6 +100,9 @@ class Line(object):
     def height(self):
         return self.ury - self.lly
 
+    def __repr__(self):
+        return ' '.join([t.text for t in self.tokens])
+
 
 Page = namedtuple('Page', ('id', 'width', 'height', 'tokens'))
 
@@ -168,9 +177,18 @@ class FrekiReader(object):
             return []
         i = 1
         # group blocks by space between lines
-        line_dy = sum(
-            [a.lly - b.ury for a, b in zip(lines[:-1], lines[1:])]
-        ) / len(lines)
+
+        line_diffs = [a.lly - b.ury for a, b in zip(lines[:-1], lines[1:])]
+
+        if not line_diffs:
+            line_dy = 0
+        else:
+            try:
+                line_dy = statistics.mode(line_diffs)
+            except statistics.StatisticsError:
+                line_dy = sorted(line_diffs)[0]
+            # line_dy = statistics.mean(line_diffs)
+
         block = Block(id='{}-{}'.format(page.id, i))
         last_y = lines[0].lly
         for line in lines:
@@ -181,29 +199,110 @@ class FrekiReader(object):
             block.lines.append(line)
             last_y = line.lly
 
-    def lines(self, page):
-        # first naively group tokens into lines
-        lines = defaultdict(Line)
+        # If we still have an unreturned block...
+        yield block
+
+    def page_xmin(self, page):
+        return sorted(page.tokens, key=lambda x: x.llx)[0].llx
+
+    def page_xmax(self, page):
+        return sorted(page.tokens, key=lambda x: x.urx)[-1].urx
+
+    def page_baselines(self, page):
+        return sorted(set([t.lly for t in page.tokens]))
+
+    def _baseline_dict(self, page):
+        basedict = defaultdict(list)
         for token in page.tokens:
-            lines[token.lly].append(token)
-        if not lines:  # no text content?
-            return []
-        # merge lines that overlap (e.g. super/subscripts)
-        lines = list(lines.values())
-        merged_lines = [lines[0]]
-        for line in lines[1:]:
-            merged = False
-            for line2 in merged_lines:
-                if line.overlap(line2) >= min_line_overlap:
-                    line2.extend(line.tokens)
-                    merged = True
-                    break
-            if not merged:
-                merged_lines.append(line)
-        # sort by page order and return
-        for line in merged_lines:
-            line.sort()
-        return sorted(
-                merged_lines,
-                key=lambda line: line.lly, reverse=True
-        )
+            basedict[token.lly].append(token)
+        return basedict
+
+    def page_xmiddle(self, page):
+        """The point at the middle of the page"""
+        return (self.page_xmin(page) + self.page_xmax(page)) / 2
+
+    def page_width(self, page):
+        return self.page_xmax(page) - self.page_xmin(page)
+
+    def crossing_tokens(self, page, x):
+        """A list of tokens on the page that cross over point x"""
+        return [t for t in page.tokens if t.llx < x < t.urx]
+
+    def is_dual_column(self, page):
+        """
+        Return whether there is a gap that no tokens cross for an unbroken 2/3
+        of the page or more.
+
+        :rtype: bool
+        """
+        basedict = self._baseline_dict(page)
+        middle_x = self.page_xmiddle(page)
+
+        longest_span = 0
+        current_span = 0
+
+        for lly in self.page_baselines(page):
+            crossing_tokens = [t for t in basedict[lly] if t.llx < middle_x < t.urx]
+            if not crossing_tokens:
+                current_span += 1
+                if current_span > longest_span:
+                    longest_span = current_span
+            else:
+                current_span = 0
+
+        # Return true if the longest span of "lines" that do not cross
+        return (longest_span / len(self.page_baselines(page))) > 0.6
+
+    def lines(self, page):
+        # If it's dual column, return the lines
+        # in the order they appear on the page.
+        lines = []
+        if self.is_dual_column(page):
+            cur_line = Line()
+            last_lly = None
+            for token in page.tokens:
+                if last_lly is None:
+                    last_lly = token.lly
+
+                if last_lly != token.lly:
+                    lines.append(cur_line)
+                    cur_line = Line()
+                    last_lly = token.lly
+
+                cur_line.append(token)
+
+            lines.append(cur_line)
+            return lines
+
+        # If it's not dual column, just take a more naive approach.
+        else:
+            # first naively group tokens into lines
+            lines = defaultdict(Line)
+            for token in page.tokens:
+                lines[token.lly].append(token)
+
+            if not lines:  # no text content?
+                return []
+            # merge lines that overlap (e.g. super/subscripts)
+            lines = list([lines[k] for k in sorted(lines.keys(), reverse=True)])
+
+            merged_lines = [lines[0]]
+            for line in lines[1:]:
+                merged = False
+                for line2 in merged_lines:
+                    if line.overlap(line2) >= min_line_overlap:
+                        line2.extend(line.tokens)
+                        merged = True
+                        break
+                if not merged:
+                    merged_lines.append(line)
+                # sort by page order and return
+            lines = merged_lines
+
+            for line in lines:
+                line.sort()
+
+            return sorted(
+                    lines,
+                    key=lambda line: line.lly, reverse=True
+            )
