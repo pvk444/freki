@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import os
 from os import path
 from collections import defaultdict, Counter
 import argparse
@@ -16,12 +16,14 @@ def run(args):
     reader = readers[args.format](args.infile)
     doc_id = path.splitext(path.basename(args.infile))[0]
     line_no = 1
+    os.makedirs(os.path.dirname(args.outfile), exist_ok=True)
     outfile = open(args.outfile, 'w', encoding='utf-8')
     for page in reader.pages():
         for blk in reader.blocks(page):
             outfile.write(
-                'doc_id={} block_id={} bbox={},{},{},{} {} {}\n'.format(
+                'doc_id={} page={} block_id={} bbox={},{},{},{} {} {}\n'.format(
                     doc_id,
+                    page.id,
                     blk.id,
                     blk.llx,
                     blk.lly,
@@ -38,8 +40,10 @@ def run(args):
             #     print('\n'.join(tabularize(blk)))
             #     print('</tabularized>')
             # else:
+
             for i, line in enumerate(respace(blk)):
-                outfile.write('line={}:{}\n'.format(line_no+i, line))
+                fonts = ','.join(sorted(set([t.font for t in blk.lines[i].tokens])))
+                outfile.write('line={} fonts={}:{}\n'.format(line_no+i, fonts, line))
             line_no += len(blk.lines)
             #print('\n'.join(respace(blk)))
             outfile.write('\n')
