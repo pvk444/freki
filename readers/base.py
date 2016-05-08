@@ -63,6 +63,10 @@ class Line(object):
             return 0.0
         if a.height < b.height:
             a, b = b, a
+
+        if b.height:
+            return 0.0
+
         if a.ury < b.ury:
             return (a.ury - b.lly) / b.height
         else:
@@ -259,58 +263,70 @@ class FrekiReader(object):
                 current_span = 0
 
         # Return true if the longest span of "lines" that do not cross
-        return (longest_span / len(self.page_baselines(page))) > 0.6
+        if len(self.page_baselines(page)) == 0:
+            return False
+        else:
+            return (longest_span / len(self.page_baselines(page))) > 0.6
+
+    def lines_in_tet_order(self, page):
+        lines = []
+        cur_line = Line()
+        last_lly = None
+        for token in page.tokens:
+            if last_lly is None:
+                last_lly = token.lly
+
+            if last_lly != token.lly:
+                lines.append(cur_line)
+                cur_line = Line()
+                last_lly = token.lly
+
+            cur_line.append(token)
+
+        lines.append(cur_line)
+        return lines
 
     def lines(self, page):
         # If it's dual column, return the lines
         # in the order they appear on the page.
-        lines = []
         if self.is_dual_column(page):
-            cur_line = Line()
-            last_lly = None
-            for token in page.tokens:
-                if last_lly is None:
-                    last_lly = token.lly
+            # left_tokens = [t for t in page.tokens if t.urx < self.page_xmiddle(page)]
+            # right_tokens = [t for t in page.tokens if t.llx > self.page_xmiddle(page)]
+            # left_lines = merge_lines(left_tokens)
+            # right_lines = merge_lines(right_tokens)
+            # lines = left_lines + right_lines
+            lines = merge_lines(self.lines_in_tet_order(page))
 
-                if last_lly != token.lly:
-                    lines.append(cur_line)
-                    cur_line = Line()
-                    last_lly = token.lly
-
-                cur_line.append(token)
-
-            lines.append(cur_line)
-            return lines
 
         # If it's not dual column, just take a more naive approach.
         else:
-            # first naively group tokens into lines
             lines = defaultdict(Line)
             for token in page.tokens:
                 lines[token.lly].append(token)
+            lines = sorted(lines.values(), key=lambda x: x.ury, reverse=True)
+            lines = merge_lines(lines)
 
-            if not lines:  # no text content?
-                return []
-            # merge lines that overlap (e.g. super/subscripts)
-            lines = list([lines[k] for k in sorted(lines.keys(), reverse=True)])
 
-            merged_lines = [lines[0]]
-            for line in lines[1:]:
-                merged = False
-                for line2 in merged_lines:
-                    if line.overlap(line2) >= min_line_overlap:
-                        line2.extend(line.tokens)
-                        merged = True
-                        break
-                if not merged:
-                    merged_lines.append(line)
-                # sort by page order and return
-            lines = merged_lines
+        for line in lines:
+            line.sort()
 
-            for line in lines:
-                line.sort()
+        return lines
 
-            return sorted(
-                    lines,
-                    key=lambda line: line.lly, reverse=True
-            )
+def merge_lines(lines):
+    # merge lines that overlap (e.g. super/subscripts)
+    if not lines:  # no text content?
+        return []
+
+
+    merged_lines = [lines[0]]
+    for line in lines[1:]:
+        merged = False
+        for line2 in merged_lines:
+            if line.overlap(line2) >= min_line_overlap:
+                line2.extend(line.tokens)
+                merged = True
+                break
+        if not merged:
+            merged_lines.append(line)
+            # sort by page order and return
+    return merged_lines
