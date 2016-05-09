@@ -35,8 +35,7 @@ class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
     def height(self):
         return self.ury - self.lly
 
-
-class Line(object):
+class TokContainer(object):
     def __init__(self, tokens=None):
         if tokens is None: tokens = []
         self.tokens = []
@@ -53,6 +52,50 @@ class Line(object):
     def extend(self, tokens):
         for token in tokens:
             self.append(token)
+
+
+    @property
+    def llx(self):
+        if self._llx is None and self.tokens:
+            self._llx = min(t.llx for t in self.tokens)
+        return self._llx
+
+
+    @property
+    def lly(self):
+        if self._lly is None and self.tokens:
+            self._lly = min(t.lly for t in self.tokens)
+        return self._lly
+
+
+    @property
+    def urx(self):
+        if self._urx is None and self.tokens:
+            self._urx = max(t.urx for t in self.tokens)
+        return self._urx
+
+
+    @property
+    def ury(self):
+        if self._ury is None and self.tokens:
+            self._ury = max(t.ury for t in self.tokens)
+        return self._ury
+
+
+    @property
+    def width(self):
+        return self.urx - self.llx
+
+
+    @property
+    def height(self):
+        return self.ury - self.lly
+
+
+    def __repr__(self):
+        return ' '.join([t.text for t in self.tokens])
+
+class Line(TokContainer):
 
     def sort(self):
         self.tokens.sort(key=lambda tok: tok.llx)
@@ -72,40 +115,11 @@ class Line(object):
         else:
             return (b.ury - a.lly) / b.height
 
-    @property
-    def llx(self):
-        if self._llx is None and self.tokens:
-            self._llx = min(t.llx for t in self.tokens)
-        return self._llx
 
-    @property
-    def lly(self):
-        if self._lly is None and self.tokens:
-            self._lly = min(t.lly for t in self.tokens)
-        return self._lly
 
-    @property
-    def urx(self):
-        if self._urx is None and self.tokens:
-            self._urx = max(t.urx for t in self.tokens)
-        return self._urx
 
-    @property
-    def ury(self):
-        if self._ury is None and self.tokens:
-            self._ury = max(t.ury for t in self.tokens)
-        return self._ury
-
-    @property
-    def width(self):
-        return self.urx - self.llx
-
-    @property
-    def height(self):
-        return self.ury - self.lly
-
-    def __repr__(self):
-        return ' '.join([t.text for t in self.tokens])
+class Para(TokContainer):
+    pass
 
 
 Page = namedtuple('Page', ('id', 'width', 'height', 'tokens'))
