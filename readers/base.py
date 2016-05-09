@@ -110,6 +110,7 @@ class Line(object):
 
 Page = namedtuple('Page', ('id', 'width', 'height', 'tokens'))
 
+
 class Block(namedtuple('Block', ('id', 'lines'))):
     def __new__(cls, lines=None, page=None, id=None):
         if lines is None:
@@ -283,29 +284,12 @@ class FrekiReader(object):
 
             cur_line.append(token)
 
-        lines.append(cur_line)
+        if cur_line.tokens:
+            lines.append(cur_line)
         return lines
 
     def lines(self, page):
-        # If it's dual column, return the lines
-        # in the order they appear on the page.
-        if self.is_dual_column(page):
-            # left_tokens = [t for t in page.tokens if t.urx < self.page_xmiddle(page)]
-            # right_tokens = [t for t in page.tokens if t.llx > self.page_xmiddle(page)]
-            # left_lines = merge_lines(left_tokens)
-            # right_lines = merge_lines(right_tokens)
-            # lines = left_lines + right_lines
-            lines = merge_lines(self.lines_in_tet_order(page))
-
-
-        # If it's not dual column, just take a more naive approach.
-        else:
-            lines = defaultdict(Line)
-            for token in page.tokens:
-                lines[token.lly].append(token)
-            lines = sorted(lines.values(), key=lambda x: x.ury, reverse=True)
-            lines = merge_lines(lines)
-
+        lines = merge_lines(self.lines_in_tet_order(page))
 
         for line in lines:
             line.sort()

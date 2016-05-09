@@ -42,7 +42,7 @@ def run(args):
             # else:
 
             for i, line in enumerate(respace(blk)):
-                fonts = ','.join(sorted(set([t.font for t in blk.lines[i].tokens])))
+                fonts = ','.join(sorted(set(['{}-{}'.format(t.font, t.size) for t in blk.lines[i].tokens])))
                 outfile.write('line={} fonts={}:{}\n'.format(line_no+i, fonts, line))
             line_no += len(blk.lines)
             #print('\n'.join(respace(blk)))
