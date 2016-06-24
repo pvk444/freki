@@ -7,7 +7,7 @@ import collections
 
 import statistics
 
-min_line_overlap = 0.2
+min_line_overlap = 0.01
 
 class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
                                  'font', 'size', 'features'))):
@@ -91,6 +91,8 @@ class TokContainer(object):
     def height(self):
         return self.ury - self.lly
 
+    def __iter__(self):
+        return iter(self.tokens)
 
     def __repr__(self):
         return ' '.join([t.text for t in self.tokens])
@@ -104,6 +106,10 @@ class Line(TokContainer):
         a, b = self, other
         if a.ury <= b.lly or a.lly >= b.ury:
             return 0.0
+
+        if a.ury == b.ury and a.lly == b.lly:
+            return 1.0
+
         if a.height < b.height:
             a, b = b, a
 
@@ -122,7 +128,13 @@ class Para(TokContainer):
     pass
 
 
-Page = namedtuple('Page', ('id', 'width', 'height', 'tokens'))
+class Page (namedtuple('Page', ('id', 'width', 'height', 'pgphs'))):
+
+    @property
+    def tokens(self):
+        for p in self.pgphs:
+            for t in p:
+                yield t
 
 
 class Block(namedtuple('Block', ('id', 'lines'))):
@@ -181,6 +193,26 @@ class Block(namedtuple('Block', ('id', 'lines'))):
 
 class FrekiReader(object):
 
+    def _line_dy(self):
+        all_line_diffs = []
+        for page in self.pages():
+            lines = self.lines(page)
+            line_diffs = [a.lly - b.ury for a, b in zip(lines[:-1], lines[1:])]
+            all_line_diffs.extend(line_diffs)
+
+        if not all_line_diffs:
+            line_dy = 0
+        elif len(all_line_diffs) == 1:
+            line_dy = all_line_diffs[0]
+        else:
+            # Get the average line diff.
+            # line_dy = statistics.mean(line_diffs)
+            line_dy = Counter(all_line_diffs).most_common(1)[0][0]
+            # line_dy = max(line_diffs)
+            # line_dy = statistics.variance(line_diffs) - statistics.stdev(line_diffs)
+
+        return line_dy
+
     def pages(self, *page_ids):
         '''
         Return the Page objects for the document.
@@ -192,26 +224,13 @@ class FrekiReader(object):
 
     def blocks(self, page):
         lines = self.lines(page)
-        if not lines:
-            return []
+        line_dy = self._line_dy()
         i = 1
-        # group blocks by space between lines
-
-        line_diffs = [a.lly - b.ury for a, b in zip(lines[:-1], lines[1:])]
-
-        if not line_diffs:
-            line_dy = 0
-        else:
-            try:
-                line_dy = statistics.mode(line_diffs)
-            except statistics.StatisticsError:
-                line_dy = sorted(line_diffs)[0]
-            # line_dy = statistics.mean(line_diffs)
 
         block = Block(id='{}-{}'.format(page.id, i))
         last_y = lines[0].lly
         for line in lines:
-            if last_y - line.ury > line_dy:
+            if last_y - line.ury > line_dy or last_y - line.ury < 0:
                 yield block
                 i += 1
                 block = Block(id='{}-{}'.format(page.id, i))
@@ -222,14 +241,14 @@ class FrekiReader(object):
         yield block
 
     def page_xmin(self, page):
-        tokens = page.tokens
+        tokens = list(page.tokens)
         if len(tokens) == 0:
             return 0
         else:
             return sorted(tokens, key=lambda x: x.llx)[0].llx
 
     def page_xmax(self, page):
-        tokens = page.tokens
+        tokens = list(page.tokens)
         if len(tokens) == 0:
             return 0
         else:
@@ -281,34 +300,85 @@ class FrekiReader(object):
         if len(self.page_baselines(page)) == 0:
             return False
         else:
-            return (longest_span / len(self.page_baselines(page))) > 0.6
+            return (longest_span / len(self.page_baselines(page))) >= 0.9
 
-    def lines_in_tet_order(self, page):
-        lines = []
-        cur_line = Line()
-        last_lly = None
-        for token in page.tokens:
-            if last_lly is None:
-                last_lly = token.lly
+    def lines_in_dual_column_order(self, page: Page):
+        left_tokens  = [t for t in page.tokens if t.urx < self.page_xmiddle(page)]
+        right_tokens = [t for t in page.tokens if t.llx > self.page_xmiddle(page)]
 
-            if last_lly != token.lly:
-                lines.append(cur_line)
-                cur_line = Line()
-                last_lly = token.lly
+        left_lines  = tokens_to_lines(left_tokens)
+        right_lines = tokens_to_lines(right_tokens)
 
-            cur_line.append(token)
+        return merge_some_lines(left_lines) + merge_some_lines(right_lines)
 
-        if cur_line.tokens:
-            lines.append(cur_line)
-        return lines
+
+
+    def lines_in_tet_order(self, page: Page):
+        page_lines = []
+        for para in page.pgphs:
+            para_lines = tokens_to_lines(para.tokens)
+            page_lines.extend(para_lines)
+
+        page_lines = merge_lines(page_lines)
+
+        return page_lines
 
     def lines(self, page):
-        lines = merge_lines(self.lines_in_tet_order(page))
+        # lines = merge_lines(self.lines_in_tet_order(page))
+        #
+        # for line in lines:
+        #     line.sort()
+        if self.is_dual_column(page):
+            return self.lines_in_dual_column_order(page)
+        else:
+            return self.lines_in_tet_order(page)
 
-        for line in lines:
-            line.sort()
+def tokens_to_lines(tokens):
+    lines = []
+    last_llx = None
+    cur_line = Line()
+    for token in tokens:
+        if last_llx is None:
+            last_llx = token.llx
+            cur_line.append(token)
+            continue
+        if token.llx < last_llx:
+            lines.append(cur_line)
+            cur_line = Line(tokens=[token])
+        else:
+            cur_line.append(token)
+        last_llx = token.llx
 
-        return lines
+    lines.append(cur_line)
+
+    for line in lines:
+        line.sort()
+
+    return lines
+
+def merge_some_lines(lines):
+    if not lines:
+        return []
+
+    new_lines = []
+    cur_line = lines.pop(0)
+    i = 1
+    while lines:
+        next_line = lines.pop(0)
+        if cur_line.overlap(next_line) >= min_line_overlap:
+            cur_line.extend(next_line)
+        # elif next_line.overlap(cur_line) >= min_line_overlap:
+        #     cur_line.extend(next_line)
+        else:
+            new_lines.append(cur_line)
+            i+= 1
+            cur_line = next_line
+
+    new_lines.append(cur_line)
+
+    return new_lines
+
+
 
 def merge_lines(lines):
     # merge lines that overlap (e.g. super/subscripts)

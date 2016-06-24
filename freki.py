@@ -40,7 +40,6 @@ def run(args):
             #     print('\n'.join(tabularize(blk)))
             #     print('</tabularized>')
             # else:
-
             for i, line in enumerate(respace(blk)):
                 fonts = ','.join(sorted(set(['{}-{}'.format(t.font, t.size) for t in blk.lines[i].tokens])))
                 outfile.write('line={} fonts={}:{}\n'.format(line_no+i, fonts, line))
