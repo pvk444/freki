@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Anatomy of a Freki Block</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1404.47">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px Arial}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Calibri}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Calibri; min-height: 13.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 36.0px; text-indent: -18.0px; font: 11.0px Calibri}
+    p.p5 {margin: 0.0px 0.0px 0.0px 72.0px; text-indent: -18.0px; font: 11.0px Calibri}
+    p.p6 {margin: 0.0px 0.0px 0.0px 108.0px; text-indent: -18.0px; font: 11.0px Calibri}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Consolas; min-height: 13.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Consolas; background-color: #efdae3}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Consolas}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Consolas; min-height: 11.0px}
+    span.s1 {font: 12.0px Arial}
+    span.s2 {background-color: #efdae3}
+    span.s3 {background-color: #d3e2fa}
+    span.s4 {font: 11.0px 'Lucida Grande'}
+    span.s5 {background-color: #e0eddb}
+    span.s6 {background-color: #fff4d5}
+    span.s7 {background-color: #e1dbed}
+    span.s8 {background-color: #d8e8f6}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1"><a name="h.yd8sg3tznxv0"></a><a name="_Toc51660527"></a></span>​Description</p>
+<p class="p2">The following is a sample of a Freki block that will be used to perform language ID or IGT detection.</p>
+<p class="p3"><br></p>
+<p class="p2">Each block has a <span class="s2">preamble</span> that begins the line. Within this preamble is a:</p>
+<p class="p4">●<span class="Apple-tab-span">	</span>doc_id (refers to the original document that created the block)</p>
+<p class="p4">●<span class="Apple-tab-span">	</span>page (pdf page number of origin)</p>
+<p class="p4">●<span class="Apple-tab-span">	</span>block_id (unique block ID for this block)</p>
+<p class="p4">●<span class="Apple-tab-span">	</span>bbox (bounding box for the coordinates of the block in the format:)</p>
+<p class="p5">○<span class="Apple-tab-span">	</span>llx,lly,urx,ury<span class="Apple-converted-space"> </span></p>
+<p class="p5">○<span class="Apple-tab-span">	</span>Where the x coordinates are indexed from the left of the page, and the y coordinates from the bottom.</p>
+<p class="p3"><br></p>
+<p class="p2">Within each block, there are lines. These lines have the following attributes:</p>
+<p class="p4">●<span class="Apple-tab-span">	</span><span class="s3"><b>tag=:</b></span></p>
+<p class="p5">○<span class="Apple-tab-span">	</span>There are three main tags:</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>O: this line is not IGT.</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>B-: this line is starting a new span of IGT</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>I-: this line is continuing a previous span of IGT</p>
+<p class="p5">○<span class="Apple-tab-span">	</span>There are four types of B &amp; I tags, too:</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>M: Metadata</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>L: language line</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>G: gloss line</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>T: translation line</p>
+<p class="p5">○<span class="Apple-tab-span">	</span>There are attributes that we are not using for now, too, that are signified with +, these are things such as:</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>DB: double column</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>AC: Author Citation</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>LN: Language Name</p>
+<p class="p6"><span class="s4">■</span><span class="Apple-tab-span">	</span>…and some others</p>
+<p class="p4">●<span class="Apple-tab-span">	</span><span class="s5"><b>lang=</b>:</span> if the line contains IGT data, it should be labeled with the language’s ISO-639-3 code</p>
+<p class="p4">●<span class="Apple-tab-span">	</span><span class="s6"><b>span_id</b>=</span>: the unique id for the IGT span (starting from 1, and incrementing for each span)</p>
+<p class="p4">●<span class="Apple-tab-span">	</span><span class="s7"><b>fonts=</b>:</span> The comma-delimited list of fonts used in this line of text in the format &lt;font_id&gt;-&lt;size.00&gt;</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p2"><span class="s1"><a name="h.8cf7yt6kiff6"></a></span>​</p>
+<p class="p1"><span class="s1"><a name="_Toc58fa0f9a"></a></span>Example</p>
+<p class="p7"><br></p>
+<p class="p8">doc_id=3009.tetml page=11 block_id=11-6 bbox=42.5,660.3,500.4,672.3 365 365</p>
+<p class="p9">line=365<span class="Apple-converted-space">  </span><span class="s8">tag=O</span> fonts=F49-12.0:is a brick-town at speech time. As convincing as this may be, counterexamples are easy to find:</p>
+<p class="p10"><br></p>
+<p class="p8">doc_id=3009.tetml page=11 block_id=11-7 bbox=42.5,615.7,506.2,641.6 366 367</p>
+<p class="p9">line=366<span class="Apple-converted-space">  </span><span class="s8">tag=B-L</span> <span class="s5">lang=deu</span> <span class="s6">span_id=s13</span> <span class="s7">fonts=F49-12.0:</span>(xix) In der <span class="Apple-converted-space">  </span>Nachkriegszeit <span class="Apple-converted-space">  </span>ist Kleve <span class="Apple-converted-space">  </span>zu einer Klinkerstadt<span class="Apple-converted-space">  </span>geworden, aber<span class="Apple-converted-space">  </span>schon <span class="Apple-converted-space">  </span>in</p>
+<p class="p9">line=367<span class="Apple-converted-space">  </span><span class="s8">tag=I-G</span> <span class="s5">lang=deu</span> <span class="s6">span_id=s13</span> <span class="s7">fonts=F49-12.0</span>:<span class="Apple-converted-space">  <span class="Apple-tab-span">	</span></span>in the <span class="Apple-converted-space">  </span>after-war-time <span class="Apple-converted-space">  </span>is Kleve <span class="Apple-converted-space">  </span>to a<span class="Apple-tab-span">	</span>brick-town<span class="Apple-tab-span">	</span>become<span class="Apple-tab-span">	</span>but <span class="Apple-converted-space">  </span>already in</p>
+<p class="p10"><br></p>
+<p class="p8">doc_id=3009.tetml page=11 block_id=11-8 bbox=70.8,574.2,453.4,600.1 368 369</p>
+<p class="p9">line=368<span class="Apple-converted-space">  </span><span class="s8">tag=I-L</span> <span class="s5">lang=deu</span> <span class="s6">span_id=s13</span> <span class="s7">fonts=F49-12.0</span>:den<span class="Apple-converted-space">  </span>80ern <span class="Apple-converted-space">  </span>hat <span class="Apple-converted-space">  </span>man neue Impulse <span class="Apple-converted-space">  </span>gesetzt<span class="Apple-converted-space">  </span>in Richtung<span class="Apple-converted-space">  </span>Hochhaus</p>
+<p class="p9">line=369<span class="Apple-converted-space">  </span><span class="s8">tag=I-G</span> <span class="s5">lang=deu</span> <span class="s6">span_id=s13</span> <span class="s7">fonts=F49-12.0</span>:the <span class="Apple-converted-space">  </span>80ies <span class="Apple-converted-space">  </span>has<span class="Apple-converted-space">  </span>one<span class="Apple-converted-space">  </span>new<span class="Apple-converted-space">  </span>impulses <span class="Apple-converted-space">  </span>set <span class="Apple-tab-span">	</span>in direction <span class="Apple-converted-space">  </span>skyscrapers</p>
+<p class="p10"><br></p>
+<p class="p8">doc_id=3009.tetml page=11 block_id=11-9 bbox=70.8,532.6,524.5,558.3 370 371</p>
+<p class="p9">line=370<span class="Apple-converted-space">  </span><span class="s8">tag=I-T</span> <span class="s5">lang=deu</span> <span class="s6">span_id=s13</span> <span class="s7">fonts=F49-12.0</span>:'Kleve has become a brick-town after the War, but already in the 80ies, people tried new</p>
+<p class="p9">line=371<span class="Apple-converted-space">  </span><span class="s8">tag=I-T</span> <span class="s5">lang=deu</span> <span class="s6">span_id=s13</span> <span class="s7">fonts=F49-12.0</span>:things with skyscrapers'</p>
+<p class="p10"><br></p>
+<p class="p8">doc_id=3009.tetml page=11 block_id=11-10 bbox=56.6,501.9,503.7,513.9 372 372</p>
+<p class="p9">line=372<span class="Apple-converted-space">  </span><span class="s8">tag=O</span> <span class="s7">fonts=F49-12.0</span>:In the section about Comrie (1995) below, I will address other facets of the relevance-notion.</p>
+</body>
+</html>
