@@ -19,7 +19,7 @@ def run(args):
     os.makedirs(os.path.dirname(args.outfile), exist_ok=True)
     outfile = open(args.outfile, 'w', encoding='utf-8')
     for page in reader.pages():
-        for blk in reader.blocks(page):
+        for blk in reader.blocks(page, coefficient=args.block):
             outfile.write(
                 'doc_id={} page={} block_id={} bbox={},{},{},{} {} {}\n'.format(
                     doc_id,
@@ -143,6 +143,10 @@ def main(arglist=None):
     parser.add_argument(
         '-f', '--format',
         choices=('tetml','pdfminer'), default='tetml'
+    )
+    parser.add_argument('-b', '--block',
+        type=float, default=0.0,
+        help='block grouping multiplier'
     )
     parser.add_argument('--deindent-blocks',
         action='store_true',
