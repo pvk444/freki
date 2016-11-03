@@ -16,7 +16,11 @@ def run(args):
     reader = readers[args.format](args.infile)
     doc_id = path.splitext(path.basename(args.infile))[0]
     line_no = 1
-    os.makedirs(os.path.dirname(args.outfile), exist_ok=True)
+
+    dirs = os.path.dirname(args.outfile)
+    if dirs:
+        os.makedirs(dirs, exist_ok=True)
+    
     outfile = open(args.outfile, 'w', encoding='utf-8')
     for page in reader.pages():
         for blk in reader.blocks(page, coefficient=args.block):
