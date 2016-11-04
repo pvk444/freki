@@ -132,7 +132,6 @@ class FrekiBlock(object):
 # -------------------------------------------
 # FrekiLine
 # -------------------------------------------
-
 class FrekiLine(object):
     """
     The "Line" class
@@ -152,7 +151,11 @@ class FrekiLine(object):
 
     @property
     def fonts(self):
-        return self.attrs.get('fonts')
+        """
+        :rtype: list[FrekiFont]
+        """
+        return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
+
 
     def preamble(self):
         """
@@ -164,8 +167,6 @@ class FrekiLine(object):
                     k != 'str_']
         return ' '.join(pre_data)
 
-    def __str__(self):
-        return '{}:{}'.format(' '.join(self.preamble()), self.str_)
 
     @classmethod
     def reads(cls, line):
@@ -182,7 +183,24 @@ class FrekiLine(object):
 
 
 
+class FrekiFont(object):
+    """
+    Quick representation for a (font_type-font_size) pair.
+    """
+    def __init__(self, f_type, f_size):
+        self.f_type = f_type
+        self.f_size = f_size
 
+    def __repr__(self):
+        return str(self)
+
+    def __str__(self):
+        return '{}-{}'.format(self.f_type, self.f_size)
+
+    @classmethod
+    def reads(cls, s):
+        f_type, f_size = s.split('-')
+        return cls(f_type, float(f_size))
 
 # =============================================================================
 # Unit test
