@@ -24,21 +24,25 @@ import unittest
 # Representation of a document, consisting of a collection
 # of blocks.
 # -------------------------------------------
+from collections import OrderedDict
+
+
 class FrekiDoc(object):
     """
     Class to contain unified reading/writing of freki documents.
     """
     def __init__(self):
-        self.blocks = []
+        self.linemap = {}
+        self.blockmap = OrderedDict()
 
     @classmethod
-    def read(self, path):
+    def read(cls, path):
         """
         Read in a Freki Document
         :param path:
         :return:
         """
-        fd = FrekiDoc()
+        fd = cls()
         with open(path, 'r', encoding='utf-8') as f:
 
             # Keep track of the most recent data
@@ -59,16 +63,19 @@ class FrekiDoc(object):
 
                     # Dont add the first block
                     if cur_block is not None:
-                        fd.blocks.append(cur_block)
+                        fd.blockmap[cur_block.block_id] = cur_block
+
                     cur_block = new_block
 
                 elif line.startswith('line'):
                     l = FrekiLine.reads(line)
+                    l.block = cur_block.block_id
+                    fd.linemap[l.lineno] = l
                     cur_block.append(l)
 
             # Add the last block in the queue at the document's end
             if cur_block:
-                fd.blocks.append(cur_block)
+                fd.blockmap[cur_block.block_id] = cur_block
 
         return fd
 
@@ -79,6 +86,19 @@ class FrekiDoc(object):
         for block in self.blocks:
             for line in block.lines:
                 yield line.str_
+
+    def lines(self):
+        """
+        Return all the lines in this document.
+        :rtype: list[FrekiLine]
+        """
+        for block in self.blocks:
+            for line in block.lines:
+                yield line
+
+    @property
+    def blocks(self):
+        return self.blockmap.values()
 
 def linesort(a):
     """
@@ -137,7 +157,7 @@ class FrekiBlock(object):
 
         max_pre_len = max([len(l.preamble()) for l in self.lines]) if len(self.lines) else 0
 
-        ret_str += '\n'.join(['{{:<{}}}:{{}}'.format(max_pre_len).format(line.preamble(), line.str_) for line in self.lines])
+        ret_str += '\n'.join(['{{:<{}}}:{{}}'.format(max_pre_len).format(line.preamble(), line) for line in self.lines])
 
         return ret_str
 
@@ -147,14 +167,14 @@ class FrekiBlock(object):
 # -------------------------------------------
 # FrekiLine
 # -------------------------------------------
-class FrekiLine(object):
+class FrekiLine(str):
     """
     The "Line" class
     """
-    def __init__(self, str_, **kwargs):
-        self.str_ = str_
-
-        self.attrs = kwargs
+    def __new__(cls, seq='', **kwargs):
+        s = super().__new__(cls, seq)
+        setattr(s, 'attrs', kwargs)
+        return s
 
     @property
     def tag(self):
@@ -170,6 +190,14 @@ class FrekiLine(object):
         :rtype: list[FrekiFont]
         """
         return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
+
+    @property
+    def block(self):
+        return self.attrs.get('block_id')
+
+    @block.setter
+    def block(self, v):
+        self.attrs['block_id'] = v
 
 
     def preamble(self):
@@ -195,6 +223,9 @@ class FrekiLine(object):
         preamble_data = re.findall('\S+=[^=]+(?=(?:\s+\S+)|\s*$)', preamble)
         line_preamble = {k.strip():v for k, v in [item.split('=') for item in preamble_data]}
         return cls(text, **line_preamble)
+
+    def search(self, regex, flags=0):
+        return re.search(regex, self, flags=flags)
 
 
 
