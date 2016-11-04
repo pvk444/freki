@@ -6,6 +6,7 @@ import argparse
 import logging
 
 from readers import tetml, pdfminer
+from serialize.frekitxt import FrekiBlock, FrekiLine
 
 readers = {
     'tetml': tetml.TetmlReader,
@@ -24,32 +25,21 @@ def run(args):
     outfile = open(args.outfile, 'w', encoding='utf-8')
     for page in reader.pages():
         for blk in reader.blocks(page, coefficient=args.block):
-            outfile.write(
-                'doc_id={} page={} block_id={} bbox={},{},{},{} {} {}\n'.format(
-                    doc_id,
-                    page.id,
-                    blk.id,
-                    blk.llx,
-                    blk.lly,
-                    blk.urx,
-                    blk.ury,
-                    line_no,
-                    line_no + len(blk.lines) - 1
-                )
-            )
-            # if blk.tabular:
-            #     print('<respaced>')
-            #     print('\n'.join(respace(blk)))
-            #     print('</respaced>\n\n<tabularized>')
-            #     print('\n'.join(tabularize(blk)))
-            #     print('</tabularized>')
-            # else:
+            fb = FrekiBlock(doc_id=doc_id,
+                            page=page.id,
+                            block_id=blk.id,
+                            bbox='{},{},{},{}'.format(blk.llx,blk.lly,blk.urx,blk.ury))
+
             for i, line in enumerate(respace(blk, args.deindent_blocks)):
                 fonts = ','.join(sorted(set(['{}-{}'.format(t.font, t.size) for t in blk.lines[i].tokens])))
-                outfile.write('line={} fonts={}:{}\n'.format(line_no+i, fonts, line))
+                fl = FrekiLine(line,
+                               line=line_no+i,
+                               fonts=fonts)
+                fb.append(fl)
+
             line_no += len(blk.lines)
             #print('\n'.join(respace(blk)))
-            outfile.write('\n')
+            outfile.write(str(fb)+'\n\n')
 
         # lines = reader.group_lines()
         # respace(lines)
