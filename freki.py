@@ -16,10 +16,14 @@ def run(args):
     reader = readers[args.format](args.infile)
     doc_id = path.splitext(path.basename(args.infile))[0]
     line_no = 1
-    os.makedirs(os.path.dirname(args.outfile), exist_ok=True)
+
+    dirs = os.path.dirname(args.outfile)
+    if dirs:
+        os.makedirs(dirs, exist_ok=True)
+    
     outfile = open(args.outfile, 'w', encoding='utf-8')
     for page in reader.pages():
-        for blk in reader.blocks(page):
+        for blk in reader.blocks(page, coefficient=args.block):
             outfile.write(
                 'doc_id={} page={} block_id={} bbox={},{},{},{} {} {}\n'.format(
                     doc_id,
@@ -40,7 +44,7 @@ def run(args):
             #     print('\n'.join(tabularize(blk)))
             #     print('</tabularized>')
             # else:
-            for i, line in enumerate(respace(blk)):
+            for i, line in enumerate(respace(blk, args.deindent_blocks)):
                 fonts = ','.join(sorted(set(['{}-{}'.format(t.font, t.size) for t in blk.lines[i].tokens])))
                 outfile.write('line={} fonts={}:{}\n'.format(line_no+i, fonts, line))
             line_no += len(blk.lines)
@@ -85,9 +89,9 @@ def tabularize(block):
             yield ' '.join(t.text for t in line)
 
 
-def respace(block):
+def respace(block, deindent=False):
     t = list((t.llx for line in block.lines for t in line.tokens))
-    l_margin = 0 if not t else min(t)
+    l_margin = min(t) if (deindent and t) else 0
 
     # -------------------------------------------
     # We want to calculate the average character
@@ -140,11 +144,19 @@ def main(arglist=None):
         action='count', dest='verbosity', default=2,
         help='increase the verbosity (can be repeated: -vvv)'
     )
-    parser.add_argument('infile')
     parser.add_argument(
         '-f', '--format',
         choices=('tetml','pdfminer'), default='tetml'
     )
+    parser.add_argument('-b', '--block',
+        type=float, default=0.0,
+        help='block grouping multiplier'
+    )
+    parser.add_argument('--deindent-blocks',
+        action='store_true',
+        help='remove consistent leading space in block lines'
+    )
+    parser.add_argument('infile')
     parser.add_argument('outfile')
     args = parser.parse_args(arglist)
     logging.basicConfig(level=50-(args.verbosity*10))

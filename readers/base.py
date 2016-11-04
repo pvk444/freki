@@ -222,9 +222,9 @@ class FrekiReader(object):
         '''
         raise NotImplementedError()
 
-    def blocks(self, page):
+    def blocks(self, page, coefficient=1.0):
         lines = self.lines(page)
-        line_dy = self._line_dy()
+        line_dy = coefficient * self._line_dy()
         i = 1
 
         block = Block(id='{}-{}'.format(page.id, i))
