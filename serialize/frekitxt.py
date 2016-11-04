@@ -15,7 +15,6 @@ the fonts contained on that line, and language ID information.
 """
 
 import re
-import unittest
 
 
 # -------------------------------------------
@@ -216,13 +215,3 @@ class FrekiFont(object):
     def reads(cls, s):
         f_type, f_size = s.split('-')
         return cls(f_type, float(f_size))
-
-# =============================================================================
-# Unit test
-# =============================================================================
-
-class FrekiDocTest(unittest.TestCase):
-    def runTest(self):
-
-        fd = FrekiDoc.read('/Users/rgeorgi/Documents/code/igt-detect/4-match-fixed/3.txt')
-        print(fd)

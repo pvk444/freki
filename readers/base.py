@@ -1,12 +1,6 @@
 
 from collections import namedtuple, defaultdict, Counter
 
-import sys
-
-import collections
-
-import statistics
-
 min_line_overlap = 0.01
 
 class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
