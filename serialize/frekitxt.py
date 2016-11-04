@@ -99,13 +99,28 @@ class FrekiBlock(object):
         self._attrs = kwargs
 
     @property
-    def page(self): return self._attrs.get('page')
+    def page(self): return int(self._attrs.get('page'))
 
     @property
     def block_id(self): return self._attrs.get('block_id')
 
     @property
-    def bbox(self): return self._attrs.get('bbox', '0,0,0,0')
+    def bbox(self): return [int(i) for i in self.bbox_str.split(',')]
+
+    @property
+    def bbox_str(self): return self._attrs.get('bbox', '0,0,0,0')
+
+    @property
+    def llx(self): return self.bbox[0]
+
+    @property
+    def lly(self): return self.bbox[1]
+
+    @property
+    def urx(self): return self.bbox[2]
+
+    @property
+    def ury(self): return self.bbox[3]
 
     @property
     def doc_id(self): return self._attrs.get('doc_id')
@@ -117,7 +132,7 @@ class FrekiBlock(object):
         ret_str = 'doc_id={} page={} block_id={} bbox={} {} {}\n'.format(self.doc_id,
                                                                    self.page,
                                                                    self.block_id,
-                                                                   self.bbox,
+                                                                   self.bbox_str,
                                                                     start_line, stop_line)
 
         max_pre_len = max([len(l.preamble()) for l in self.lines]) if len(self.lines) else 0
@@ -147,7 +162,7 @@ class FrekiLine(object):
 
     @property
     def lineno(self):
-        return self.attrs.get('line')
+        return int(self.attrs.get('line'))
 
     @property
     def fonts(self):
