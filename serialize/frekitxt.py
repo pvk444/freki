@@ -32,8 +32,8 @@ class FrekiDoc(object):
     Class to contain unified reading/writing of freki documents.
     """
     def __init__(self):
-        self.linemap = {}
         self.blockmap = OrderedDict()
+        self.linemap = OrderedDict()
 
     @classmethod
     def read(cls, path):
@@ -82,23 +82,21 @@ class FrekiDoc(object):
     def __str__(self):
         return '\n\n'.join([str(b) for b in self.blocks])
 
-    def text_lines(self):
-        for block in self.blocks:
-            for line in block.lines:
-                yield line.str_
+    def get_line(self, lineno):
+        return self.linemap.get(lineno)
 
     def lines(self):
         """
         Return all the lines in this document.
         :rtype: list[FrekiLine]
         """
-        for block in self.blocks:
-            for line in block.lines:
-                yield line
+        for line in self.linemap:
+            yield line
 
     @property
     def blocks(self):
-        return self.blockmap.values()
+        return list(self.blockmap.values())
+
 
 def linesort(a):
     """
@@ -115,8 +113,11 @@ class FrekiBlock(object):
     The "Block" class, consisting of:
     """
     def __init__(self, lines=None, start_line=None, stop_line = None, **kwargs):
-        self.lines = [] if lines is None else lines
+        self.linedict = OrderedDict() if lines is None else lines
         self._attrs = kwargs
+
+    @property
+    def lines(self): return list(self.linedict.values())
 
     @property
     def page(self): return int(self._attrs.get('page'))
@@ -162,7 +163,7 @@ class FrekiBlock(object):
         return ret_str
 
     def append(self, l):
-        self.lines.append(l)
+        self.linedict[l.lineno] = l
 
 # -------------------------------------------
 # FrekiLine
