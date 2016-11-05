@@ -89,7 +89,7 @@ class FrekiDoc(object):
         Return all the lines in this document.
         :rtype: list[FrekiLine]
         """
-        for line in self.linemap:
+        for line in self.linemap.values():
             yield line
 
     @property
