@@ -3,8 +3,6 @@ from collections import Counter
 from gzip import GzipFile
 from xml.etree import ElementTree as ET
 
-import statistics
-
 from .base import FrekiReader, Token, Page, Para
 
 
@@ -41,12 +39,9 @@ class TetmlReader(FrekiReader):
         glyphs = word_elem.findall('.//Glyph')
         # token font face/size is most common pair
 
-        glyph_sizes = [(g.get('font'), g.get('size')) for g in glyphs]
-        try:
-            font_info = statistics.mode(glyph_sizes)
-        except statistics.StatisticsError:
-            font_info = glyph_sizes[0]
-
+        font_info = Counter(
+            (g.get('font'), g.get('size')) for g in glyphs
+        ).most_common(1)[0][0]
 
         features = {}
         sub_sup = Counter(
@@ -104,11 +99,9 @@ class TetmlReader(FrekiReader):
             box = word.find('Box')
             glyphs = word.findall('.//Glyph')
 
-            sizes = [(g.get('font'), g.get('size')) for g in glyphs]
-            try:
-                font_info = statistics.mode(sizes)
-            except statistics.StatisticsError:
-                font_info = sizes[0]
+            font_info = Counter(
+                (g.get('font'), g.get('size')) for g in glyphs
+            ).most_common(1)[0][0]
 
             # TETML detects if a glyph is a super/subscript; again,
             # go with the most common for all glyphs in word
