@@ -5,8 +5,8 @@ from collections import defaultdict, Counter
 import argparse
 import logging
 
-from .readers import tetml, pdfminer
-from .serialize import FrekiBlock, FrekiLine
+from freki.readers import tetml, pdfminer
+from freki.serialize import FrekiBlock, FrekiLine
 
 readers = {
     'tetml': tetml.TetmlReader,
