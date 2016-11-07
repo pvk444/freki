@@ -25,7 +25,6 @@ import re
 # of blocks.
 # -------------------------------------------
 from collections import OrderedDict
-from unittest import TestCase
 
 
 class FrekiDoc(object):
@@ -349,8 +348,3 @@ class FrekiFont(object):
     def reads(cls, s):
         f_type, f_size = s.split('-')
         return cls(f_type, float(f_size))
-
-class ReadTest(TestCase):
-    def runTest(self):
-        fd = FrekiDoc.read('/Users/rgeorgi/Documents/code/igt-detect/5-gold/2624.txt')
-        print(fd)
