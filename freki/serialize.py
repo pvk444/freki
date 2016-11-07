@@ -3,11 +3,12 @@ This module is included to have a standard
 text-based serialization format for the output
 of Freki, namely:
 
-A "Document" is a collection of "Blocks".
+A :FrekiDoc: is a collection of lines, as well as
+the :FrekiBlock: elements that group lines.
 
-A "Block" is a collection of "Lines", that also have
-metadata regarding page number in the original
-PDF, and x,y coordinate positions within that page.
+A :FrekiBlock: also contains metadata regarding page
+number in the original PDF and x,y coordinate positions
+within that page.
 
 A "Line" is a line of text, that also contains metadata
 concerning the label and span membership for IGT status,
@@ -23,7 +24,9 @@ import re
 # Representation of a document, consisting of a collection
 # of blocks.
 # -------------------------------------------
+import statistics
 from collections import OrderedDict
+from unittest import TestCase
 
 
 class FrekiDoc(object):
@@ -34,17 +37,23 @@ class FrekiDoc(object):
         self.blockmap = OrderedDict()
         self.linemap = OrderedDict()
 
+    def __len__(self):
+        return len(self.linemap)
+
     @classmethod
     def read(cls, path):
         """
-        Read in a Freki Document
+        Read in a Freki Document from a file.
+
         :param path:
         :return:
         """
+        # Create the blank document that will be returned.
         fd = cls()
+
+        # Open the path for reading.
         with open(path, 'r', encoding='utf-8') as f:
 
-            # Keep track of the most recent data
             cur_block = None
 
             for line in f:
@@ -53,28 +62,26 @@ class FrekiDoc(object):
                 if not line.strip():
                     continue
 
-                # Parse the block preamble
+                # If the line in the document
+                # is describing a new block,
+                # create the new block...
                 if line.startswith('doc_id'):
-                    doc_preamble = {a:b for a,b in [item.split('=') for item in line.split()[:-2]]}
+                    doc_preamble = {a.strip():b.strip() for a,b in [item.split('=') for item in line.split()[:-2]]}
+                    cur_block = FrekiBlock(**doc_preamble)
 
+                    # Make the containing doc accessible
+                    # to the block.
+                    cur_block.doc = fd
 
-                    new_block = FrekiBlock(**doc_preamble)
+                    # Add this current block to the blockmap.
+                    fd.blockmap[cur_block.block_id] = cur_block
 
-                    # Dont add the first block
-                    if cur_block is not None:
-                        fd.blockmap[cur_block.block_id] = cur_block
-
-                    cur_block = new_block
-
+                # Otherwise, if we are passing a new line
+                # element..
                 elif line.startswith('line'):
-                    l = FrekiLine.reads(line)
-                    l.block = cur_block.block_id
-                    fd.linemap[l.lineno] = l
-                    cur_block.append(l)
-
-            # Add the last block in the queue at the document's end
-            if cur_block:
-                fd.blockmap[cur_block.block_id] = cur_block
+                    fl = FrekiLine.reads(line)  # Parse it..
+                    cur_block.add_line(fl)
+                    fd.add_line(fl)
 
         return fd
 
@@ -82,7 +89,12 @@ class FrekiDoc(object):
         return '\n\n'.join([str(b) for b in self.blocks])
 
     def get_line(self, lineno):
+        """:rtype: FrekiLine"""
         return self.linemap.get(lineno)
+
+    def set_line(self, lineno, line):
+        """:type line: FrekiLine """
+        self.linemap[lineno] = line
 
     def lines(self):
         """
@@ -94,7 +106,23 @@ class FrekiDoc(object):
 
     @property
     def blocks(self):
+        """:rtype: list[FrekiBlock]"""
         return list(self.blockmap.values())
+
+    def llxs(self):
+        return [b.llx for b in self.blocks]
+
+    def fonts(self):
+        fonts = []
+        for block in self.blocks:
+            for font in block.fonts:
+                fonts.append(font)
+        return fonts
+
+    def add_line(self, fl):
+        """:type fl: FrekiLine"""
+        fl.doc = self
+        self.linemap[fl.lineno] = fl
 
 
 def linesort(a):
@@ -111,12 +139,23 @@ class FrekiBlock(object):
     """
     The "Block" class, consisting of:
     """
-    def __init__(self, lines=None, start_line=None, stop_line = None, **kwargs):
-        self.linedict = OrderedDict() if lines is None else lines
+    def __init__(self, linenos=None, start_line=None, stop_line = None, **kwargs):
+        self.linenos = [] if linenos is None else linenos
         self._attrs = kwargs
+        self.doc = None
 
     @property
-    def lines(self): return list(self.linedict.values())
+    def doc(self) -> FrekiDoc: return self._doc
+
+    @doc.setter
+    def doc(self, v): self._doc = v
+
+    @property
+    def lines(self):
+        """
+        :rtype: list[FrekiLine]
+        """
+        return [self.doc.get_line(ln) for ln in self.linenos]
 
     @property
     def page(self): return int(self._attrs.get('page'))
@@ -143,6 +182,14 @@ class FrekiBlock(object):
     def ury(self): return self.bbox[3]
 
     @property
+    def fonts(self):
+        fonts = []
+        for line in self.lines:
+            for font in line.fonts:
+                fonts.append(font)
+        return fonts
+
+    @property
     def doc_id(self): return self._attrs.get('doc_id')
 
     def __str__(self):
@@ -150,10 +197,10 @@ class FrekiBlock(object):
         stop_line  = self.lines[-1].lineno if self.lines else 0 # Get the endling line number
 
         ret_str = 'doc_id={} page={} block_id={} bbox={} {} {}\n'.format(self.doc_id,
-                                                                   self.page,
-                                                                   self.block_id,
-                                                                   self.bbox_str,
-                                                                    start_line, stop_line)
+                                                                         self.page,
+                                                                         self.block_id,
+                                                                         self.bbox_str,
+                                                                         start_line, stop_line)
 
         max_pre_len = max([len(l.preamble()) for l in self.lines]) if len(self.lines) else 0
 
@@ -161,8 +208,10 @@ class FrekiBlock(object):
 
         return ret_str
 
-    def append(self, l):
-        self.linedict[l.lineno] = l
+    def add_line(self, line):
+        line.block = self
+        self.linenos.append(line.lineno)
+
 
 # -------------------------------------------
 # FrekiLine
@@ -174,15 +223,18 @@ class FrekiLine(str):
     def __new__(cls, seq='', **kwargs):
         s = super().__new__(cls, seq)
         setattr(s, 'attrs', kwargs)
+        s.block = kwargs.get('block')
+        s.doc = kwargs.get('doc')
         return s
 
     @property
-    def tag(self):
-        return self.attrs.get('tag', 'O')
+    def tag(self): return self.attrs.get('tag', 'O')
 
     @property
-    def lineno(self):
-        return int(self.attrs.get('line'))
+    def lineno(self): return int(self.attrs.get('line'))
+
+    @property
+    def span_id(self): return self.attrs.get('span_id')
 
     @property
     def fonts(self):
@@ -191,14 +243,25 @@ class FrekiLine(str):
         """
         return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
 
+    @fonts.setter
+    def fonts(self, fonts):
+        """:type fonts: list[FrekiFont]"""
+        self.attrs['fonts'] = ','.join([str(f) for f in fonts])
+
+
     @property
-    def block(self):
-        return self.attrs.get('block_id')
+    def block(self) -> FrekiBlock:
+        return self._block
 
     @block.setter
     def block(self, v):
-        self.attrs['block_id'] = v
+        self._block = v
 
+    @property
+    def doc(self) -> FrekiDoc: return self._doc
+
+    @doc.setter
+    def doc(self, d): self._doc = d
 
     def preamble(self):
         """
@@ -256,3 +319,8 @@ class FrekiFont(object):
     def reads(cls, s):
         f_type, f_size = s.split('-')
         return cls(f_type, float(f_size))
+
+class ReadTest(TestCase):
+    def runTest(self):
+        fd = FrekiDoc.read('/Users/rgeorgi/Documents/code/igt-detect/5-gold/2624.txt')
+        print(fd)
