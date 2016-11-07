@@ -221,7 +221,7 @@ class FrekiLine(str):
         """
         preamble, text = re.search('(line.*?):(.*)', line).groups()
         preamble_data = re.findall('\S+=[^=]+(?=(?:\s+\S+)|\s*$)', preamble)
-        line_preamble = {k.strip():v for k, v in [item.split('=') for item in preamble_data]}
+        line_preamble = {k.strip():v.strip() for k, v in [item.split('=') for item in preamble_data]}
         return cls(text, **line_preamble)
 
     def search(self, regex, flags=0):
