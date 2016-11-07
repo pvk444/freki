@@ -243,6 +243,15 @@ class FrekiFont(object):
     def __str__(self):
         return '{}-{}'.format(self.f_type, self.f_size)
 
+    def __eq__(self, other):
+        return all([hasattr(other, 'f_type'),
+                   hasattr(other, 'f_size'),
+                   self.f_type == other.f_type,
+                   self.f_size == other.f_size])
+
+    def __hash__(self):
+        return hash(str(self))
+
     @classmethod
     def reads(cls, s):
         f_type, f_size = s.split('-')
