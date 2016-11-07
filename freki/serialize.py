@@ -104,6 +104,34 @@ class FrekiDoc(object):
         for line in self.linemap.values():
             yield line
 
+    def spans(self):
+        """
+        Return an ordered dict of the spans in the document, with
+        their IDs.
+        """
+        spans = OrderedDict()
+        cur_span = None
+        cur_span_id = None
+
+        for line in self.lines():
+            # If there's a labeled span:
+            if line.span_id is not None:
+                if (cur_span_id != line.span_id) or (cur_span is None):
+                    if cur_span is not None:
+                        spans[cur_span_id] = tuple(cur_span)
+                    cur_span = [line.lineno, line.lineno]
+                    cur_span_id = line.span_id
+
+                elif cur_span_id == line.span_id:
+                    cur_span[1] = line.lineno
+
+            elif cur_span is not None:
+                spans[cur_span_id] = tuple(cur_span)
+                cur_span = None
+
+        return spans
+
+
     @property
     def blocks(self):
         """:rtype: list[FrekiBlock]"""
@@ -235,6 +263,9 @@ class FrekiLine(str):
 
     @property
     def span_id(self): return self.attrs.get('span_id')
+
+    @span_id.setter
+    def span_id(self, v): self.attrs['span_id'] = v
 
     @property
     def fonts(self):
