@@ -24,7 +24,6 @@ import re
 # Representation of a document, consisting of a collection
 # of blocks.
 # -------------------------------------------
-import statistics
 from collections import OrderedDict
 from unittest import TestCase
 
