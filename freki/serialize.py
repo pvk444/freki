@@ -125,7 +125,7 @@ class FrekiBlock(object):
     def block_id(self): return self._attrs.get('block_id')
 
     @property
-    def bbox(self): return [int(i) for i in self.bbox_str.split(',')]
+    def bbox(self): return [float(i) for i in self.bbox_str.split(',')]
 
     @property
     def bbox_str(self): return self._attrs.get('bbox', '0,0,0,0')
