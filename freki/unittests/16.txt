@@ -1,0 +1,1614 @@
+doc_id=16.tetml page=1 block_id=1-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=1 block_id=1-2 bbox=213.0,602.7,388.6,613.6 1 1
+line=1  tag=O fonts=F0-10.91:TENSE AS A NOMINAL CATEGORY
+
+doc_id=16.tetml page=1 block_id=1-3 bbox=219.5,580.7,381.9,591.6 2 2
+line=2  tag=O fonts=F0-10.91:Rachel Nordlinger and Louisa Sadler
+
+doc_id=16.tetml page=1 block_id=1-4 bbox=199.2,558.6,402.1,569.5 3 3
+line=3  tag=O fonts=F0-10.91:Melbourne University and University of Essex
+
+doc_id=16.tetml page=1 block_id=1-5 bbox=216.5,395.4,384.8,406.3 4 4
+line=4  tag=O fonts=F0-10.91:Proceedings of the LFG00 Conference
+
+doc_id=16.tetml page=1 block_id=1-6 bbox=224.8,362.0,373.6,372.9 5 5
+line=5  tag=O fonts=F0-10.91:University of California, Berkeley
+
+doc_id=16.tetml page=1 block_id=1-7 bbox=193.4,334.3,405.1,345.2 6 6
+line=6  tag=O fonts=F0-10.91:Miriam Butt and Tracy Holloway King (Editors)
+
+doc_id=16.tetml page=1 block_id=1-8 bbox=289.8,306.6,311.6,317.5 7 7
+line=7  tag=O fonts=F0-10.91:2000
+
+doc_id=16.tetml page=1 block_id=1-9 bbox=163.2,279.5,438.8,303.9 8 9
+line=8  tag=O fonts=F0-10.91:                CSLI Publications
+line=9  tag=O fonts=F1-10.91:http://www-csli.stanford.edu/publications/
+
+doc_id=16.tetml page=2 block_id=2-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=2 block_id=2-2 bbox=282.1,765.9,319.2,775.9 10 10
+line=10  tag=O fonts=F3-9.96:Abstract
+
+doc_id=16.tetml page=2 block_id=2-3 bbox=529.1,782.5,534.5,793.4 11 11
+line=11  tag=O fonts=F2-10.91:1
+
+doc_id=16.tetml page=2 block_id=2-4 bbox=94.1,576.9,507.3,754.3 12 26
+line=12  tag=O fonts=F2-9.96:   Recent work in morphology in LFG (Nordlinger 1998, Sadler 1998, Barron 1998) has highlighted
+line=13  tag=O fonts=F2-9.96:the fact that NPs in some languages inflect for the traditionally verbal categories of tense, aspect
+line=14  tag=O fonts=F2-9.96:or mood (henceforth TAM). This phenomenon is extremely problematic for head-driven approaches
+line=15  tag=O fonts=F2-9.96:such as HPSG, which assumes that clause-level information will be associated with clausal heads,
+line=16  tag=O fonts=F2-9.96:and not with nominal arguments or adjuncts.  In this paper we show first that the phenomenon of
+line=17  tag=O fonts=F2-9.96:TAM-inflected nominals is well established and not typologically marginal. We discuss data from a
+line=18  tag=O fonts=F2-9.96:range of typologically diverse languages and show that such data cannot simply be reanalysed to fit
+line=19  tag=O fonts=F2-9.96:head-driven approaches, but demand an analysis in which clause-level information such as TAM is directly
+line=20  tag=O fonts=F2-9.96:      contributed by nominal arguments. We then go on to show how the correspondence architecture
+line=21  tag=O fonts=F2-9.96:    of LFG, and particularly the constructive morphology approach currently being developed within
+line=22  tag=O fonts=F2-9.96:it (Nordlinger 1998, Sadler 1998, Barron 1998, Sells 1998, Lee 1999, Sharma 1999) permits a simple
+line=23  tag=O fonts=F2-9.96:and natural analysis of these data, which are extremely problematic for other formal approaches. This
+line=24  tag=O fonts=F2-9.96:approach not only provides an explanatory account for the cross-linguistic phenomenon of tense as a
+line=25  tag=O fonts=F2-9.96:nominal category, but also highlights one of the strengths of LFG in contrast with head-driven frameworks
+line=26  tag=O fonts=F2-9.96:      .
+
+doc_id=16.tetml page=2 block_id=2-5 bbox=66.8,536.1,166.2,550.5 27 27
+line=27  tag=O fonts=F3-14.35:1  Introduction
+
+doc_id=16.tetml page=2 block_id=2-6 bbox=66.8,505.7,534.5,517.6 28 28
+line=28  tag=O fonts=F2-10.91,F2-7.97:1 Recent work in morphology in LFG (Nordlinger 1998, Sadler 1998, Barron 1998) has highlighted the fact
+
+doc_id=16.tetml page=2 block_id=2-7 bbox=66.8,492.1,534.5,503.0 29 29
+line=29  tag=O fonts=F2-10.91:that NPs in some languages inflect for the traditionally verbal categories of tense, aspect or mood (henceforth
+
+doc_id=16.tetml page=2 block_id=2-8 bbox=66.8,465.0,534.6,489.4 30 31
+line=30  tag=O fonts=F2-10.91,F4-10.91:TAM). For example, in the Kayardild examples in (1) an argument of the embedded clause, mala, is inflected
+line=31  tag=O fonts=F2-10.91         :for TAM information (Evans 1995, Nordlinger 1998). The cases glossed M.PROP and M.LOC function as
+
+doc_id=16.tetml page=2 block_id=2-9 bbox=66.8,437.9,534.5,462.3 32 33
+line=32  tag=O fonts=F2-10.91:markers of tense and mood interacting with the verbal marking, as shown by the meaning contrast between
+line=33  tag=O fonts=F2-10.91:(1a) and (1b), despite the fact that the verbal affix remains the same.
+
+doc_id=16.tetml page=2 block_id=2-10 bbox=77.8,395.1,374.3,419.6 34 35
+line=34  tag=L lang_name=Kayardild lang_code=gyd span_id=s0 fonts=F2-10.91:(1)  a. Ngada     kurri-nangku  mala-wu    balmbi-wu.
+line=35  tag=G lang_name=Kayardild lang_code=gyd span_id=s0 fonts=F2-10.91:        1.SG.NOM see-NEG.POT sea-M.PROP morrow-M.PROP
+
+doc_id=16.tetml page=2 block_id=2-11 bbox=118.9,380.5,435.0,391.4 36 36
+line=36  tag=T+AC lang_name=Kayardild lang_code=gyd span_id=s0 fonts=F2-10.91:’I won’t be able to see the sea (tomorrow).’ (Evans 1995:404, ex. 10-12)
+
+doc_id=16.tetml page=2 block_id=2-12 bbox=103.8,363.0,344.5,373.9 37 37
+line=37  tag=L lang_name=Kayardild lang_code=gyd span_id=s1 fonts=F2-10.91:b.  Ngada     kurri-nangku  mala-y     barruntha-y.
+
+doc_id=16.tetml page=2 block_id=2-13 bbox=118.9,349.4,371.8,360.3 38 38
+line=38  tag=G lang_name=Kayardild lang_code=gyd span_id=s1 fonts=F2-10.91:1.SG.NOM see-NEG.POT sea-M.LOC yesterday-M.LOC
+
+doc_id=16.tetml page=2 block_id=2-14 bbox=118.9,334.8,354.2,345.7 39 39
+line=39  tag=T+AC lang_name=Kayardild lang_code=gyd span_id=s1 fonts=F2-10.91:’I could not see the sea (yesterday).’ (ibid., ex. 10-13)
+
+doc_id=16.tetml page=2 block_id=2-15 bbox=66.8,292.1,534.6,316.5 40 41
+line=40  tag=O fonts=F2-10.91:A similar phenomenon is exemplified by the English example in (2), in which the non-syllabic reduced
+line=41  tag=O fonts=F2-10.91:auxiliary is incorporated into the subject pronoun, which therefore contributes tense information to the
+
+doc_id=16.tetml page=2 block_id=2-16 bbox=66.8,278.5,159.5,289.4 42 42
+line=42  tag=O fonts=F2-10.91:clause (Sadler 1998):
+
+doc_id=16.tetml page=2 block_id=2-17 bbox=77.8,249.3,223.5,260.2 43 43
+line=43  tag=O fonts=F2-10.91:(2)  You’ll be leaving tomorrow.
+
+doc_id=16.tetml page=2 block_id=2-18 bbox=66.8,220.2,534.6,231.1 44 44
+line=44  tag=O fonts=F2-10.91:Data such as these show clearly that nominal elements may define the clause level TAM information typically
+
+doc_id=16.tetml page=2 block_id=2-19 bbox=66.8,193.1,534.6,217.5 45 46
+line=45  tag=O fonts=F2-10.91:     associated with verbal elements: in other words, they exemplify a particular type of mismatch between
+line=46  tag=O fonts=F2-10.91:featural information content and syntactic category. This phenomenon is extremely problematic for theories
+
+doc_id=16.tetml page=2 block_id=2-20 bbox=66.8,179.5,417.3,190.4 47 47
+line=47  tag=O fonts=F2-10.91:which postulate a rigid relationship between syntactic form and featural content.
+
+doc_id=16.tetml page=2 block_id=2-21 bbox=66.8,148.3,534.6,169.2 48 49
+line=48  tag=O fonts=F2-5.98,F2-8.97:   1We are grateful to subscribers to the LINGTYP list for their input and also to Joan Bresnan, Ida Toivonen and Andy Spencer
+line=49  tag=O fonts=F2-8.97        :for discussion and comments.
+
+doc_id=16.tetml page=3 block_id=3-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=3 block_id=3-2 bbox=66.8,752.4,534.5,776.9 50 51
+line=50  tag=O fonts=F5-10.91:Interestingly, it is also problematic for the head-driven approach of HPSG to accommodate both heads which
+line=51  tag=O fonts=F5-10.91:morphologically incorporate into dependents (2) and cases in which dependents express clausal (head) information
+
+doc_id=16.tetml page=3 block_id=3-3 bbox=66.8,725.3,534.6,749.7 52 53
+line=52  tag=O fonts=F5-10.91:          (1). The very architecture of HPSG builds in the assumption that clause-level information will
+line=53  tag=O fonts=F5-10.91:be associated with clausal heads, and not with NP arguments and adjuncts, thus requiring this type of
+
+doc_id=16.tetml page=3 block_id=3-4 bbox=66.8,711.7,534.5,722.6 54 54
+line=54  tag=O fonts=F5-10.91:phenomenon to be reanalysed as involving head-dependent agreement or pronominal incorporation into
+
+doc_id=16.tetml page=3 block_id=3-5 bbox=66.8,698.1,135.9,709.0 55 55
+line=55  tag=O fonts=F5-10.91:auxiliary heads.
+
+doc_id=16.tetml page=3 block_id=3-6 bbox=66.8,665.4,534.5,689.9 56 57
+line=56  tag=O fonts=F5-10.91:In this paper, we show first that the phenomenon of TAM-inflected nominals is well established and not typologically
+line=57  tag=O fonts=F5-10.91:           marginal, contrary to the claim made in (Bender and Sag 1999) that the phenomenon of subjects
+
+doc_id=16.tetml page=3 block_id=3-7 bbox=66.8,638.3,534.6,662.7 58 59
+line=58  tag=O fonts=F5-10.91:projecting tense is unattested cross-linguistically. We discuss data from a range of typologically diverse languages
+line=59  tag=O fonts=F5-10.91:       and show that such data cannot simply be reanalysed to fit head-driven approaches, but demand an
+
+doc_id=16.tetml page=3 block_id=3-8 bbox=66.8,624.7,534.5,635.6 60 60
+line=60  tag=O fonts=F5-10.91:analysis in which clause-level information such as TAM is directly contributed by nominal arguments. We
+
+doc_id=16.tetml page=3 block_id=3-9 bbox=66.8,597.7,534.6,622.0 61 62
+line=61  tag=O fonts=F5-10.91:then go on to show how the correspondence architecture of LFG, and particularly the constructive morphology
+line=62  tag=O fonts=F5-10.91:    approach currently being developed within it (Nordlinger 1998, Sadler 1998, Barron 1998, Sells 1998,
+
+doc_id=16.tetml page=3 block_id=3-10 bbox=66.8,570.6,534.5,595.0 63 64
+line=63  tag=O fonts=F5-10.91:Lee 1999, Sharma 1999) permits a simple and natural analysis of these data, which are extremely problematic
+line=64  tag=O fonts=F5-10.91:    for other formal approaches. This approach not only provides an explanatory account for the crosslinguistic
+
+doc_id=16.tetml page=3 block_id=3-11 bbox=66.8,543.5,534.6,567.9 65 66
+line=65  tag=O fonts=F5-10.91:         phenomenon of tense as a nominal category, but also highlights one of the strengths of LFG in
+line=66  tag=O fonts=F5-10.91:contrast with head-driven frameworks.
+
+doc_id=16.tetml page=3 block_id=3-12 bbox=66.8,524.3,534.6,535.2 67 67
+line=67  tag=O fonts=F5-10.91:This paper is structured as follows. In section 2 we survey this phenomenon in a range of typologically
+
+doc_id=16.tetml page=3 block_id=3-13 bbox=66.8,483.6,534.6,521.6 68 70
+line=68  tag=O fonts=F5-10.91:diverse languages. In sections 3 and 4 we discuss the analysis that can be given to such data within the LFG
+line=69  tag=O fonts=F5-10.91:model of constructive morphology, and the problems that these data pose for the head-driven framework
+line=70  tag=O fonts=F5-10.91:HPSG. Finally in section 5 we address these differences more specifically through the discussion of Sadler’s
+
+doc_id=16.tetml page=3 block_id=3-14 bbox=66.8,456.5,534.5,480.9 71 72
+line=71  tag=O fonts=F5-10.91:(1998) LFG analysis of reduced non-syllabic auxiliaries in English and the counter-analysis proposed by
+line=72  tag=O fonts=F5-10.91:Bender and Sag (2000) in HPSG.
+
+doc_id=16.tetml page=3 block_id=3-15 bbox=529.1,782.5,534.5,793.4 73 73
+line=73  tag=O fonts=F5-10.91:2
+
+doc_id=16.tetml page=3 block_id=3-16 bbox=66.8,415.7,305.7,430.0 74 74
+line=74  tag=O fonts=F6-14.35:2  General Survey of the Phenomenon
+
+doc_id=16.tetml page=3 block_id=3-17 bbox=66.8,385.2,534.6,396.1 75 75
+line=75  tag=O fonts=F5-10.91:The encoding of clause-level TAM information on dependent nominals, while having been virtually ignored
+
+doc_id=16.tetml page=3 block_id=3-18 bbox=66.8,358.1,534.5,382.5 76 77
+line=76  tag=O fonts=F5-10.91:by linguistic theory, is reasonably prevalent cross-linguistically, appearing in a variety of forms across typologically
+line=77  tag=O fonts=F5-10.91:         diverse and unrelated languages. In this section we demonstrate this with data from languages such
+
+doc_id=16.tetml page=3 block_id=3-19 bbox=66.8,317.5,534.5,355.4 78 80
+line=78  tag=O fonts=F5-10.91:as Supyire (Niger-Congo), /Gui (Khoisan), Chamicuro (Arawak) and Pitta Pitta (Pama-Nyungan). While
+line=79  tag=O fonts=F5-10.91:the details may differ, all of these languages share the property of morphologically encoding information
+line=80  tag=O fonts=F5-10.91:about the tense, aspect or mood of the clause on dependent nominals (both arguments and non-arguments).
+
+doc_id=16.tetml page=3 block_id=3-20 bbox=66.8,284.6,534.5,309.1 81 82
+line=81  tag=O fonts=F5-10.91        :There are a number of other ways in which TAM information can come to be associated with nominals and
+line=82  tag=O fonts=F5-10.91,F5-7.97:nominal categories. For example:2
+
+doc_id=16.tetml page=3 block_id=3-21 bbox=66.8,251.9,534.5,276.3 83 84
+line=83  tag=O fonts=F5-10.91:(i) A language may have TAM clitics which can attach phonologically to nominals.   This situation
+line=84  tag=O fonts=F5-10.91:     is found in Garrwa (Australia) (E. S Furby and C. E. Furby 1977) and Apurina (Arawak, Brazil)
+
+doc_id=16.tetml page=3 block_id=3-22 bbox=66.8,238.3,193.3,249.2 85 85
+line=85  tag=O fonts=F5-10.91:(da S. Facundes in progress).
+
+doc_id=16.tetml page=3 block_id=3-23 bbox=66.8,219.1,534.5,230.0 86 86
+line=86  tag=O fonts=F5-10.91:(ii) TAM affixes may appear on nominals to encode semantic features of the NP, e.g. chair-PAST means ’a
+
+doc_id=16.tetml page=3 block_id=3-24 bbox=66.8,192.1,534.5,216.4 87 88
+line=87  tag=O fonts=F5-10.91:former chair’, chair-FUT means ’a future chair’, etc. This use is found in some Amazonian languages, for
+line=88  tag=O fonts=F5-10.91:example, such as Tariana (Aikhenvald 1999).
+
+doc_id=16.tetml page=3 block_id=3-25 bbox=66.8,172.8,534.5,183.7 89 89
+line=89  tag=O fonts=F5-10.91:(iii) Pronominal elements may incorporate into a tensed auxiliary. This can give the appearance of tense-
+
+doc_id=16.tetml page=3 block_id=3-26 bbox=66.8,130.7,534.6,162.4 90 92
+line=90  tag=O fonts=F5-5.98,F5-8.97:   2We would like to thank the many LINGTYP readers who provided much of the language data on which this summary is
+line=91  tag=O fonts=F5-8.97        :based. In particular, we are grateful to Matthew Dryer for first identifying and distinguishing these different types of TAM-inflected
+line=92  tag=O fonts=F5-8.97        :nominals.
+
+doc_id=16.tetml page=4 block_id=4-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=4 block_id=4-2 bbox=66.8,752.4,534.5,776.9 93 94
+line=93  tag=O fonts=F7-10.91:inflected pronouns while actually being a verbal category simply inflected for pronominal features of subject
+line=94  tag=O fonts=F7-10.91:and possibly other arguments. This situation is found in Hausa and other Chadic languages, for example
+
+doc_id=16.tetml page=4 block_id=4-3 bbox=66.8,738.8,140.8,749.7 95 95
+line=95  tag=O fonts=F7-10.91:(Burquest 1986).
+
+doc_id=16.tetml page=4 block_id=4-4 bbox=66.8,706.1,534.6,730.5 96 97
+line=96  tag=O fonts=F7-10.91:However, these possibilities do not pose the theoretical problems that we are interested in here. In the case of
+line=97  tag=O fonts=F7-10.91:(ii), the TAM category is relevant only to the NP, and not to the whole clause, thus the fact that it is encoded
+
+doc_id=16.tetml page=4 block_id=4-5 bbox=66.8,665.4,534.6,703.4 98 100
+line=98  tag=O fonts=F7-10.91 :on the NP is entirely appropriate. As for (i) and (iii), in neither of these situations is a dependent nominal
+line=99  tag=O fonts=F7-10.91 :inflected for TAM: in (i), the TAM marker is a clitic, a distinct syntactic element, which just happens to
+line=100  tag=O fonts=F7-10.91:be realised phonologically on the dependent nominal; and in (iii) the tensed element is actually a verbal
+
+doc_id=16.tetml page=4 block_id=4-6 bbox=66.8,638.3,534.6,662.7 101 102
+line=101  tag=O fonts=F7-10.91:category which is inflected for the pronominal features of its subject. Thus, while these are all cases of
+line=102  tag=O fonts=F7-10.91:nominals bearing TAM information, in none is the nominal actually inflected for the TAM category of the
+
+doc_id=16.tetml page=4 block_id=4-7 bbox=66.8,624.7,96.8,635.6 103 103
+line=103  tag=O fonts=F7-10.91:clause.
+
+doc_id=16.tetml page=4 block_id=4-8 bbox=66.8,578.4,534.5,616.4 104 106
+line=104  tag=O fonts=F7-10.91:We have already seen in (1) two examples of dependent nominals inflected for clausal TAM. The Kayardild
+line=105  tag=O fonts=F7-10.91:data is discussed in detail in Nordlinger (1998) (also (Evans 1995)) and so won’t be discussed further here.
+line=106  tag=O fonts=F7-10.91:The English data will be discussed in more detail in section 5. Many other languages of the world exhibit
+
+doc_id=16.tetml page=4 block_id=4-9 bbox=66.8,564.8,291.3,575.7 107 107
+line=107  tag=O fonts=F7-10.91:similar and related phenomena, as we will now see.
+
+doc_id=16.tetml page=4 block_id=4-10 bbox=66.8,532.1,534.6,556.5 108 109
+line=108  tag=O fonts=F7-10.91:In the Niger-Congo language Supyire (Carlson 1994), first and second person pronouns have two distinct
+line=109  tag=O fonts=F7-10.91:forms depending on whether the mood of the clause is declarative or non-declarative. The two sets of forms
+
+doc_id=16.tetml page=4 block_id=4-11 bbox=66.8,518.5,353.9,529.4 110 110
+line=110  tag=O fonts=F7-10.91:are shown in the table below (taken from Carlson 1994:152, 154).
+
+doc_id=16.tetml page=4 block_id=4-12 bbox=134.2,492.7,235.7,503.6 111 111
+line=111  tag=O fonts=F7-10.91:DECL.  NON-DECL.
+
+doc_id=16.tetml page=4 block_id=4-13 bbox=100.1,478.8,187.5,489.7 112 112
+line=112  tag=O fonts=F7-10.91:1.SG  mìi     na
+
+doc_id=16.tetml page=4 block_id=4-14 bbox=100.1,451.7,190.6,476.1 113 114
+line=113  tag=O fonts=F7-10.91:2.SG  mu     ma
+line=114  tag=O fonts=F7-10.91:1.PL  wùu    wu
+
+doc_id=16.tetml page=4 block_id=4-15 bbox=100.1,438.1,185.7,449.0 115 115
+line=115  tag=O fonts=F7-10.91:2.PL   yìi       yi
+
+doc_id=16.tetml page=4 block_id=4-16 bbox=66.8,412.2,534.5,423.1 116 116
+line=116  tag=O fonts=F7-10.91:The distinction between these two pronoun sets is shown in the following examples. Note that in (4b) and
+
+doc_id=16.tetml page=4 block_id=4-17 bbox=66.8,398.6,331.0,409.5 117 117
+line=117  tag=O fonts=F7-10.91:(4c) the distinction in mood is shown by the pronouns alone.
+
+doc_id=16.tetml page=4 block_id=4-18 bbox=77.8,358.7,193.1,383.1 118 119
+line=118  tag=L+CR lang_name=Supyire lang_code=spp span_id=s2 fonts=F7-10.91:(3)   a. mìi   kùù i
+line=119  tag=G    lang_name=Supyire lang_code=spp span_id=s2 fonts=F7-10.91:        my chicken.DEF
+
+doc_id=16.tetml page=4 block_id=4-19 bbox=118.9,344.7,303.8,355.6 120 120
+line=120  tag=T+AC lang_name=Supyire lang_code=spp span_id=s2 fonts=F7-10.91:‘my chicken’ (Carlson 1994:152, ex. (1a))
+
+doc_id=16.tetml page=4 block_id=4-20 bbox=103.8,315.0,189.8,339.4 121 122
+line=121  tag=L+CR lang_name=Supyire lang_code=spp span_id=s3 fonts=F7-10.91:b. Mìi à     pa.
+line=122  tag=G    lang_name=Supyire lang_code=spp span_id=s3 fonts=F7-10.91:   I   PERF come
+
+doc_id=16.tetml page=4 block_id=4-21 bbox=118.9,301.1,249.2,312.0 123 123
+line=123  tag=T+AC lang_name=Supyire lang_code=spp span_id=s3 fonts=F7-10.91:‘I have come.’ (ibid. ex. (1b))
+
+doc_id=16.tetml page=4 block_id=4-22 bbox=104.0,285.0,213.8,295.9 124 124
+line=124  tag=L+CR lang_name=Supyire lang_code=spp span_id=s4 fonts=F7-10.91:c. Mu a     mìì kánhá.
+
+doc_id=16.tetml page=4 block_id=4-23 bbox=118.9,271.4,199.8,282.3 125 125
+line=125  tag=G lang_name=Supyire lang_code=spp span_id=s4 fonts=F7-10.91:You PERF me tire
+
+doc_id=16.tetml page=4 block_id=4-24 bbox=118.9,257.5,291.8,268.4 126 126
+line=126  tag=T+AC lang_name=Supyire lang_code=spp span_id=s4 fonts=F7-10.91:‘You have annoyed me.’ (ibid, ex. (2b))
+
+doc_id=16.tetml page=4 block_id=4-25 bbox=77.8,227.7,267.7,252.2 127 128
+line=127  tag=L+CR lang_name=Supyire lang_code=spp span_id=s5 fonts=F7-10.91:(4)  a. Ma                   pa.
+line=128  tag=G    lang_name=Supyire lang_code=spp span_id=s5 fonts=F7-10.91:       you.NONDECL SUBJUNC come
+
+doc_id=16.tetml page=4 block_id=4-26 bbox=118.9,213.8,366.8,224.7 129 129
+line=129  tag=T+AC lang_name=Supyire lang_code=spp span_id=s5 fonts=F7-10.91:‘Come’ (polite command). (Carlson 1994: 154, ex. (6a))
+
+doc_id=16.tetml page=4 block_id=4-27 bbox=103.8,184.2,219.8,208.7 130 131
+line=130  tag=L+CR lang_name=Supyire lang_code=spp span_id=s6 fonts=F7-10.91:b. Na           wìì.
+line=131  tag=G    lang_name=Supyire lang_code=spp span_id=s6 fonts=F7-10.91:   me.NONDECL look.at
+
+doc_id=16.tetml page=4 block_id=4-28 bbox=118.9,170.3,303.7,181.2 132 132
+line=132  tag=T+AC lang_name=Supyire lang_code=spp span_id=s6 fonts=F7-10.91:‘Look at me.’ (imperative) (ibid., ex. (7a))
+
+doc_id=16.tetml page=4 block_id=4-29 bbox=104.0,154.1,423.1,165.0 133 133
+line=133  tag=L lang_name=Supyire lang_code=spp span_id=s7 fonts=F7-10.91:c. Na            cevoo    kùu, taá   ma            k - -gé   ke?
+
+doc_id=16.tetml page=4 block_id=4-30 bbox=118.9,140.5,440.5,151.4 134 134
+line=134  tag=G lang_name=Supyire lang_code=spp span_id=s7 fonts=F7-10.91:my.NONDECL friend chicken where you.NONDECL go.IMPFV LOC.Q
+
+doc_id=16.tetml page=4 block_id=4-31 bbox=118.9,126.6,375.9,137.5 135 135
+line=135  tag=T+AC lang_name=Supyire lang_code=spp span_id=s7 fonts=F7-10.91:‘My friend chicken, where are you going?’ (ibid., ex. (7c))
+
+doc_id=16.tetml page=4 block_id=4-32 bbox=529.1,782.5,534.5,793.4 136 136
+line=136  tag=O fonts=F7-10.91:3
+
+doc_id=16.tetml page=5 block_id=5-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=5 block_id=5-2 bbox=66.8,752.4,534.5,776.9 137 138
+line=137  tag=O fonts=F8-10.91:In (3) we see the declarative pronouns in possessor, subject and object functions. In (4) we see the equivalent
+line=138  tag=O fonts=F8-10.91:pronouns in the same functions in non-declarative sentences. While declarative pronouns can sometimes appear
+
+doc_id=16.tetml page=5 block_id=5-3 bbox=66.8,725.3,534.5,749.7 139 140
+line=139  tag=O fonts=F8-10.91         :     in non-declarative clauses, the reverse is not true: it would be totally ungrammatical for the first singular
+line=140  tag=O fonts=F8-10.91,F9-10.91:pronoun na, for example, to appear in one of the declarative clauses in (3). Furthermore, in examples like
+
+doc_id=16.tetml page=5 block_id=5-4 bbox=66.8,711.7,534.3,722.6 141 141
+line=141  tag=O fonts=F8-10.91:(4b), it is only by virtue of the pronoun that we know the clause is non-declarative at all. It is quite clear,
+
+doc_id=16.tetml page=5 block_id=5-5 bbox=66.8,698.1,445.1,709.0 142 142
+line=142  tag=O fonts=F8-10.91:therefore, that these pronouns carry (non-declarative) mood information for the clause.
+
+doc_id=16.tetml page=5 block_id=5-6 bbox=66.8,665.4,534.6,689.9 143 144
+line=143  tag=O fonts=F8-10.91:A similar situation is found in /Gui [g ui], a Central Khoisan language spoken in Botswana. In /Gui subject
+line=144  tag=O fonts=F8-10.91:pronouns are usually in the nominative case (5), except for in imperative clauses, in which case they must
+
+doc_id=16.tetml page=5 block_id=5-7 bbox=66.8,638.3,534.6,662.7 145 146
+line=145  tag=O fonts=F8-10.91:appear in the distinct imperative form (6). As is clear in the contrast between (5) and (6), the verb remains in
+line=146  tag=O fonts=F8-10.91:the same form in both sentence types: the imperative mood of the clause is encoded by the subject pronoun
+
+doc_id=16.tetml page=5 block_id=5-8 bbox=66.8,624.7,171.6,635.6 147 147
+line=147  tag=O fonts=F8-10.91:alone (Hitomi Ono, pc):
+
+doc_id=16.tetml page=5 block_id=5-9 bbox=77.8,584.4,174.1,608.9 148 149
+line=148  tag=L+CR lang_name=|Gui lang_code=gwj span_id=s8 fonts=F8-10.91:(5)  Cire      !koõ
+line=149  tag=G    lang_name=|Gui lang_code=gwj span_id=s8 fonts=F8-10.91:    1.SG.NOM go
+
+doc_id=16.tetml page=5 block_id=5-10 bbox=101.4,570.3,127.8,581.2 150 150
+line=150  tag=T lang_name=|Gui lang_code=gwj span_id=s8 fonts=F8-10.91:‘I go.’
+
+doc_id=16.tetml page=5 block_id=5-11 bbox=77.8,543.5,170.8,554.4 151 151
+line=151  tag=L+CR lang_name=|Gui lang_code=gwj span_id=s9 fonts=F8-10.91:(6)  Da       !koõ.
+
+doc_id=16.tetml page=5 block_id=5-12 bbox=101.4,529.9,159.2,540.8 152 152
+line=152  tag=G lang_name=|Gui lang_code=gwj span_id=s9 fonts=F8-10.91:1.SG.IMP go
+
+doc_id=16.tetml page=5 block_id=5-13 bbox=101.4,515.9,154.8,526.8 153 153
+line=153  tag=T lang_name=|Gui lang_code=gwj span_id=s9 fonts=F8-10.91:‘Let me go.’
+
+doc_id=16.tetml page=5 block_id=5-14 bbox=66.8,489.0,534.6,499.9 154 154
+line=154  tag=O fonts=F8-10.91:In Chamicuro, an Arawak language spoken in Peru, clausal tense information is encoded on the definite
+
+doc_id=16.tetml page=5 block_id=5-15 bbox=66.8,462.0,534.5,486.3 155 156
+line=155  tag=O fonts=F8-10.91         :article which must usually accompany (definite) nominal subject and object arguments (Parker 1999). There
+line=156  tag=O fonts=F8-10.91,F9-10.91:are two forms of the definite article: na, used in present and future tenses, and ka which marks past tense.
+
+doc_id=16.tetml page=5 block_id=5-16 bbox=66.8,434.9,534.5,459.3 157 158
+line=157  tag=O fonts=F8-10.91:These articles do not bear stress, and Parker shows that they cliticize phonologically to C final, but not to V
+line=158  tag=O fonts=F8-10.91:final, preceding words, a behaviour which is completely predictable on purely phonological grounds. These
+
+doc_id=16.tetml page=5 block_id=5-17 bbox=66.8,421.3,399.0,432.2 159 159
+line=159  tag=O fonts=F8-10.91:phonological enclitics semantically modify the following nominal (e.g. (9)).
+
+doc_id=16.tetml page=5 block_id=5-18 bbox=77.8,380.9,206.4,405.3 160 161
+line=160  tag=L+CR lang_name=Chamicuro lang_code=ccc span_id=s10 fonts=F8-10.91:(7)  I-nis-kána na   čamálo.
+line=161  tag=G    lang_name=Chamicuro lang_code=ccc span_id=s10 fonts=F8-10.91:     3-see-PL  THE bat
+
+doc_id=16.tetml page=5 block_id=5-19 bbox=101.4,366.8,298.8,377.7 162 162
+line=162  tag=T+AC lang_name=Chamicuro lang_code=ccc span_id=s10 fonts=F8-10.91:‘They see the bat.’ (Parker 1999:552, ex. (2))
+
+doc_id=16.tetml page=5 block_id=5-20 bbox=77.8,336.9,217.6,361.4 163 164
+line=163  tag=L lang_name=Chamicuro lang_code=ccc span_id=s11 fonts=F8-10.91:(8)  Y-alíyo ka          ké:ni.
+line=164  tag=G lang_name=Chamicuro lang_code=ccc span_id=s11 fonts=F8-10.91:     3-fall  THE(PAST) rain
+
+doc_id=16.tetml page=5 block_id=5-21 bbox=101.4,322.9,273.0,333.8 165 165
+line=165  tag=T+AC lang_name=Chamicuro lang_code=ccc span_id=s11 fonts=F8-10.91:‘It rained’ (the rain fell). (ibid., ex. (3))
+
+doc_id=16.tetml page=5 block_id=5-22 bbox=77.8,306.6,273.0,317.5 166 166
+line=166  tag=L lang_name=Chamicuro lang_code=ccc span_id=s12 fonts=F8-10.91:(9)  U- -yé =na    Pámpa Hermosa-šána.
+
+doc_id=16.tetml page=5 block_id=5-23 bbox=101.4,293.0,272.9,303.9 167 167
+line=167  tag=G lang_name=Chamicuro lang_code=ccc span_id=s12 fonts=F8-10.91:1-go-FUT=THE Pampa Hermosa-LOC
+
+doc_id=16.tetml page=5 block_id=5-24 bbox=101.4,279.0,328.6,289.9 168 168
+line=168  tag=T+AC lang_name=Chamicuro lang_code=ccc span_id=s12 fonts=F8-10.91:‘I will go to Pampa Hermosa.’ (ibid., p. 554 ex. (9))
+
+doc_id=16.tetml page=5 block_id=5-25 bbox=66.8,252.1,534.6,263.0 169 169
+line=169  tag=O fonts=F8-10.91:The tense contrast between these two forms is shown most clearly by the following pair of sentences, in
+
+doc_id=16.tetml page=5 block_id=5-26 bbox=66.8,225.0,534.6,249.4 170 171
+line=170  tag=O fonts=F8-10.91:which there is no independent tense marker on the verb. Thus, the tense constrast is encoded by the definite
+line=171  tag=O fonts=F8-10.91:article alone.
+
+doc_id=16.tetml page=5 block_id=5-27 bbox=72.2,198.1,231.3,209.0 172 172
+line=172  tag=L lang_name=Chamicuro lang_code=ccc span_id=s13 fonts=F8-10.91:(10)   a.  P-aškala t-ís=na čamálo.
+
+doc_id=16.tetml page=5 block_id=5-28 bbox=118.9,184.5,210.5,195.4 173 173
+line=173  tag=G lang_name=Chamicuro lang_code=ccc span_id=s13 fonts=F8-10.91:2-kill-2.PL=THE bat
+
+doc_id=16.tetml page=5 block_id=5-29 bbox=118.9,170.5,257.7,181.4 174 174
+line=174  tag=T lang_name=Chamicuro lang_code=ccc span_id=s13 fonts=F8-10.91:‘You (plural) are killing the bat.
+
+doc_id=16.tetml page=5 block_id=5-30 bbox=103.8,154.2,264.3,165.1 175 175
+line=175  tag=L lang_name=Chamicuro lang_code=ccc span_id=s14 fonts=F8-10.91:b.  P-aškala t-ís=ka         čamálo.
+
+doc_id=16.tetml page=5 block_id=5-31 bbox=118.9,140.6,243.5,151.5 176 176
+line=176  tag=G lang_name=Chamicuro lang_code=ccc span_id=s14 fonts=F8-10.91:2-kill-2.PL=THE(PAST) bat
+
+doc_id=16.tetml page=5 block_id=5-32 bbox=118.9,126.6,361.8,137.5 177 177
+line=177  tag=T+AC lang_name=Chamicuro lang_code=ccc span_id=s14 fonts=F8-10.91:‘You (plural) killed the bat.’ (Parker 1999:553, ex. 7, 8)
+
+doc_id=16.tetml page=5 block_id=5-33 bbox=529.1,782.5,534.5,793.4 178 178
+line=178  tag=O fonts=F8-10.91:4
+
+doc_id=16.tetml page=6 block_id=6-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=6 block_id=6-2 bbox=66.8,752.4,534.4,776.9 179 180
+line=179  tag=O   fonts=F10-10.91                                                       :That these are indeed definite articles and not part of the verbal complex is shown by the fact that they
+line=180  tag=L lang_name=Chamicuro lang_code=ccc span_id=s15 fonts=F10-10.91,F10-7.97:appear within NPs:3
+
+doc_id=16.tetml page=6 block_id=6-3 bbox=72.2,709.7,185.3,734.1 181 182
+line=181  tag=L lang_name=Chamicuro lang_code=ccc span_id=s15 fonts=F10-10.91:(11)  aná =na  čmešóna
+line=182  tag=G lang_name=Chamicuro lang_code=ccc span_id=s15 fonts=F10-10.91:     this=THE man
+
+doc_id=16.tetml page=6 block_id=6-4 bbox=101.4,695.0,248.8,705.9 183 183
+line=183  tag=T+AC lang_name=Chamicuro lang_code=ccc span_id=s15 fonts=F10-10.91:‘this man’ (ibid., p. 554, ex. (13))
+
+doc_id=16.tetml page=6 block_id=6-5 bbox=72.2,663.9,380.4,688.4 184 185
+line=184  tag=L lang_name=Kayardild lang_code=gyd span_id=s16 fonts=F10-10.91:(12)  Y-ahkašamustá-wa ka         ma póhta ka         ma náli
+line=185  tag=G lang_name=Kayardild lang_code=gyd span_id=s16 fonts=F10-10.91:      3-scare-1.OBJ    THE(PAST) two      THE(PAST) jaguar
+
+doc_id=16.tetml page=6 block_id=6-6 bbox=101.4,649.3,297.6,660.2 186 186
+line=186  tag=T+AC lang_name=Kayardild lang_code=gyd span_id=s16 fonts=F10-10.91:‘The two jaguars scared me.’ (ibid., ex. (14))
+
+doc_id=16.tetml page=6 block_id=6-7 bbox=66.8,606.6,534.5,631.0 187 188
+line=187  tag=O fonts=F10-10.91:Thus, it is clear that these definite articles in Chamicuro, while belonging syntactically to dependent NP
+line=188  tag=O fonts=F10-10.91:constituents, encode clause-level tense information.
+
+doc_id=16.tetml page=6 block_id=6-8 bbox=66.8,587.4,534.6,598.3 189 189
+line=189  tag=O fonts=F10-10.91:Another variation on this same general phenomenon is found in the Australian language Pitta Pitta
+
+doc_id=16.tetml page=6 block_id=6-9 bbox=66.8,560.3,534.5,584.7 190 191
+line=190  tag=O fonts=F10-10.91:(Blake 1979), in which the case suffixes obligatorily attached to nominals in the clause additionally encode
+line=191  tag=O fonts=F10-10.91:tense information. Furthermore, the case marking system differs dependent on the tense category encoded,
+
+doc_id=16.tetml page=6 block_id=6-10 bbox=66.8,546.7,534.6,557.6 192 192
+line=192  tag=O fonts=F10-10.91:as shown in the following table (taken from (Blake 1987): 59, see also (Nordlinger 1998) for discussion
+
+doc_id=16.tetml page=6 block_id=6-11 bbox=66.8,533.1,182.1,544.0 193 193
+line=193  tag=O fonts=F10-10.91:with the LFG framework).
+
+doc_id=16.tetml page=6 block_id=6-12 bbox=163.0,503.1,274.5,514.0 194 194
+line=194  tag=O fonts=F10-10.91:S     A    O    Inst
+
+doc_id=16.tetml page=6 block_id=6-13 bbox=100.1,489.1,270.2,500.0 195 195
+line=195  tag=O fonts=F10-10.91:Non-Future   -      -lu    -nha   -lu
+
+doc_id=16.tetml page=6 block_id=6-14 bbox=100.1,475.5,278.1,486.4 196 196
+line=196  tag=O fonts=F10-10.91:Future       -ngu  -ngu  -ku   -ngu
+
+doc_id=16.tetml page=6 block_id=6-15 bbox=529.1,782.5,534.5,793.4 197 197
+line=197  tag=O fonts=F10-10.91:5
+
+doc_id=16.tetml page=6 block_id=6-16 bbox=66.8,432.0,534.5,456.3 198 199
+line=198  tag=O fonts=F10-10.91          :Thus, in future tense the case marking makes a nominative-accusative distinction, with subjects marked with
+line=199  tag=O fonts=F10-10.91,F11-10.91:-ngu and objects marked with -ku (which is also the dative case). In non-future tenses (past and present), on
+
+doc_id=16.tetml page=6 block_id=6-17 bbox=66.8,404.9,534.5,429.3 200 201
+line=200  tag=O fonts=F10-10.91,F11-10.91:the other hand, there is a three way opposition between intransitive subject (- ), transitive subject (-lu) and
+line=201  tag=O fonts=F10-10.91,F11-10.91:object (-nha). Note that this tense distinction is also encoded in the case suffixes of instrumental NPs, so it
+
+doc_id=16.tetml page=6 block_id=6-18 bbox=66.8,391.3,305.3,402.2 202 202
+line=202  tag=O fonts=F10-10.91:is not purely a property of core grammatical functions.
+
+doc_id=16.tetml page=6 block_id=6-19 bbox=66.8,372.1,531.8,384.0 203 203
+line=203  tag=O fonts=F10-10.91,F10-7.97:Examples illustrating the case alternations on subjects (13-14) and objects (15-16) include the following: 4
+
+doc_id=16.tetml page=6 block_id=6-20 bbox=72.2,329.4,363.4,353.7 204 205
+line=204  tag=L lang_name=Pitta Pitta lang_code=pit span_id=s17 fonts=F10-10.91:(13)  Ngamari     karnta-ya ngartu-nga   kankari-marru.
+line=205  tag=G lang_name=Pitta Pitta lang_code=pit span_id=s17 fonts=F10-10.91:      mother(NOM) go-PRES nardoo-PURP knife-having(NOM)
+
+doc_id=16.tetml page=6 block_id=6-21 bbox=101.4,314.7,361.4,325.6 206 206
+line=206  tag=T lang_name=Pitta Pitta lang_code=pit span_id=s17 fonts=F10-10.91:‘Mother’s going for (to get) nardoo with a knife.’ (ex. 4.11)
+
+doc_id=16.tetml page=6 block_id=6-22 bbox=72.2,283.7,388.7,308.1 207 208
+line=207  tag=L lang_name=Pitta Pitta lang_code=pit span_id=s18 fonts=F10-10.91:(14)  Ngamari-ngu     karnta ngartu-nga   kankari-marru-ngu.
+line=208  tag=G lang_name=Pitta Pitta lang_code=pit span_id=s18 fonts=F10-10.91:      mother-NOM.FUT go    nardoo-PURP knife-having-NOM.FUT
+
+doc_id=16.tetml page=6 block_id=6-23 bbox=101.4,269.0,359.8,279.9 209 209
+line=209  tag=T lang_name=Pitta Pitta lang_code=pit span_id=s18 fonts=F10-10.91:‘Mother will go for (to get) nardoo with a knife.’ (ex. 4.13)
+
+doc_id=16.tetml page=6 block_id=6-24 bbox=72.2,251.5,431.3,262.4 210 210
+line=210  tag=L lang_name=Pitta Pitta lang_code=pit span_id=s19 fonts=F10-10.91:(15)  Ngamari-lu  ngunytyi-ka ngali-nha    mangarni-marru-nga-nha kathi-nha.
+
+doc_id=16.tetml page=6 block_id=6-25 bbox=101.4,237.9,436.8,248.8 211 211
+line=211  tag=G lang_name=Pitta Pitta lang_code=pit span_id=s19 fonts=F10-10.91:mother-ERG give-PAST we.DU-ACC bone-having-GEN-ACC meat-ACC.
+
+doc_id=16.tetml page=6 block_id=6-26 bbox=101.4,223.3,301.8,234.2 212 212
+line=212  tag=T lang_name=Pitta Pitta lang_code=pit span_id=s19 fonts=F10-10.91:‘Mother gave us the doctor’s meat.’ (ex. 4.12)
+
+doc_id=16.tetml page=6 block_id=6-27 bbox=72.2,205.8,482.6,216.7 213 213
+line=213  tag=L lang_name=Pitta Pitta lang_code=pit span_id=s20 fonts=F10-10.91:(16)  Ngamari-ngu      ngunytyi ngali-ku          mangarni-marru-nga-ku      kathi-ku.
+
+doc_id=16.tetml page=6 block_id=6-28 bbox=101.4,192.2,515.7,203.1 214 214
+line=214  tag=G lang_name=Pitta Pitta lang_code=pit span_id=s20 fonts=F10-10.91:mother-NOM.FUT give    we.DU-ACC.FUT bone-having-GEN-ACC.FUT meat-ACC.FUT.
+
+doc_id=16.tetml page=6 block_id=6-29 bbox=101.4,177.6,301.8,188.5 215 215
+line=215  tag=T lang_name=Pitta Pitta lang_code=pit span_id=s20 fonts=F10-10.91:‘Mother gave us the doctor’s meat.’ (ex. 4.14)
+
+doc_id=16.tetml page=6 block_id=6-30 bbox=66.8,135.2,534.5,167.1 216 218
+line=216  tag=O fonts=F10-5.98,F10-8.97:   3In (12), the definite article appears twice within the NP: once before the numeral and once before the head noun, as is typical
+line=217  tag=O fonts=F10-8.97         :for Chamicuro NPs containing numerals and demonstratives (Parker 1999: 554).
+line=218  tag=O fonts=F10-5.98,F10-8.97:   4These examples are taken from Blake (1987: 59-60).
+
+doc_id=16.tetml page=7 block_id=7-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=7 block_id=7-2 bbox=66.8,752.4,534.6,776.9 219 220
+line=219  tag=O fonts=F12-10.91:The contrasts between (13) and (14) and again between (15) and (16) show very clearly the interaction of
+line=220  tag=O fonts=F12-10.91:case marking in Pitta Pitta with tense. In the future tense clauses in particular, in which the verb carries no
+
+doc_id=16.tetml page=7 block_id=7-3 bbox=66.8,738.8,483.2,749.7 221 221
+line=221  tag=O fonts=F12-10.91:tense inflection at all, it is only the form of the case markers that specify the tense of the clause.
+
+doc_id=16.tetml page=7 block_id=7-4 bbox=66.8,706.1,534.5,730.5 222 223
+line=222  tag=O fonts=F12-10.91:In this section we have presented data from a wide range of typologically diverse languages demonstrating
+line=223  tag=O fonts=F12-10.91:    the fact that dependent NPs, including subjects, can and do provide TAM information directly to the
+
+doc_id=16.tetml page=7 block_id=7-5 bbox=66.8,665.4,534.7,703.4 224 226
+line=224  tag=O fonts=F12-10.91:clause. In fact, the languages that we have discussed constitute only a small portion of the total number
+line=225  tag=O fonts=F12-10.91:of languages which exhibit this phenomenon. Other languages which space considerations prevented us
+line=226  tag=O fonts=F12-10.91:from discussing here include: Lardil (non-Pama-Nyungan, Australia) (Hale 1997), Gurnu (Pama-Nyungan,
+
+doc_id=16.tetml page=7 block_id=7-6 bbox=66.8,638.3,534.7,662.7 227 228
+line=227  tag=O fonts=F12-10.91:Australia) (Wurm and Hercus 1976), Yag Dii (Niger-Congo, Cameroon) (Bohnhoff 1986), Sahidic Coptic
+line=228  tag=O fonts=F12-10.91:(Egyptian) (Lambdin 1983), Gusiilay (Niger-Congo) (Raible to appear), Iai (Oceanic) (Tryon 1968), Tigak
+
+doc_id=16.tetml page=7 block_id=7-7 bbox=66.8,624.7,534.5,635.6 229 229
+line=229  tag=O fonts=F12-10.91:(Oceanic) (Elena Filimonova, pc) and Guaymi (Chibchan, Costa Rica and Panama) (Tom Payne, pc). The
+
+doc_id=16.tetml page=7 block_id=7-8 bbox=66.8,597.7,534.5,622.0 230 231
+line=230  tag=O fonts=F12-10.91:sheer number and typological diversity of languages in which this phenomenon is found argue strongly that
+line=231  tag=O fonts=F12-10.91:it is by no means marginal. Rather the possibility that TAM information is directly contributed to the clause
+
+doc_id=16.tetml page=7 block_id=7-9 bbox=66.8,584.1,491.6,595.0 232 232
+line=232  tag=O fonts=F12-10.91:by dependent nominal arguments, must be accounted for within any theory of universal grammar.
+
+doc_id=16.tetml page=7 block_id=7-10 bbox=529.1,782.5,534.5,793.4 233 233
+line=233  tag=L lang_name=Polish lang_code=pol span_id=s21 fonts=F12-10.91:6
+
+doc_id=16.tetml page=7 block_id=7-11 bbox=66.8,543.3,173.3,557.7 234 234
+line=234  tag=G lang_name=Polish lang_code=pol span_id=s21 fonts=F13-14.35:3  LFG Analysis
+
+doc_id=16.tetml page=7 block_id=7-12 bbox=66.8,512.9,534.5,523.8 235 235
+line=235  tag=O fonts=F12-10.91:The use of nominals to encode clause-level information, such as we saw at length in the preceding section, is
+
+doc_id=16.tetml page=7 block_id=7-13 bbox=66.8,499.3,534.5,510.2 236 236
+line=236  tag=O fonts=F12-10.91:dealt with simply and naturally within LFG’s model of constructive morphology. Constructive morphology
+
+doc_id=16.tetml page=7 block_id=7-14 bbox=66.8,472.2,534.5,496.6 237 238
+line=237  tag=O fonts=F12-10.91:makes use of inside-out constraints (e.g. Halvorsen and Kaplan 1988, Dalrymple 1993, see also Andrews
+line=238  tag=O fonts=F12-10.91:1996:41-43) associated with the lexical elements or morphological processes to enable nominal constituents
+
+doc_id=16.tetml page=7 block_id=7-15 bbox=66.8,445.1,534.5,469.5 239 240
+line=239  tag=O fonts=F12-10.91:to define the larger syntactic (f-structure) context in which they are embedded.  For example, the /Gui
+line=240  tag=O fonts=F12-10.91:imperative subject pronoun in (5) would have associated with it the inside-out constraint in (17):
+
+doc_id=16.tetml page=7 block_id=7-16 bbox=72.2,415.9,233.0,426.8 241 241
+line=241  tag=O fonts=F12-10.91,F14-10.91:(17)  da (( SUBJ ) MOOD) = IMP
+
+doc_id=16.tetml page=7 block_id=7-17 bbox=66.8,373.2,534.4,397.6 242 243
+line=242  tag=O fonts=F12-10.91:The inside-out designator (SUBJ  ) in this constraint defines an f-structure containing a SUBJ attribute
+line=243  tag=O fonts=F12-10.91:whose value is the f-structure of the pronominal (i.e. that designated by  ). In other words it creates a larger
+
+doc_id=16.tetml page=7 block_id=7-18 bbox=66.8,359.6,413.4,370.5 244 244
+line=244  tag=O fonts=F12-10.91:f-structure within which the pronominal’s f-structure is embedded as the SUBJ:
+
+doc_id=16.tetml page=7 block_id=7-19 bbox=72.2,329.4,90.4,340.3 245 245
+line=245  tag=O fonts=F12-10.91:(18)
+
+doc_id=16.tetml page=7 block_id=7-20 bbox=106.2,326.1,131.7,337.1 246 246
+line=246  tag=O fonts=F12-10.91:SUBJ
+
+doc_id=16.tetml page=7 block_id=7-21 bbox=147.4,327.3,207.0,338.2 247 247
+line=247  tag=O fonts=F12-10.91:PRED  PRO
+
+doc_id=16.tetml page=7 block_id=7-22 bbox=147.4,310.1,191.6,321.0 248 248
+line=248  tag=O fonts=F12-10.91:PERS  1
+
+doc_id=16.tetml page=7 block_id=7-23 bbox=147.4,292.7,200.1,303.6 249 249
+line=249  tag=O fonts=F12-10.91:NUM  SG
+
+doc_id=16.tetml page=7 block_id=7-24 bbox=66.8,252.0,534.6,262.9 250 250
+line=250  tag=O fonts=F12-10.91:Furthermore, this constraint also stipulates that the larger f-structure (that denoted by (SUBJ  ) has a MOOD
+
+doc_id=16.tetml page=7 block_id=7-25 bbox=66.8,224.9,534.5,249.3 251 252
+line=251  tag=O fonts=F12-10.91          :attribute whose value is IMP. Thus, the complete f-structure constructed by the imperative subject pronoun
+line=252  tag=O fonts=F12-10.91,F14-10.91:da is that in (17).
+
+doc_id=16.tetml page=7 block_id=7-26 bbox=72.2,195.5,169.8,206.6 253 253
+line=253  tag=O fonts=F12-10.91:(19)  MOOD  IMP
+
+doc_id=16.tetml page=7 block_id=7-27 bbox=106.2,176.0,214.9,188.1 254 254
+line=254  tag=O fonts=F12-10.91:SUBJ   PRED  PRO
+
+doc_id=16.tetml page=7 block_id=7-28 bbox=155.3,159.8,199.5,170.7 255 255
+line=255  tag=O fonts=F12-10.91:PERS  1
+
+doc_id=16.tetml page=7 block_id=7-29 bbox=155.3,142.5,208.0,153.4 256 256
+line=256  tag=O fonts=F12-10.91:NUM  SG
+
+doc_id=16.tetml page=8 block_id=8-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=8 block_id=8-2 bbox=66.8,752.4,534.5,776.9 257 258
+line=257  tag=O fonts=F15-10.91:Note that the MOOD information contributed by the subject pronoun has been unified into the outer f-
+line=258  tag=O fonts=F15-10.91:structure, namely the f-structure for the whole clause. Thus, this model accurately captures the fact that
+
+doc_id=16.tetml page=8 block_id=8-3 bbox=66.8,725.3,534.5,749.7 259 260
+line=259  tag=O fonts=F15-10.91,F16-10.91:such TAM information associated morphologically with (pro)nominals is, in fact, clause-level information,
+line=260  tag=O fonts=F15-10.91          :and not information relevant to the nominal host.
+
+doc_id=16.tetml page=8 block_id=8-4 bbox=66.8,706.1,534.5,717.0 261 261
+line=261  tag=O fonts=F15-10.91:Although, as we will see below, an account can in principle be given of these cases of TAM inflected
+
+doc_id=16.tetml page=8 block_id=8-5 bbox=66.8,665.4,534.6,703.4 262 264
+line=262  tag=O fonts=F15-10.91:nominal arguments by postulating otherwise unmotivated nominal features and concord requirements, it
+line=263  tag=O fonts=F15-10.91:seems to us that a more adequate account of these data is available in a theory whose description language
+line=264  tag=O fonts=F15-10.91:includes inside-out statements. While inside-out function application is well-established in LFG through
+
+doc_id=16.tetml page=8 block_id=8-6 bbox=66.8,638.3,534.6,662.7 265 266
+line=265  tag=O fonts=F15-10.91:work in such areas as quantifier scope (Halvorsen and Kaplan 1988), anaphoric binding (Dalrymple 1993),
+line=266  tag=O fonts=F15-10.91:internally-headed relative clauses (Culy 1990), Russian genitive of negation (King 1995), Urdu case (Butt
+
+doc_id=16.tetml page=8 block_id=8-7 bbox=66.8,624.7,534.5,635.6 267 267
+line=267  tag=O fonts=F15-10.91:1995), case in Australian Aboriginal languages (Nordlinger 1998), and topicalization (Bresnan 2000), it is
+
+doc_id=16.tetml page=8 block_id=8-8 bbox=66.8,597.7,534.6,622.0 268 269
+line=268  tag=O fonts=F15-10.91:not generally assumed in HPSG (although both Bredenkamp (1996) and Koenig (1998) explore phenomena
+line=269  tag=O fonts=F15-10.91:which lend themselves most naturally to inside-out formulations, and provide sketches of how they may be
+
+doc_id=16.tetml page=8 block_id=8-9 bbox=66.8,570.6,534.5,595.0 270 271
+line=270  tag=O fonts=F15-10.91:accommodated in specific description languages for HPSG). As Koenig (1998) shows, this rules out versions
+line=271  tag=O fonts=F15-10.91:of the Kasper Rounds logic for HPSG since what is required is a description language in which you can refer
+
+doc_id=16.tetml page=8 block_id=8-10 bbox=66.8,557.0,156.1,567.9 272 272
+line=272  tag=O fonts=F15-10.91:to feature structures.
+
+doc_id=16.tetml page=8 block_id=8-11 bbox=529.1,782.5,534.5,793.4 273 273
+line=273  tag=O fonts=F15-10.91:7
+
+doc_id=16.tetml page=8 block_id=8-12 bbox=66.8,516.2,320.9,530.6 274 274
+line=274  tag=O fonts=F17-14.35:4  Problems for Head Driven Grammars
+
+doc_id=16.tetml page=8 block_id=8-13 bbox=66.8,472.2,534.5,496.6 275 276
+line=275  tag=O fonts=F15-10.91:In contrast to the ease with which LFG’s model of constructive morphology captures the encoding of clauselevel
+line=276  tag=O fonts=F15-10.91:     TAM properties on subject and non-subject NPs, the expression of head properties on a dependent,
+
+doc_id=16.tetml page=8 block_id=8-14 bbox=66.8,445.1,534.6,469.5 277 278
+line=277  tag=O fonts=F15-10.91:especially on a subject, is highly problematic for HPSG. This is because the theory is strongly head-driven,
+line=278  tag=O fonts=F15-10.91:and adopts what is essentially a constituent based theory of headedness. This means that it is committed to
+
+doc_id=16.tetml page=8 block_id=8-15 bbox=66.8,350.3,534.6,442.4 279 285
+line=279  tag=O fonts=F15-10.91         :a single notion of syntactic head, grounded in the notion of categorial similarity. Under this view, heads can
+line=280  tag=O fonts=F15-10.91         :control for local properties of the elements which they subcategorise or otherwise select, and themselves
+line=281  tag=O fonts=F15-10.91         :uniquely determine the HEAD features of their mother, while dependents do not place constraints on the
+line=282  tag=O fonts=F15-10.91,F15-7.97:heads they combine with or the constructions within which they appear5. For example, a typical case of
+line=283  tag=O fonts=F15-10.91         :concord and index agreement within N might be treated by providing each (agreeing) element with its own
+line=284  tag=O fonts=F15-10.91         :intrinsic features, which are then shared or identified, either by specification in the lexical entry for the head,
+line=285  tag=O fonts=F15-10.91         :which can see into the dependent which it selects (as exemplified below), or, in principle, at the level of the
+
+doc_id=16.tetml page=8 block_id=8-16 bbox=66.8,336.7,192.8,347.6 286 286
+line=286  tag=O fonts=F15-10.91:construction or ID schemata.
+
+doc_id=16.tetml page=8 block_id=8-17 bbox=66.8,283.2,534.5,314.8 287 289
+line=287  tag=O fonts=F15-5.98,F15-8.97:   5Where dependents select or co-select their syntactic heads, additional features are introduced: for example, adjectival modifiers
+line=288  tag=O fonts=F15-8.97         :will select nominal heads via a special MOD feature, and determiners co-select their heads via a SPEC feature: the general point,
+line=289  tag=O fonts=F15-8.97         :however, remains valid.
+
+doc_id=16.tetml page=9 block_id=9-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=9 block_id=9-2 bbox=71.8,765.8,123.4,775.9 290 290
+line=290  tag=O fonts=F18-9.96,F19-9.96:(20)   word
+
+doc_id=16.tetml page=9 block_id=9-3 bbox=103.3,747.9,174.1,758.0 291 291
+line=291  tag=O fonts=F18-9.96:PHON       ....
+
+doc_id=16.tetml page=9 block_id=9-4 bbox=529.1,782.5,534.5,793.4 292 292
+line=292  tag=O fonts=F18-10.91:8
+
+doc_id=16.tetml page=9 block_id=9-5 bbox=103.3,724.3,226.4,737.5 293 293
+line=293  tag=O fonts=F18-9.96,F19-9.96:CAT       HEAD  noun
+
+doc_id=16.tetml page=9 block_id=9-6 bbox=206.5,709.4,273.8,719.4 294 294
+line=294  tag=O fonts=F18-9.96:CASE  [1] nom
+
+doc_id=16.tetml page=9 block_id=9-7 bbox=164.8,687.6,285.4,697.7 295 295
+line=295  tag=O fonts=F18-9.96:SPR     DP:[CASE [1]:[2] ]
+
+doc_id=16.tetml page=9 block_id=9-8 bbox=103.3,663.9,149.8,673.9 296 296
+line=296  tag=O fonts=F18-9.96:CONTENT
+
+doc_id=16.tetml page=9 block_id=9-9 bbox=164.8,644.6,195.7,675.0 297 297
+line=297  tag=O fonts=F18-9.96,F19-9.96:nomobjINDEX
+
+doc_id=16.tetml page=9 block_id=9-10 bbox=205.7,644.6,240.6,656.9 298 298
+line=298  tag=O fonts=F18-9.96:[2] PER
+
+doc_id=16.tetml page=9 block_id=9-11 bbox=255.5,646.9,260.5,656.9 299 299
+line=299  tag=O fonts=F18-9.96:3
+
+doc_id=16.tetml page=9 block_id=9-12 bbox=222.4,629.7,268.2,639.7 300 300
+line=300  tag=O fonts=F18-9.96:NUM SG
+
+doc_id=16.tetml page=9 block_id=9-13 bbox=222.4,612.7,276.0,622.7 301 301
+line=301  tag=O fonts=F18-9.96:GEN  FEM
+
+doc_id=16.tetml page=9 block_id=9-14 bbox=164.8,593.9,215.6,603.8 302 302
+line=302  tag=O fonts=F18-9.96:RESTR  ....
+
+doc_id=16.tetml page=9 block_id=9-15 bbox=66.8,540.6,534.5,564.9 303 304
+line=303  tag=O fonts=F18-10.91:Such an approach is reasonable in the (hypothetical) case where a nominal dependent of a verbal head is
+line=304  tag=O fonts=F18-10.91:marked to agree with some TAM feature of the verbal head, but positing intrinsic TAM features for nominal
+
+doc_id=16.tetml page=9 block_id=9-16 bbox=66.8,513.5,534.5,537.9 305 306
+line=305  tag=O fonts=F18-10.91:dependents of verbal heads does not capture the intuition concerning the data discussed here, in which
+line=306  tag=O fonts=F18-10.91:the nominal elements directly co-describe or constrain the TAM values of the clause (or verbal projection)
+
+doc_id=16.tetml page=9 block_id=9-17 bbox=66.8,499.9,534.6,510.8 307 307
+line=307  tag=O fonts=F18-10.91:within which it appears. In LFG, as we saw above, this can be achieved without positing TAM features
+
+doc_id=16.tetml page=9 block_id=9-18 bbox=66.8,472.8,534.5,497.2 308 309
+line=308  tag=O fonts=F18-10.91:within the f-structure of the nominal itself, an important facet of the analysis proposed in work on this
+line=309  tag=O fonts=F18-10.91:phenomenon in LFG.
+
+doc_id=16.tetml page=9 block_id=9-19 bbox=66.8,453.6,534.6,464.5 310 310
+line=310  tag=O fonts=F18-10.91:In the Supyire data of section 2 the choice of first and second person pronouns depends on the mood of
+
+doc_id=16.tetml page=9 block_id=9-20 bbox=66.8,426.5,534.5,450.9 311 312
+line=311  tag=O fonts=F18-10.91:the clause (see examples (3) and (4) above). To view this in a head-driven fashion, we must first assume a
+line=312  tag=O fonts=F18-10.91:declarative/nondeclarative distinction inherent to the pronominal system, expressed either in the signature
+
+doc_id=16.tetml page=9 block_id=9-21 bbox=66.8,385.8,534.5,423.8 313 315
+line=313  tag=O fonts=F18-10.91,F19-10.91:(by recognising subtypes of the type noun or in the theory by reference to specific (dedicated) feature, for
+line=314  tag=O fonts=F18-10.91,F18-7.97 :example, DECL. For concreteness, we suppose the latter. 6 Then the head must be specified to share its
+line=315  tag=O fonts=F18-10.91          :own DECL feature with that of its dependents: this can be expressed in a lexical entry similar to that in (20)
+
+doc_id=16.tetml page=9 block_id=9-22 bbox=66.8,331.7,534.5,383.1 316 319
+line=316  tag=O fonts=F18-10.91,F19-10.91:above. However there are two further issues. Firstly, although the distinction is only relevant to pronominal
+line=317  tag=O fonts=F18-10.91          :arguments, as a consequence of the feature sharing or concord analysis along the lines shown above, all
+line=318  tag=O fonts=F18-10.91          :nominal arguments must be provided with a DECL feature (and given that the distinction is not always
+line=319  tag=O fonts=F18-10.91          :marked in the verbal element, the requirement that linguistic objects be totally well-typed and sort-resolved
+
+doc_id=16.tetml page=9 block_id=9-23 bbox=66.8,318.1,534.4,329.0 320 320
+line=320  tag=O fonts=F18-10.91:seems to necessitate also the declaration of a default value for DECL). Secondly, examples such as (4c) show
+
+doc_id=16.tetml page=9 block_id=9-24 bbox=66.8,291.0,534.5,315.4 321 322
+line=321  tag=O fonts=F18-10.91:that within a clause the arguments of arguments of the verbal head (here, the possessor within NP) also code
+line=322  tag=O fonts=F18-10.91:clausal distinctions of mood, if pronominal. This requires a significant degree of feature percolation on the
+
+doc_id=16.tetml page=9 block_id=9-25 bbox=66.8,263.9,534.5,288.3 323 324
+line=323  tag=O fonts=F18-10.91:head-driven, concord based view of the phenomenon: as well as being shared between verbal heads and
+line=324  tag=O fonts=F18-10.91:their arguments, the HEAD feature DECL must be shared between nominal heads and their arguments.
+
+doc_id=16.tetml page=9 block_id=9-26 bbox=66.8,244.7,534.5,255.6 325 325
+line=325  tag=O fonts=F18-10.91:In sum, then, an HPSG analysis of this phenomenon appears to require the postulation of (a) a HEAD feature
+
+doc_id=16.tetml page=9 block_id=9-27 bbox=66.8,231.1,534.5,242.0 326 326
+line=326  tag=O fonts=F18-10.91:DECL on (at least) nominal and verbal heads, including those heads for which the distinction is not signalled
+
+doc_id=16.tetml page=9 block_id=9-28 bbox=66.8,204.0,534.5,228.4 327 328
+line=327  tag=O fonts=F18-10.91:by any morphology; (b) an assumption that DECL defaults to + (or -); (c) explicit encoding in lexical entries
+line=328  tag=O fonts=F18-10.91:of DECL concord (by feature sharing) within NP and within the clause.
+
+doc_id=16.tetml page=9 block_id=9-29 bbox=66.8,184.8,534.5,195.7 329 329
+line=329  tag=O fonts=F18-10.91:This is somewhat clumsy, although clearly workable in principle. More importantly, it misses the point,
+
+doc_id=16.tetml page=9 block_id=9-30 bbox=66.8,157.7,534.6,182.1 330 331
+line=330  tag=O fonts=F18-10.91:which is that the pronominal element directly contributes clausal information which we do not want to
+line=331  tag=O fonts=F18-10.91:associate with the nominal projections. It is not yet clear to us whether in Supyire distinctions of mood are
+
+doc_id=16.tetml page=9 block_id=9-31 bbox=66.8,126.6,534.5,147.3 332 333
+line=332  tag=O fonts=F18-5.98,F18-8.97:   6For the purposes of illustration, we assume that the shared feature is a syntactic feature, that is, one which would be represented
+line=333  tag=O fonts=F18-8.97         :in the CAT value rather than the CONTENT values. Nothing hangs on this detail.
+
+doc_id=16.tetml page=10 block_id=10-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=10 block_id=10-2 bbox=66.8,752.4,534.5,776.9 334 335
+line=334  tag=O fonts=F20-10.91:ever made on the verbal head. If they are, then this at least potentially motivates the feature DECL as a
+line=335  tag=O fonts=F20-10.91:verbal HEAD feature. However, the /Gui data in (5) and (6) illustrate further why a concord analysis along
+
+doc_id=16.tetml page=10 block_id=10-3 bbox=66.8,725.3,534.5,749.7 336 337
+line=336  tag=O fonts=F20-10.91          :these lines is less than satisfactory. In this language, the verb itself does not code the distinction between
+line=337  tag=O fonts=F20-10.91,F21-10.91:declarative and imperative, which is encoded by choice of subject pronoun alone.
+
+doc_id=16.tetml page=10 block_id=10-4 bbox=66.8,706.1,534.5,717.0 338 338
+line=338  tag=O fonts=F20-10.91:With the Kayardild data in (1), the feature passing approach is even more problematic. In this data, certain
+
+doc_id=16.tetml page=10 block_id=10-5 bbox=66.8,665.4,534.5,703.4 339 341
+line=339  tag=O fonts=F20-10.91:TAM features are verbally marked and a complementary set are nominally marked. Together they define the
+line=340  tag=O fonts=F20-10.91:TAM properties of the clause. Under a feature passing/sharing view we are committed to treating distinctions
+line=341  tag=O fonts=F20-10.91:which are never verbally introduced as though they might be.
+
+doc_id=16.tetml page=10 block_id=10-6 bbox=66.8,646.2,534.5,657.1 342 342
+line=342  tag=O fonts=F20-10.91:Finally, we should also mention the analytic difficulties posed by the existence of TAM marking on a variety
+
+doc_id=16.tetml page=10 block_id=10-7 bbox=66.8,619.1,534.5,643.5 343 344
+line=343  tag=O fonts=F20-10.91:of adjunct nominals. This is illustrated for Kayardild in (1), and is also found in Pitta Pitta. True adjuncts
+line=344  tag=O fonts=F20-10.91:are not visible to heads. It is not easy to see how any plausible argument could be made that the full range
+
+doc_id=16.tetml page=10 block_id=10-8 bbox=66.8,578.4,534.5,616.4 345 347
+line=345  tag=O fonts=F20-10.91,F21-10.91:of adjuncts, whether syntactically selected or not, and including those such as balmbi- “tomorrow” and
+line=346  tag=O fonts=F20-10.91,F21-10.91:barruntha- “yesterday” in (1) , should be taken to be complements (and therefore visible to heads on the
+line=347  tag=O fonts=F20-10.91          :COMPS and ARG-ST lists), rather than adjuncts. TAM marking on adjuncts is therefore problematic for a
+
+doc_id=16.tetml page=10 block_id=10-9 bbox=66.8,564.8,250.2,575.7 348 348
+line=348  tag=O fonts=F20-10.91:head-driven approach to the phenomenon.
+
+doc_id=16.tetml page=10 block_id=10-10 bbox=66.8,505.1,534.6,556.5 349 352
+line=349  tag=O fonts=F20-10.91         :Given the difficulties posed for HPSG in providing a natural and explanatory account of the marking of
+line=350  tag=O fonts=F20-10.91         :clausal head properties on dependent nominals, it is not surprising that recent work within the framework
+line=351  tag=O fonts=F20-10.91,F20-7.97:has attempted to claim that such phenomena are not attested empirically (Bender and Sag 1999).7 In contrast
+line=352  tag=O fonts=F20-10.91         :    , we showed in section 2 that, although virtually ignored in the theoretical and typological literature,
+
+doc_id=16.tetml page=10 block_id=10-11 bbox=66.8,464.4,534.6,502.4 353 355
+line=353  tag=O fonts=F20-10.91:this phenomenon is in fact well-attested cross-linguistically, appearing in a number of typologically and
+line=354  tag=O fonts=F20-10.91:genetically diverse languages. In the languages discussed so far, the nominal TAM marking takes the form
+line=355  tag=O fonts=F20-10.91:of a distinction in the pronominal system, a case marker attached to the nominal or nominal group or a distinction
+
+doc_id=16.tetml page=10 block_id=10-12 bbox=66.8,437.3,534.6,461.7 356 357
+line=356  tag=O fonts=F20-10.91:        in the form of the article. We have shown that a concord-based approach, such as is available within
+line=357  tag=O fonts=F20-10.91:HPSG, fails to capture the central insight (direct and independent contribution by the dependent nominals of
+
+doc_id=16.tetml page=10 block_id=10-13 bbox=66.8,396.6,534.6,434.6 358 360
+line=358  tag=O fonts=F20-10.91:clausal properties), and leads to the postulation of otherwise unnecessary distinctions (such as the distinction
+line=359  tag=O fonts=F20-10.91:    between DECL+/- nonpronominals in Supyire). It is therefore legitimate to ask why the analysis of this
+line=360  tag=O fonts=F20-10.91:well-attested, though little studied, phenomenon is problematic in HPSG, while relatively straightforward
+
+doc_id=16.tetml page=10 block_id=10-14 bbox=66.8,383.0,101.3,393.9 361 361
+line=361  tag=O fonts=F20-10.91:in LFG.
+
+doc_id=16.tetml page=10 block_id=10-15 bbox=66.8,350.3,534.5,374.7 362 363
+line=362  tag=O fonts=F20-10.91:There are several fundamental distinctions between LFG and HPSG. In HPSG, constituent structure (or
+line=363  tag=O fonts=F20-10.91:tectogrammatical structure) has a centrality which it does not occupy in LFG. While LFG relativises the
+
+doc_id=16.tetml page=10 block_id=10-16 bbox=66.8,323.3,534.6,347.6 364 365
+line=364  tag=O fonts=F20-10.91:notion of head to the level of linguistic description, in HPSG it is largely the case that the constituent
+line=365  tag=O fonts=F20-10.91:structure head is the head of the construction. Furthermore, the notion of syntactic head is fundamental to
+
+doc_id=16.tetml page=10 block_id=10-17 bbox=66.8,282.6,534.5,320.6 366 368
+line=366  tag=O fonts=F20-10.91:much of the mechanics of HPSG - principles such as the Head Feature Principle and the Subcat Principle
+line=367  tag=O fonts=F20-10.91:(Pollard and Sag 1994) and more recent additions such as the set of Lexical Amalgamation principles depend
+line=368  tag=O fonts=F20-10.91:     on a constituent structure based notion of syntactic head for their operation. This means that the notion
+
+doc_id=16.tetml page=10 block_id=10-18 bbox=66.8,269.0,426.3,279.9 369 369
+line=369  tag=O fonts=F20-10.91:of categorially defined syntactic head is much more important in HPSG than LFG.
+
+doc_id=16.tetml page=10 block_id=10-19 bbox=66.8,236.3,534.5,260.7 370 371
+line=370  tag=O fonts=F20-10.91:The centrality of headedness is seen, for example, in the head-driven approach to concord above. In this
+line=371  tag=O fonts=F20-10.91:view of the world, heads can see and constrain their arguments, but arguments cannot directly constrain their
+
+doc_id=16.tetml page=10 block_id=10-20 bbox=66.8,195.6,534.5,233.6 372 374
+line=372  tag=O fonts=F20-10.91:heads, or the constructions in which they occur. However, as we saw in the LFG analyses in section 3, this is
+line=373  tag=O fonts=F20-10.91:exactly what is required for an accurate account of TAM-inflected nominals, suggesting that the descriptive
+line=374  tag=O fonts=F20-10.91:metalanguage of HPSG must be extended to permit dependents to constrain their heads/constructions.
+
+doc_id=16.tetml page=10 block_id=10-21 bbox=66.8,153.6,534.5,185.2 375 377
+line=375  tag=O fonts=F20-5.98,F20-8.97:   7Bender and Sag (1999) argue that all apparent instances of this phenomenon can be reanalyzed as either head-dependent
+line=376  tag=O fonts=F20-8.97         :agreement, or pronominal incorporation. In fact, none of the examples we present in this paper could be reanalyzed in this way
+line=377  tag=O fonts=F20-8.97         :without substantially altering or skewing the empirical facts.
+
+doc_id=16.tetml page=10 block_id=10-22 bbox=529.1,782.5,534.5,793.4 378 378
+line=378  tag=O fonts=F20-10.91:9
+
+doc_id=16.tetml page=11 block_id=11-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=11 block_id=11-2 bbox=66.8,765.9,441.2,780.3 379 379
+line=379  tag=O fonts=F23-14.35:5  English Reduced Auxiliaries and Head Driven Grammars
+
+doc_id=16.tetml page=11 block_id=11-3 bbox=523.6,782.5,534.5,793.4 380 380
+line=380  tag=O fonts=F22-10.91:10
+
+doc_id=16.tetml page=11 block_id=11-4 bbox=66.8,721.9,534.6,746.2 381 382
+line=381  tag=O fonts=F22-10.91:A more radical challenge to head driven grammatical models is provided by recent LFG analyses of English
+line=382  tag=O fonts=F22-10.91:reduced auxiliaries in Sadler (1998) and Barron (1998) as tense-inflected pronominals. These analyses follow
+
+doc_id=16.tetml page=11 block_id=11-5 bbox=66.8,694.8,534.5,719.2 383 384
+line=383  tag=O fonts=F22-10.91          :    the insight of Spencer (1991) who argues on morphological and phonological grounds that nonsyllabic
+line=384  tag=O fonts=F22-10.91,F24-10.91:reduced auxiliaries (such as you’ll, we’ve) form a morphological unit with the pronominal form to which
+
+doc_id=16.tetml page=11 block_id=11-6 bbox=66.8,667.7,534.5,692.1 385 386
+line=385  tag=O fonts=F22-10.91:they are attached. Accepting these arguments, Sadler (1998) provides an analysis of such morphologically
+line=386  tag=O fonts=F22-10.91:complex, tense-inflected pronouns in LFG (and Sadler’s analysis is adopted in Barron (1998), who gives
+
+doc_id=16.tetml page=11 block_id=11-7 bbox=66.8,627.0,534.5,665.0 387 389
+line=387  tag=O fonts=F22-10.91          :further arguments for the conclusion that nonsyllabic reduced auxiliaries are pronominal inflections, and
+line=388  tag=O fonts=F22-10.91          :shows how the lexicalist analysis accounts for facts taken by Radford (1998) to argue in favour of a movement
+line=389  tag=O fonts=F22-10.91,F24-10.91:      analysis). The lexical entry for e.g. you’ll involves an inside-out constraint as shown below, and the
+
+doc_id=16.tetml page=11 block_id=11-8 bbox=66.8,613.4,227.0,624.3 390 390
+line=390  tag=O fonts=F22-10.91:constituent structure lacks an I node:
+
+doc_id=16.tetml page=11 block_id=11-9 bbox=72.2,584.3,178.8,595.2 391 391
+line=391  tag=O fonts=F22-10.91:(21)                 IP
+
+doc_id=16.tetml page=11 block_id=11-10 bbox=112.7,559.9,147.2,570.8 392 392
+line=392  tag=O fonts=F22-10.91:SUBJ =
+
+doc_id=16.tetml page=11 block_id=11-11 bbox=124.3,546.3,138.3,557.2 393 393
+line=393  tag=O fonts=F22-10.91:DP
+
+doc_id=16.tetml page=11 block_id=11-12 bbox=127.3,519.3,135.2,530.2 394 394
+line=394  tag=O fonts=F22-10.91:D
+
+doc_id=16.tetml page=11 block_id=11-13 bbox=118.3,468.2,193.0,504.3 395 396
+line=395  tag=O      fonts=F22-10.91                                           :you’ll
+line=396  tag=L+CR lang_name=Polish lang_code=pol span_id=s25 fonts=F22-10.91:             =V
+
+doc_id=16.tetml page=11 block_id=11-14 bbox=181.0,441.2,255.7,452.1 397 397
+line=397  tag=G lang_name=Polish lang_code=pol span_id=s25 fonts=F22-10.91:like       Mary
+
+doc_id=16.tetml page=11 block_id=11-15 bbox=212.0,546.3,218.2,570.8 398 398
+line=398  tag=O fonts=F22-10.91:=I
+
+doc_id=16.tetml page=11 block_id=11-16 bbox=212.0,520.8,218.2,531.7 399 399
+line=399  tag=O fonts=F22-10.91:=
+
+doc_id=16.tetml page=11 block_id=11-17 bbox=209.5,507.2,223.5,518.1 400 400
+line=400  tag=O fonts=F22-10.91:VP
+
+doc_id=16.tetml page=11 block_id=11-18 bbox=228.4,481.8,256.6,492.7 401 401
+line=401  tag=O fonts=F22-10.91:OBJ =
+
+doc_id=16.tetml page=11 block_id=11-19 bbox=236.9,468.2,250.8,479.1 402 402
+line=402  tag=O fonts=F22-10.91:DP
+
+doc_id=16.tetml page=11 block_id=11-20 bbox=72.2,410.4,90.4,421.3 403 403
+line=403  tag=O fonts=F22-10.91:(22)
+
+doc_id=16.tetml page=11 block_id=11-21 bbox=108.1,405.0,232.3,415.9 404 404
+line=404  tag=O fonts=F22-10.91:PRED     SUBJ ,  OBJ
+
+doc_id=16.tetml page=11 block_id=11-22 bbox=108.1,380.4,133.6,391.3 405 405
+line=405  tag=O fonts=F22-10.91:SUBJ
+
+doc_id=16.tetml page=11 block_id=11-23 bbox=157.8,381.0,224.8,391.9 406 406
+line=406  tag=O fonts=F22-10.91:PRED  ‘PRO’
+
+doc_id=16.tetml page=11 block_id=11-24 bbox=157.8,363.6,202.1,374.5 407 407
+line=407  tag=O fonts=F22-10.91:PERS  2
+
+doc_id=16.tetml page=11 block_id=11-25 bbox=108.1,340.4,127.5,351.3 408 408
+line=408  tag=O fonts=F22-10.91:OBJ
+
+doc_id=16.tetml page=11 block_id=11-26 bbox=155.9,341.3,225.5,352.2 409 409
+line=409  tag=O fonts=F22-10.91:PRED  ‘Mary’
+
+doc_id=16.tetml page=11 block_id=11-27 bbox=108.1,321.6,173.6,332.5 410 410
+line=410  tag=O fonts=F22-10.91:TENSE  FUT
+
+doc_id=16.tetml page=11 block_id=11-28 bbox=72.2,289.9,216.2,300.8 411 411
+line=411  tag=O fonts=F22-10.91,F24-10.91:(23)  you’ll: ( PRED) = ‘PRO’
+
+doc_id=16.tetml page=11 block_id=11-29 bbox=101.4,262.8,218.4,287.2 412 413
+line=412  tag=O fonts=F22-10.91:( PERS) = 2
+line=413  tag=O fonts=F22-10.91:((SUBJ ) TENSE) = FUT
+
+doc_id=16.tetml page=11 block_id=11-30 bbox=66.8,220.1,534.6,244.5 414 415
+line=414  tag=O fonts=F22-10.91:The inflected pronoun contributes constraints over both the f-structure corresponding to the entire sentence,
+line=415  tag=O fonts=F22-10.91:and the SUBJ f-structure. This analysis is possible in LFG because the mapping between c-structure and
+
+doc_id=16.tetml page=11 block_id=11-31 bbox=66.8,206.5,534.5,217.4 416 416
+line=416  tag=O fonts=F22-10.91:f-structure is defined in such a way as to accommodate divergences in headedness bewteen functional and
+
+doc_id=16.tetml page=11 block_id=11-32 bbox=66.8,192.9,162.5,203.8 417 417
+line=417  tag=O fonts=F22-10.91:constituent structures.
+
+doc_id=16.tetml page=11 block_id=11-33 bbox=66.8,160.2,534.5,184.7 418 419
+line=418  tag=O fonts=F22-10.91:Motivated primarily by the difficulties we have already seen for HPSG in adopting a similar analysis of this
+line=419  tag=O fonts=F22-10.91:data - namely, an analysis which treats these auxiliaries as tense-inflected pronominals - Bender and Sag
+
+doc_id=16.tetml page=11 block_id=11-34 bbox=66.8,133.1,534.5,157.5 420 421
+line=420  tag=O fonts=F22-10.91:(2000) argue against Sadler’s (1998) approach, and present an alternative analysis that fits more readily into
+line=421  tag=O fonts=F22-10.91:the head-driven framework of HPSG.
+
+doc_id=16.tetml page=12 block_id=12-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=12 block_id=12-2 bbox=66.8,738.8,534.5,776.9 422 424
+line=422  tag=O fonts=F25-10.91          :Bender and Sag accept the arguments that these forms are morphologically derived, and thus constitute
+line=423  tag=O fonts=F25-10.91,F26-10.91:single syntactic atoms or words.  Under their HPSG analysis, however, these elements are verbs which
+line=424  tag=O fonts=F25-10.91,F25-7.97 :incorporate pronominal arguments, rather than pronominals which incorporate tensed verbal heads. 8
+
+doc_id=16.tetml page=12 block_id=12-3 bbox=66.8,706.1,534.5,730.5 425 426
+line=425  tag=O fonts=F25-10.91:As Bender and Sag note, the two analyses are largely equivalent in terms of account for the data under discussion
+line=426  tag=O fonts=F25-10.91:       . The driving force behind this re-analysis is the fact that the incorporation of heads into dependents
+
+doc_id=16.tetml page=12 block_id=12-4 bbox=66.8,665.4,534.6,703.4 427 429
+line=427  tag=O fonts=F25-10.91:is ruled out by the ‘head-driven’ nature of HPSG, in which a large number of principles are formulated in
+line=428  tag=O fonts=F25-10.91:terms of the notion of syntactic head (which is itself essentially based on a notion of constituent structure
+line=429  tag=O fonts=F25-10.91:head). These principles include the Valence Principle and the Head Feature Principle.
+
+doc_id=16.tetml page=12 block_id=12-5 bbox=66.8,646.2,534.5,657.1 430 430
+line=430  tag=O fonts=F25-10.91:The analysis is formalised by Bender and Sag by means of a lexical rule of Pronominal Incorporation which
+
+doc_id=16.tetml page=12 block_id=12-6 bbox=66.8,619.1,534.6,643.5 431 432
+line=431  tag=O fonts=F25-10.91,F26-10.91:operates at the level of the word, taking two lexical entries as input (one with a SS LOCAL value of type prloc
+line=432  tag=O fonts=F25-10.91          :   , appropriate for pronominals and the other with the HEAD features of a finite auxiliary) and outputting
+
+doc_id=16.tetml page=12 block_id=12-7 bbox=66.8,578.4,534.5,616.4 433 435
+line=433  tag=O fonts=F25-10.91,F26-10.91:a third. In the output, the incorporated pronominal is constrained to have a SYNSEM value of type affix
+line=434  tag=O fonts=F25-10.91          :and the SUBJ feature is the empty list ([1] and [2] refer to the PHON values of the input, [3] is the LOCAL
+line=435  tag=O fonts=F25-10.91          :value of the pronominal and [4] the HEAD features of the input auxiliary verb).
+
+doc_id=16.tetml page=12 block_id=12-8 bbox=523.6,782.5,534.5,793.4 436 436
+line=436  tag=O fonts=F25-10.91:11
+
+doc_id=16.tetml page=12 block_id=12-9 bbox=72.2,548.3,241.4,559.2 437 437
+line=437  tag=O fonts=F25-10.91:(24)                                   ,
+
+doc_id=16.tetml page=12 block_id=12-10 bbox=133.7,544.1,198.3,555.6 438 438
+line=438  tag=O fonts=F25-10.91:PHON    1
+
+doc_id=16.tetml page=12 block_id=12-11 bbox=265.3,544.8,328.7,556.4 439 439
+line=439  tag=O fonts=F25-10.91:PHON    2
+
+doc_id=16.tetml page=12 block_id=12-12 bbox=112.6,516.0,128.8,524.0 440 440
+line=440  tag=O fonts=F25-7.97:word
+
+doc_id=16.tetml page=12 block_id=12-13 bbox=133.7,524.4,231.0,535.3 441 441
+line=441  tag=O fonts=F25-10.91:SS LOC   3 pr-local
+
+doc_id=16.tetml page=12 block_id=12-14 bbox=244.2,477.7,260.5,485.7 442 442
+line=442  tag=O fonts=F25-7.97:word
+
+doc_id=16.tetml page=12 block_id=12-15 bbox=265.3,523.4,324.4,534.3 443 443
+line=443  tag=O fonts=F25-10.91:HEAD   4
+
+doc_id=16.tetml page=12 block_id=12-16 bbox=265.3,485.1,324.4,496.1 444 444
+line=444  tag=O fonts=F25-10.91:ARG-ST  5
+
+doc_id=16.tetml page=12 block_id=12-17 bbox=327.8,498.9,341.9,506.9 445 445
+line=445  tag=O fonts=F25-7.97:verb
+
+doc_id=16.tetml page=12 block_id=12-18 bbox=346.7,524.0,402.5,534.9 446 446
+line=446  tag=O fonts=F25-10.91:AUX    +
+
+doc_id=16.tetml page=12 block_id=12-19 bbox=346.7,506.7,407.9,517.6 447 447
+line=447  tag=O fonts=F25-10.91:VFORM  fin
+
+doc_id=16.tetml page=12 block_id=12-20 bbox=106.2,452.1,135.9,463.1 448 448
+line=448  tag=O fonts=F25-10.91:PHON
+
+doc_id=16.tetml page=12 block_id=12-21 bbox=156.5,451.5,199.2,463.1 449 449
+line=449  tag=O fonts=F25-10.91:FP1 1 2
+
+doc_id=16.tetml page=12 block_id=12-22 bbox=106.2,433.2,131.7,444.1 450 450
+line=450  tag=O fonts=F25-10.91:SUBJ
+
+doc_id=16.tetml page=12 block_id=12-23 bbox=106.2,415.4,165.3,426.3 451 451
+line=451  tag=O fonts=F25-10.91:HEAD   4
+
+doc_id=16.tetml page=12 block_id=12-24 bbox=106.2,393.7,207.7,404.6 452 452
+line=452  tag=O fonts=F25-10.91:ARG-ST  5   LOC
+
+doc_id=16.tetml page=12 block_id=12-25 bbox=174.4,386.6,182.9,394.6 453 453
+line=453  tag=O fonts=F25-7.97:aff
+
+doc_id=16.tetml page=12 block_id=12-26 bbox=222.0,393.7,247.3,404.7 454 454
+line=454  tag=O fonts=F25-10.91:3  , ...
+
+doc_id=16.tetml page=12 block_id=12-27 bbox=66.8,356.9,534.6,367.8 455 455
+line=455  tag=O fonts=F25-10.91:The HPSG analysis, then, essentially assimilates the phenomenon to the well-known phenomenon of
+
+doc_id=16.tetml page=12 block_id=12-28 bbox=66.8,289.1,534.5,354.2 456 460
+line=456  tag=O fonts=F25-10.91                   :pronominal incorporation. Although technically workable, we believe there are several strong arguments
+line=457  tag=O fonts=F25-10.91,F25-7.97          :against such an analysis.9 There are several reasons to doubt the identification of these data with the phenomenon
+line=458  tag=O fonts=F25-10.91                   :          of pro-drop. For a start, standard English does not elsewhere generally permit pronominal incorporation
+line=459  tag=O fonts=F25-10.91,F25-7.97,F26-10.91:        .10 If this is pro-drop, it is not clear why pronouns incorporate only into the reduced forms of the
+line=460  tag=O fonts=F25-10.91                   :auxiliaries, and why only into auxiliary verbs (rather than, for example, all tensed verbs).
+
+doc_id=16.tetml page=12 block_id=12-29 bbox=66.8,269.9,534.5,280.8 461 461
+line=461  tag=O fonts=F25-10.91:Furthermore, note that the analysis is less than natural from a morphological point of view.  Firstly, the
+
+doc_id=16.tetml page=12 block_id=12-30 bbox=66.8,229.3,534.5,267.2 462 464
+line=462  tag=O fonts=F25-10.91:element which has reduced morphology, the auxiliary, is taken to be the head of the morphological construction
+line=463  tag=O fonts=F25-10.91:        , while the element which is unreduced, the pronominal, is taken to be an affix. In well established
+line=464  tag=O fonts=F25-10.91:cases of pronominal incorporation, however, it is clearly the pronominal which has reduced morphology (as
+
+doc_id=16.tetml page=12 block_id=12-31 bbox=66.8,131.9,534.5,218.8 465 472
+line=465  tag=O fonts=F25-5.98,F25-8.97:   8Bender and Sag (2000) are correct in observing that the tensed pronoun proposal of Sadler and Barron utilise the theory of
+line=466  tag=O fonts=F25-8.97         :blocking of Andrews (1990) to provide in addition an account of preemption. They suggest that this is a weakness, in the case where
+line=467  tag=O fonts=F25-8.97         :there is no blocking effect. But as they observe, the invocation of blocking is independent of the analysis of the phenomenon. If,
+line=468  tag=O fonts=F25-8.97         :contrary to fact, there were no blocking, the appeal to blocking would be dropped. Moreover, Bresnan (pc) points out that blocking
+line=469  tag=O fonts=F25-8.97         :might be substituted by an OT alternative to give the desired degree of sensitivity.
+line=470  tag=O fonts=F25-5.98,F25-8.97:   9We thank Joan Bresnan, Ida Toivonen and Andy Spencer for discussion of the points made in this section.
+line=471  tag=O fonts=F25-5.98,F25-8.97:   10This is not to deny, of course, that English does permit both subjects and tensed verbs to be dropped in certain discourse
+line=472  tag=O fonts=F25-8.97         :circumstances, but this is a different matter.
+
+doc_id=16.tetml page=13 block_id=13-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=13 block_id=13-2 bbox=66.8,752.4,534.6,776.9 473 474
+line=473  tag=O fonts=F27-10.91          :in Bantu, see (Givón 1976, Bresnan and Mchombo 1987)). The identification of the pronominal as being of
+line=474  tag=O fonts=F27-10.91,F28-10.91:type affix is crucial to the Argument Realization Principle which is used to ensure that the first argument on
+
+doc_id=16.tetml page=13 block_id=13-3 bbox=66.8,725.3,534.5,749.7 475 476
+line=475  tag=O fonts=F27-10.91          :the ARG-ST list (which corresponds to the pronominal argument) is not on the COMPS list, and therefore
+line=476  tag=O fonts=F27-10.91,F28-10.91:not externalised in the syntax (since elements of type affix do not occur as independent elements in the
+
+doc_id=16.tetml page=13 block_id=13-4 bbox=66.8,711.7,101.7,722.6 477 477
+line=477  tag=O fonts=F27-10.91:syntax).
+
+doc_id=16.tetml page=13 block_id=13-5 bbox=66.8,665.4,534.5,703.4 478 480
+line=478  tag=O fonts=F27-10.91,F28-10.91:Secondly, the pronominal affix view amounts to claiming that English has pronominal prefixes, which is
+line=479  tag=O fonts=F27-10.91          :extremely questionable on morphological grounds. English makes very scant use of prefixation (as opposed
+line=480  tag=O fonts=F27-10.91          :to suffixation) at all, and subject prefixes can hardly be argued to be natural in the language.
+
+doc_id=16.tetml page=13 block_id=13-6 bbox=66.8,646.2,534.5,657.1 481 481
+line=481  tag=O fonts=F27-10.91:Turning now to the phonological consequences of incorporation (be it head incorporation (as on the
+
+doc_id=16.tetml page=13 block_id=13-7 bbox=66.8,619.1,534.6,643.5 482 483
+line=482  tag=O fonts=F27-10.91:Sadler/Barron view) or dependent incorporation (as on the Bender and Sag view)), Bender and Sag specify
+line=483  tag=O fonts=F27-10.91:a partial function over input forms, explicitly enumerating the output forms to account for the phonological
+
+doc_id=16.tetml page=13 block_id=13-8 bbox=66.8,578.4,534.5,616.4 484 486
+line=484  tag=O fonts=F27-10.91:processes associated with what is, on their view, prefixation of pronominal forms to a verbal stem. It is clear,
+line=485  tag=O fonts=F27-10.91:however, that they view the process as involving a “rule of laxing of tensed vowels that applies only to the
+line=486  tag=O fonts=F27-10.91:vowels of pronouns in combination with contracted auxiliaries” (p4). The appeal to class specific phonological
+
+doc_id=16.tetml page=13 block_id=13-9 bbox=66.8,551.4,534.6,575.7 487 488
+line=487  tag=O fonts=F27-10.91:       rules is unfortunate, given that phonology has largely moved away from such devices. But more
+line=488  tag=O fonts=F27-10.91:importantly, this formulation misses the crucial point that what is involved here is a case of the well-known
+
+doc_id=16.tetml page=13 block_id=13-10 bbox=66.8,524.3,534.6,548.7 489 490
+line=489  tag=O fonts=F27-10.91                   :phenomenon of affix-conditioned stem allomorphy (which does not, moreover, always involve laxing of
+line=490  tag=O fonts=F27-10.91,F27-7.97,F28-10.91:tensed vowels): consider we’ve   /wIv/ */w v/ versus we’re   /w (J)/ */wI(J))11.
+
+doc_id=16.tetml page=13 block_id=13-11 bbox=66.8,505.1,534.5,516.0 491 491
+line=491  tag=O fonts=F27-10.91:In our view, an important consideration in the evaluation of these different analyses of a synchronic phenomenon
+
+doc_id=16.tetml page=13 block_id=13-12 bbox=66.8,464.4,534.6,502.4 492 494
+line=492  tag=O fonts=F27-10.91          :          is the degree of fit between the analysis and diachronic tendencies.  On this ground, the head
+line=493  tag=O fonts=F27-10.91          :incorporation view is to be preferred. Alongside the non-syllabic reduced auxiliaries under discussion, English
+line=494  tag=O fonts=F27-10.91,F28-10.91:      has a set of syllabic reduced auxiliaries which are phonologically enclitic.  The diachronic drift to
+
+doc_id=16.tetml page=13 block_id=13-13 bbox=66.8,437.3,534.5,461.7 495 496
+line=495  tag=O fonts=F27-10.91:grammaticisation, by which a form reduces and phonologically cliticises and then is absorbed into the host
+line=496  tag=O fonts=F27-10.91:as a bound element is well known; it is well established, for example, that incorporated pronominals have
+
+doc_id=16.tetml page=13 block_id=13-14 bbox=66.8,383.0,534.5,434.6 497 500
+line=497  tag=O fonts=F27-10.91         :evolved diachronically from full pronominals which became phonologically weakened cliticised forms, and
+line=498  tag=O fonts=F27-10.91         :then bound forms. Under the head incorporation view, the affixal auxiliaries merely represent a further step
+line=499  tag=O fonts=F27-10.91         :on the path away from full wordhood. The pronominal incorporation view, on the other hand, which treats
+line=500  tag=O fonts=F27-10.91,F27-7.97:the reduced element as the head, runs counter to the evidence of this diachronic path.12
+
+doc_id=16.tetml page=13 block_id=13-15 bbox=66.8,350.3,534.6,374.7 501 502
+line=501  tag=O fonts=F27-10.91:While the core phenomenon involves subject pronouns, there are several suggestions in the literature that
+line=502  tag=O fonts=F27-10.91:at least some speakers accept non-syllabic (and hence incorporated) forms for certain lexical NPs (Barron
+
+doc_id=16.tetml page=13 block_id=13-16 bbox=66.8,323.3,534.5,347.6 503 504
+line=503  tag=O fonts=F27-10.91,F28-10.91:cites the non-syllabic pronunciation of The BBC’ve accepted the contract as acceptable to some speakers,
+line=504  tag=O fonts=F27-10.91,F28-10.91:and Bender and Sag themselves cite The sky over California’s always blue from a Pullum and Zwicky
+
+doc_id=16.tetml page=13 block_id=13-17 bbox=66.8,255.5,534.6,320.6 505 509
+line=505  tag=O fonts=F27-10.91         :1997 LSA conference presentation). The issue is complicated by the fact that phonological processes can
+line=506  tag=O fonts=F27-10.91         :also (independent of this phenomenon) produce non-syllabic forms, which it is necessary to control for.
+line=507  tag=O fonts=F27-10.91         :Furthermore, much detailed work on speaker variation is required before definitive pronouncements can
+line=508  tag=O fonts=F27-10.91,F27-7.97:(if ever) be made on these matters.13 Note however that the extension to larger sets of incorporations is
+line=509  tag=O fonts=F27-10.91         :more natural on the head incorporation view: more permissive speakers are simply less selective about stem
+
+doc_id=16.tetml page=13 block_id=13-18 bbox=66.8,241.9,534.5,252.8 510 510
+line=510  tag=O fonts=F27-10.91:selection. On the other hand, the head driven account requires the incorporation of a lexical N (as affix) into
+
+doc_id=16.tetml page=13 block_id=13-19 bbox=66.8,144.6,534.6,231.4 511 518
+line=511  tag=O fonts=F27-5.98,F27-8.97         :  11This point is made in the discussion in (Spencer 1991)
+line=512  tag=O fonts=F27-5.98,F27-8.97,F28-8.97:  12Putting this another way, we might ask why it is that pronouns incorporate only into reduced forms of the auxiliaries. On the
+line=513  tag=O fonts=F27-8.97                  :Bender and Sag view, this is essentially stipulated by enumeration in the phonological function, while on the view which we adopt,
+line=514  tag=O fonts=F27-8.97                  :incorporation of the reduced auxiliary as an affix/bound form is a natural progression for a phonological clitic.
+line=515  tag=O fonts=F27-5.98,F27-8.97,F28-8.97:  13Bender and Sag give examples suggesting that forms of be other than the tense auxiliary also involve incorporation. The LFG
+line=516  tag=O fonts=F27-8.97                  :account can be extended straightforwardly to cover these data, as Bender and Sag acknowledge. However, many of these examples
+line=517  tag=O fonts=F27-8.97                  :seem ungrammatical to at least one author of the current paper, underlining the point that much detailed informant work is required
+line=518  tag=O fonts=F27-8.97                  :to establish the facts in these murky areas.
+
+doc_id=16.tetml page=13 block_id=13-20 bbox=523.6,782.5,534.5,793.4 519 519
+line=519  tag=O fonts=F27-10.91:12
+
+doc_id=16.tetml page=14 block_id=14-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=14 block_id=14-2 bbox=66.8,765.9,131.3,777.9 520 520
+line=520  tag=O fonts=F29-10.91,F29-7.97:the auxiliary.14
+
+doc_id=16.tetml page=14 block_id=14-3 bbox=66.8,733.2,534.6,757.6 521 522
+line=521  tag=O fonts=F29-10.91:Before leaving the discussion of Bender and Sag, we note that they suggest that there is some correlation
+line=522  tag=O fonts=F29-10.91:between the head-incorporation in LFG and a morpheme-based view of morphology, on the one hand, and
+
+doc_id=16.tetml page=14 block_id=14-4 bbox=66.8,706.1,534.5,730.5 523 524
+line=523  tag=O fonts=F29-10.91:between pronominal incorporation and a non-morphemic (presumably, realizational) view of morphology.
+line=524  tag=O fonts=F29-10.91:In fact, there is no such correlation. In the work on constructive case, Nordlinger (1998) assumes lexical
+
+doc_id=16.tetml page=14 block_id=14-5 bbox=66.8,665.4,534.6,703.4 525 527
+line=525  tag=O fonts=F29-10.91:entries for affixes, thus treating them as morphemes, as a notational convenience (p.  21).  Nordlinger’s
+line=526  tag=O fonts=F29-10.91:principle of morphological composition, for example, can be reformulated in terms of morphological functions
+line=527  tag=O fonts=F29-10.91:     or constructions, rather than in terms of morphological trees. Sadler (1998) makes no commitment
+
+doc_id=16.tetml page=14 block_id=14-6 bbox=66.8,638.3,534.5,662.7 528 529
+line=528  tag=O fonts=F29-10.91:whatsoever to morphological analysis, simply presenting lexical entries for completely derived words and
+line=529  tag=O fonts=F29-10.91:eschewing all discussion of how the morphology itself is modelled. There is no necessary connection at all
+
+doc_id=16.tetml page=14 block_id=14-7 bbox=66.8,624.7,184.2,635.6 530 530
+line=530  tag=O fonts=F29-10.91:between these two aspects.
+
+doc_id=16.tetml page=14 block_id=14-8 bbox=66.8,578.4,534.6,616.4 531 533
+line=531  tag=O fonts=F29-10.91:To sum up, we think there are several grounds for questioning Bender and Sag’s reanalysis of the English
+line=532  tag=O fonts=F29-10.91:facts as a case of pronominal incorporation. We have shown in this paper that there is good cross-linguistic
+line=533  tag=O fonts=F29-10.91:evidence for the existence of tense-inflecting pronominals. The fundamental difficulty that Sadler’s (1998)
+
+doc_id=16.tetml page=14 block_id=14-9 bbox=66.8,551.4,534.5,575.7 534 535
+line=534  tag=O fonts=F29-10.91:analysis of the English data poses for HPSG is that it involves a constituent structure which lacks a head (a
+line=535  tag=O fonts=F29-10.91:verbal projection without a verb). Bender and Sag’s argumentation is built on the covert premise that such
+
+doc_id=16.tetml page=14 block_id=14-10 bbox=66.8,524.3,534.5,548.7 536 537
+line=536  tag=O fonts=F29-10.91:structures are not attested (and indeed, the centrality of the structural notion of head is a fundamental HPSG
+line=537  tag=O fonts=F29-10.91:idea). Although much further work needs to be done, we suggest that English is not the only language
+
+doc_id=16.tetml page=14 block_id=14-11 bbox=66.8,483.6,534.6,521.6 538 540
+line=538  tag=O fonts=F29-10.91:exhibiting this radical form of head incorporation.  In the rest of this section we sketch out some other
+line=539  tag=O fonts=F29-10.91:possible cases. Even if Bender and Sag were correct about English, HPSG will have to take account of these
+line=540  tag=O fonts=F29-10.91:cases.
+
+doc_id=16.tetml page=14 block_id=14-12 bbox=66.8,464.4,534.6,475.3 541 541
+line=541  tag=O fonts=F29-10.91,F30-10.91:The past tense is expressed in Polish by means of a l form participle and a perfect auxiliary (a form
+
+doc_id=16.tetml page=14 block_id=14-13 bbox=66.8,437.3,534.6,461.7 542 543
+line=542  tag=O fonts=F29-10.91,F30-10.91:of the verb be).  The auxiliary (which bears subject agreement features and may be the sole expression
+line=543  tag=O fonts=F29-10.91          :     of the subject) may be combined with the participle or may appear attached to an element to
+
+doc_id=16.tetml page=14 block_id=14-14 bbox=66.8,410.1,534.5,434.6 544 545
+line=544  tag=O fonts=F29-10.91:the left of the verb.  The phenomenon of so-called “floating inflection”is exemplified in (25) to (31)
+line=545  tag=O fonts=F29-10.91:(Dziwirek 1998, Borsley and Rivero 1994).
+
+doc_id=16.tetml page=14 block_id=14-15 bbox=72.2,369.5,151.2,393.9 546 546
+line=546  tag=O fonts=F29-10.91:(25)  Wieczoremevening
+
+doc_id=16.tetml page=14 block_id=14-16 bbox=72.2,338.5,248.7,393.9 547 547
+line=547  tag=O fonts=F29-10.91:(26)  Wieczoremśmyevening-1plczytaliśmyread-1plczytaliread   ksia¸żkibooks-acc
+
+doc_id=16.tetml page=14 block_id=14-17 bbox=204.5,338.5,248.7,363.0 548 548
+line=548  tag=O fonts=F29-10.91:ksia¸żkibooks-acc
+
+doc_id=16.tetml page=14 block_id=14-18 bbox=72.2,321.0,246.8,331.9 549 549
+line=549  tag=O fonts=F29-10.91:(27)  Ksia¸żki   wieczoremśmy czytali
+
+doc_id=16.tetml page=14 block_id=14-19 bbox=101.4,307.4,236.4,318.3 550 550
+line=550  tag=O fonts=F29-10.91:books-acc evening-1pl    read
+
+doc_id=16.tetml page=14 block_id=14-20 bbox=72.2,276.3,153.3,300.8 551 551
+line=551  tag=O fonts=F29-10.91:(28)  Ksia¸żkiśmybooks-1pl
+
+doc_id=16.tetml page=14 block_id=14-21 bbox=72.2,234.7,235.8,300.8 552 552
+line=552  tag=O fonts=F29-10.91:(29)  Wieczoremevening    wieczoremeveningksia¸żkiśmybooks-1pl  czytaliread
+
+doc_id=16.tetml page=14 block_id=14-22 bbox=206.3,234.7,235.4,259.2 553 553
+line=553  tag=O fonts=F29-10.91:czytaliread
+
+doc_id=16.tetml page=14 block_id=14-23 bbox=72.2,203.7,264.7,228.2 554 555
+line=554  tag=L lang_name=Polish lang_code=pol span_id=s26 fonts=F29-10.91,F31-10.91:(30)  Myśmy wieczorem czytali ksia¸żki.
+line=555  tag=G lang_name=Polish lang_code=pol span_id=s26 fonts=F29-10.91          :      we-1pl evening   read   books-acc
+
+doc_id=16.tetml page=14 block_id=14-24 bbox=101.4,189.6,231.8,200.5 556 556
+line=556  tag=T lang_name=Polish lang_code=pol span_id=s26 fonts=F29-10.91:In the evening we read books.
+
+doc_id=16.tetml page=14 block_id=14-25 bbox=66.8,126.6,534.6,180.2 557 561
+line=557  tag=O fonts=F29-5.98,F29-8.97:   14Bender and Sag criticise the use of long distance paths in LFG, stating that a theory which excludes long distance selection is
+line=558  tag=O fonts=F29-8.97,F30-8.97:to be preferred. The architecture of LFG is one which makes a clear separation between c-structure locality and f-structure locality
+line=559  tag=O fonts=F29-8.97         :precisely to allow for mismatches and apparent long distance feature flow: c-structure locality of selector and selection is only a
+line=560  tag=O fonts=F29-8.97         :theory-internal desideratum of HPSG and similar theories. Given that the phenomenon of tense-inflected nominals is one of many
+line=561  tag=O fonts=F29-8.97         :cases in which non-local selection is precisely what is at issue, this criticism simply begs the question.
+
+doc_id=16.tetml page=14 block_id=14-26 bbox=523.6,782.5,534.5,793.4 562 562
+line=562  tag=L lang_name=Polish lang_code=pol span_id=s22 fonts=F29-10.91:13
+
+doc_id=16.tetml page=15 block_id=15-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=15 block_id=15-2 bbox=72.2,752.4,222.1,776.9 563 564
+line=563  tag=L+CR lang_name=Polish lang_code=pol span_id=s27 fonts=F32-10.91:(31)  Ewy-s   ksi aźk e czytal
+line=564  tag=G    lang_name=Polish lang_code=pol span_id=s27 fonts=F32-10.91:      Ewa’s-2S book   read.SM
+
+doc_id=16.tetml page=15 block_id=15-3 bbox=101.4,738.3,197.0,749.2 565 565
+line=565  tag=T lang_name=Polish lang_code=pol span_id=s27 fonts=F32-10.91:You read Ewa’s book.
+
+doc_id=16.tetml page=15 block_id=15-4 bbox=523.6,782.5,534.5,793.4 566 566
+line=566  tag=O fonts=F32-10.91:14
+
+doc_id=16.tetml page=15 block_id=15-5 bbox=66.8,711.5,534.5,722.4 567 567
+line=567  tag=O fonts=F32-10.91,F33-10.91:It is clear that these forms of the verb be are part of a periphrastically expressed tense/aspect form in combination
+
+doc_id=16.tetml page=15 block_id=15-6 bbox=96.6,697.9,534.5,708.8 568 568
+line=568  tag=O fonts=F32-10.91:with a participle (which inflects adjectivally). The auxiliary element was diachronically a phonological
+
+doc_id=16.tetml page=15 block_id=15-7 bbox=66.8,670.9,534.6,695.2 569 570
+line=569  tag=O fonts=F32-10.91:   clitic. Analyses are split on whether to treat this element as a syntactic atom phonologically cliticised, or
+line=570  tag=O fonts=F32-10.91:as a bound form precisely because of the difficulty in head driven syntactic frameworks of accommodating
+
+doc_id=16.tetml page=15 block_id=15-8 bbox=66.8,643.8,534.6,668.2 571 572
+line=571  tag=O fonts=F32-10.91:the resultant ‘headless’ construction: for example, Borsley and Rivero (1994) treat the participle-auxiliary
+line=572  tag=O fonts=F32-10.91:combination as syntactically analysable syntactic incorporation of V into Aux and the “floating inflection”
+
+doc_id=16.tetml page=15 block_id=15-9 bbox=66.8,616.7,534.5,641.1 573 574
+line=573  tag=O fonts=F32-10.91:as PF (phonological) cliticization of I to the constituent to its left. Dziwirek (1998) treats the auxiliary morphologically
+line=574  tag=O fonts=F32-10.91:             . The morphophonological evidence for affixal status is extremely strong, (see (Spencer 1991)
+
+doc_id=16.tetml page=15 block_id=15-10 bbox=66.8,576.0,534.5,614.0 575 577
+line=575  tag=O fonts=F32-10.91:for a full discussion), and, as Spencer observes, the only evidence against this view is the lack of strong selection
+line=576  tag=O fonts=F32-10.91:       of the stem/host by the auxiliary (promiscuous attachment). Indeed, this mix of properties led Booij
+line=577  tag=O fonts=F32-10.91:and Rubach (1987) to argue for a lexical treatment, but keeping the process of word-internal cliticisation
+
+doc_id=16.tetml page=15 block_id=15-11 bbox=66.8,548.9,534.5,573.3 578 579
+line=578  tag=O fonts=F32-10.91:separate from other word formation processes. The evidence therefore strongly suggests that the combination
+line=579  tag=O fonts=F32-10.91:    of host and auxiliary is not syntactically transparent. If this is correct, then these data constitute another
+
+doc_id=16.tetml page=15 block_id=15-12 bbox=66.8,508.3,534.5,546.2 580 582
+line=580  tag=O fonts=F32-10.91         :case in which a head (here, the auxiliary (and subject agreement marker) in the past tense formations) is
+line=581  tag=O fonts=F32-10.91         :incorporated into a dependent. This can be captured by means of inside out equations in LFG, but, like the
+line=582  tag=O fonts=F32-10.91,F32-7.97:English data, appears problematic on a head driven view 15.
+
+doc_id=16.tetml page=15 block_id=15-13 bbox=72.2,467.9,200.3,492.3 583 583
+line=583  tag=O fonts=F32-10.91,F33-10.91:(32)  Wieczoremśmy(  PRED ) = ‘evening’
+
+doc_id=16.tetml page=15 block_id=15-14 bbox=101.4,454.3,175.1,465.2 584 584
+line=584  tag=O fonts=F32-10.91:((GF ) SUBJ) =
+
+doc_id=16.tetml page=15 block_id=15-15 bbox=101.4,400.2,195.1,451.6 585 588
+line=585  tag=O fonts=F32-10.91:(( PRED) = ‘PRO’)
+line=586  tag=O fonts=F32-10.91:( NUM) = PL
+line=587  tag=O fonts=F32-10.91:( PER) = 1
+line=588  tag=O fonts=F32-10.91:(GF ) TNS) = PAST
+
+doc_id=16.tetml page=15 block_id=15-16 bbox=72.2,346.2,185.3,384.2 589 590
+line=589  tag=O fonts=F32-10.91,F33-10.91:(33)  Ksia¸żkiśmy(  PRED) = ‘book’
+line=590  tag=O fonts=F32-10.91          :      ((GF  ) SUBJ) =
+
+doc_id=16.tetml page=15 block_id=15-17 bbox=101.4,292.1,195.1,343.5 591 594
+line=591  tag=O fonts=F32-10.91:( PRED) = ‘PRO’
+line=592  tag=O fonts=F32-10.91:( NUM) = PL
+line=593  tag=O fonts=F32-10.91:( PER) = 1
+line=594  tag=O fonts=F32-10.91:(GF ) TNS) = PAST
+
+doc_id=16.tetml page=15 block_id=15-18 bbox=66.8,265.2,534.5,276.1 595 595
+line=595  tag=O fonts=F32-10.91:Borsley and Morris Jones (Welsh Syntax 2000 workshop presentations) discuss some cases in Welsh where
+
+doc_id=16.tetml page=15 block_id=15-19 bbox=66.8,238.1,534.5,262.5 596 597
+line=596  tag=O fonts=F32-10.91:verbless sentences with pronominal subjects are permissible. Copula-less patterns are found with 2S, 1PL
+line=597  tag=O fonts=F32-10.91:and 2PL pronouns (in all these cases the final consonant of the “missing” copula form and the initial consonant
+
+doc_id=16.tetml page=15 block_id=15-20 bbox=98.3,224.5,534.5,235.4 598 598
+line=598  tag=O fonts=F32-10.91:of the pronoun are the same). The glosses in the following data (attributing verbal properties to the
+
+doc_id=16.tetml page=15 block_id=15-21 bbox=66.8,210.9,307.8,221.8 599 599
+line=599  tag=O fonts=F32-10.91:pronominal forms) are those provided by Morris Jones.
+
+doc_id=16.tetml page=15 block_id=15-22 bbox=72.2,184.2,257.1,195.1 600 600
+line=600  tag=L lang_name=Welsh lang_code=cym span_id=s28 fonts=F32-10.91:(34)   ti           ’n     licio sudd oren.
+
+doc_id=16.tetml page=15 block_id=15-23 bbox=101.4,170.6,264.6,181.5 601 601
+line=601  tag=G lang_name=Welsh lang_code=cym span_id=s28 fonts=F32-10.91:[be+pres]2S PROG like juice orange
+
+doc_id=16.tetml page=15 block_id=15-24 bbox=101.4,156.6,197.0,167.5 602 602
+line=602  tag=T lang_name=Welsh lang_code=cym span_id=s28 fonts=F32-10.91:You like orange juice.
+
+doc_id=16.tetml page=15 block_id=15-25 bbox=66.8,126.6,534.5,147.3 603 604
+line=603  tag=O fonts=F32-5.98,F32-8.97:   15We do not give a full analysis here, which would require the addition of f-precedence constraints to capture the “left of V”
+line=604  tag=O fonts=F32-8.97         :constraint.
+
+doc_id=16.tetml page=16 block_id=16-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=16 block_id=16-2 bbox=72.2,752.4,296.4,776.9 605 606
+line=605  tag=L lang_name=Welsh lang_code=cym span_id=s29 fonts=F34-10.91:(35)  chi          ddim yn    licio sudd oren.
+line=606  tag=G lang_name=Welsh lang_code=cym span_id=s29 fonts=F34-10.91:      [be+pres]2PL not  PROG like juice orange
+
+doc_id=16.tetml page=16 block_id=16-3 bbox=101.4,737.7,222.5,748.6 607 607
+line=607  tag=T lang_name=Welsh lang_code=cym span_id=s29 fonts=F34-10.91:You don’t like orange juice.
+
+doc_id=16.tetml page=16 block_id=16-4 bbox=523.6,782.5,534.5,793.4 608 608
+line=608  tag=O fonts=F34-10.91:15
+
+doc_id=16.tetml page=16 block_id=16-5 bbox=66.8,708.6,534.5,719.5 609 609
+line=609  tag=O fonts=F34-10.91:Morris Jones establishes several crucial facts about these data, which distinguish them from a clipped or fast
+
+doc_id=16.tetml page=16 block_id=16-6 bbox=66.8,681.5,534.5,705.9 610 611
+line=610  tag=O fonts=F34-10.91          :informal speech phenomenon and in particular from similar forms with full NPs. The diagnostics include
+line=611  tag=O fonts=F34-10.91,F35-10.91:control of responsives appropriate for questions with forms of be, form of tag questions, possibilities for
+
+doc_id=16.tetml page=16 block_id=16-7 bbox=66.8,667.9,521.8,678.8 612 612
+line=612  tag=O fonts=F34-10.91:fronting constituents, possibility of ellipsis and occurrence in noun clauses (the last is illustrated below):
+
+doc_id=16.tetml page=16 block_id=16-8 bbox=72.2,625.2,371.4,649.6 613 614
+line=613  tag=L lang_name=Welsh lang_code=cym span_id=s30 fonts=F34-10.91:(36)  Dw         i’n                        ’n    gwbod
+line=614  tag=G lang_name=Welsh lang_code=cym span_id=s30 fonts=F34-10.91:     Be.PRES.1SG I-PROG       [be+pres].2SG PROG know
+
+doc_id=16.tetml page=16 block_id=16-9 bbox=101.4,610.5,175.8,621.5 615 615
+line=615  tag=T lang_name=Welsh lang_code=cym span_id=s30 fonts=F34-10.91:I think you know
+
+doc_id=16.tetml page=16 block_id=16-10 bbox=72.2,579.5,336.5,603.9 616 617
+line=616  tag=L lang_name=Welsh lang_code=cym span_id=s31 fonts=F34-10.91:(37)  *Dw        i’n           dadi  ’n    gwbod
+line=617  tag=G lang_name=Welsh lang_code=cym span_id=s31 fonts=F34-10.91:     Be.PRES.1SG I-PROG       Daddy PROG know
+
+doc_id=16.tetml page=16 block_id=16-11 bbox=101.4,564.8,240.9,649.6 618 618
+line=618  tag=T lang_name=Welsh lang_code=cym span_id=s31 fonts=F34-10.91:I think Daddy knowing meddwlthink
+
+doc_id=16.tetml page=16 block_id=16-12 bbox=205.8,579.5,249.7,649.6 619 619
+line=619  tag=O fonts=F34-10.91:meddwlthink   ti
+
+doc_id=16.tetml page=16 block_id=16-13 bbox=66.8,535.7,534.5,546.6 620 620
+line=620  tag=O fonts=F34-10.91:Again, these data strongly suggest that these forms are pronouns carrying tense and aspect information,
+
+doc_id=16.tetml page=16 block_id=16-14 bbox=66.8,495.0,534.6,533.0 621 623
+line=621  tag=O fonts=F34-10.91:and are appearing in subject (NP) position. As Borsley (workshop presentation) points out, an analysis of
+line=622  tag=O fonts=F34-10.91:these data in HPSG appears to require either some sort of empty copula, or a headless construction type (in
+line=623  tag=O fonts=F34-10.91:constructional HPSG), or a re-analysis of the pronominal forms as pronominal incorporations into Aux.
+
+doc_id=16.tetml page=16 block_id=16-15 bbox=66.8,454.2,156.9,468.5 624 624
+line=624  tag=O fonts=F36-14.35:6  Conclusion
+
+doc_id=16.tetml page=16 block_id=16-16 bbox=66.8,396.6,534.5,434.6 625 627
+line=625  tag=O fonts=F34-10.91:In this paper we have shown that the phenomenon of TAM-inflected nominals is not typologically marginal
+line=626  tag=O fonts=F34-10.91:but is, on the contrary, well established across a range of typologically diverse languages. We have argued
+line=627  tag=O fonts=F34-10.91:that these data are not straightforwardly captured in a head-driven fashion, but are naturally accommodated
+
+doc_id=16.tetml page=16 block_id=16-17 bbox=66.8,383.0,452.3,393.9 628 628
+line=628  tag=O fonts=F34-10.91:by the use of inside out constraints, as in the constructive morphology approach of LFG.
+
+doc_id=16.tetml page=16 block_id=16-18 bbox=66.8,342.2,147.0,356.6 629 629
+line=629  tag=O fonts=F36-14.35:Bibliography
+
+doc_id=16.tetml page=16 block_id=16-19 bbox=66.8,299.4,534.6,323.9 630 631
+line=630  tag=O fonts=F34-10.91          :Aikhenvald, A. Y. 1999. Multiple marking of syntactic function and polysynthetic nouns in Tariana. In
+line=631  tag=O fonts=F34-10.91,F35-10.91:Papers from the 35th Chicago Linguistic Society. CLS.
+
+doc_id=16.tetml page=16 block_id=16-20 bbox=66.8,263.4,534.5,287.9 632 633
+line=632  tag=O fonts=F34-10.91,F35-10.91:Andrews, A. 1996. Semantic case-stacking and inside-out unification. Australian Journal of Linguistics
+line=633  tag=O fonts=F34-10.91          :16(1):1–55.
+
+doc_id=16.tetml page=16 block_id=16-21 bbox=66.8,227.3,534.5,251.7 634 635
+line=634  tag=O fonts=F34-10.91,F35-10.91:Barron, J. 1998. ‘have’ contraction: explaining ‘trace effects’ in a theory without movement. Linguistics
+line=635  tag=O fonts=F34-10.91          :36(2):223–251.
+
+doc_id=16.tetml page=16 block_id=16-22 bbox=66.8,191.3,534.6,215.6 636 637
+line=636  tag=O fonts=F34-10.91:Bender, E., and I. Sag. 1999.  Incorporating contracted auxiliaries in English.  Unpublished conference
+line=637  tag=O fonts=F34-10.91:presentation at HPSG 1999.
+
+doc_id=16.tetml page=16 block_id=16-23 bbox=66.8,141.6,534.5,179.6 638 640
+line=638  tag=O fonts=F34-10.91          :Bender, E., and I. Sag. to appear. Incorporating contracted auxiliaries in English. In Ronnie Cann and Claire
+line=639  tag=O fonts=F34-10.91,F35-10.91:Grover and Philip Miller (Ed.), A Collection of Papers in Head-driven Phrase Structure Grammar. Stanford:
+line=640  tag=O fonts=F34-10.91          :CSLI Publications.
+
+doc_id=16.tetml page=17 block_id=17-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=17 block_id=17-2 bbox=66.8,752.4,534.5,776.9 641 642
+line=641  tag=O fonts=F37-10.91,F38-10.91:Blake, B. 1979. Pitta Pitta. In R. M. W. Dixon (Ed.), The Handbook of Australian Languages, 182–242.
+line=642  tag=O fonts=F37-10.91          :Canberra: ANU Press.
+
+doc_id=16.tetml page=17 block_id=17-3 bbox=66.8,729.8,387.1,740.7 643 643
+line=643  tag=O fonts=F37-10.91,F38-10.91:Blake, B. 1987. Australian Aboriginal Grammar. London: Croom Helm.
+
+doc_id=16.tetml page=17 block_id=17-4 bbox=66.8,707.4,534.5,718.3 644 644
+line=644  tag=O fonts=F37-10.91,F38-10.91:Bohnhoff, L. E. 1986. Yạg Dii (Duru) Pronouns. In U. Wiesemann (Ed.), Pronominal Systems, 103–129.
+
+doc_id=16.tetml page=17 block_id=17-5 bbox=66.8,693.8,153.8,704.7 645 645
+line=645  tag=O fonts=F37-10.91:Gunter Narr Verlag.
+
+doc_id=16.tetml page=17 block_id=17-6 bbox=66.8,671.4,534.6,682.3 646 646
+line=646  tag=O fonts=F37-10.91,F38-10.91:Booij, G., and J. Rubach.  1987.  Postcyclic versus Postlexical Rules in Lexical Phonology.  Linguistic
+
+doc_id=16.tetml page=17 block_id=17-7 bbox=66.8,657.8,140.1,668.7 647 647
+line=647  tag=O fonts=F37-10.91,F38-10.91:Inquiry 18:1–44.
+
+doc_id=16.tetml page=17 block_id=17-8 bbox=66.8,635.4,534.5,646.3 648 648
+line=648  tag=O fonts=F37-10.91,F38-10.91:Borsley, R., and M. L. Rivero. 1994. Clitic Auxiliaries and Incorporation in Polish. Natural Language and
+
+doc_id=16.tetml page=17 block_id=17-9 bbox=66.8,621.8,214.3,632.7 649 649
+line=649  tag=O fonts=F37-10.91,F38-10.91:Linguistic Theory 12(4):373–422.
+
+doc_id=16.tetml page=17 block_id=17-10 bbox=66.8,599.3,530.3,610.2 650 650
+line=650  tag=O fonts=F37-10.91:Bredenkamp, A. 1996. Towards a binding theory for HPSG. unpublished PhD thesis, University of Essex.
+
+doc_id=16.tetml page=17 block_id=17-11 bbox=66.8,576.8,381.2,587.7 651 651
+line=651  tag=O fonts=F37-10.91:Bresnan, J. 2000. Lexical Functional Syntax. forthcoming, Blackwell’s.
+
+doc_id=16.tetml page=17 block_id=17-12 bbox=66.8,554.4,523.1,565.3 652 652
+line=652  tag=O fonts=F37-10.91,F38-10.91:Bresnan, J., and S. Mchombo. 1987. Topic, pronoun and agreement in Chicheŵa. Language 63:741–82.
+
+doc_id=16.tetml page=17 block_id=17-13 bbox=66.8,518.3,534.5,542.7 653 654
+line=653  tag=O fonts=F37-10.91,F38-10.91:Burquest, D. 1986. The pronoun system of some Chadic Languages. In U. Wiesemann (Ed.), Pronominal
+line=654  tag=O fonts=F37-10.91,F38-10.91:Systems, 71–101. Gunter Narr Verlag.
+
+doc_id=16.tetml page=17 block_id=17-14 bbox=66.8,495.8,429.0,506.7 655 655
+line=655  tag=O fonts=F37-10.91,F38-10.91:Butt, M. 1995. The Structure of Complex Predicates in Urdu. Stanford, CA: CSLI.
+
+doc_id=16.tetml page=17 block_id=17-15 bbox=66.8,473.4,367.5,484.3 656 656
+line=656  tag=O fonts=F37-10.91,F38-10.91:Carlson, R. 1994. A Grammar of Suyire. Berlin: Mouton de Gruyter.
+
+doc_id=16.tetml page=17 block_id=17-16 bbox=66.8,437.3,534.5,461.7 657 658
+line=657  tag=O fonts=F37-10.91,F38-10.91:Culy, C. 1990. The syntax and semantics of internally-headed relative clauses. PhD thesis, Stanford University
+line=658  tag=O fonts=F37-10.91          :      , Stanford, CA.
+
+doc_id=16.tetml page=17 block_id=17-17 bbox=66.8,401.3,534.6,425.7 659 660
+line=659  tag=O fonts=F37-10.91:da S. Facundes, S. in progress. The language of the Apurina People of Brazil(Maipure, Arawak). PhD in
+line=660  tag=O fonts=F37-10.91:progress, SUNY Buffalo.
+
+doc_id=16.tetml page=17 block_id=17-18 bbox=66.8,378.8,458.9,389.7 661 661
+line=661  tag=O fonts=F37-10.91,F38-10.91:Dalrymple, M. 1993. The Syntax of Anaphoric Binding. Stanford,CA: CSLI Publications.
+
+doc_id=16.tetml page=17 block_id=17-19 bbox=66.8,356.4,534.6,367.3 662 662
+line=662  tag=O fonts=F37-10.91:Dziwirek, K. 1998. Reduced Constructions in UG: Evidence from Polish Object Control Constructions.
+
+doc_id=16.tetml page=17 block_id=17-20 bbox=66.8,342.8,305.2,353.7 663 663
+line=663  tag=O fonts=F37-10.91,F38-10.91:Natural Language and Linguistic Theory 16(1):53–99.
+
+doc_id=16.tetml page=17 block_id=17-21 bbox=66.8,320.3,534.5,331.2 664 664
+line=664  tag=O fonts=F37-10.91,F38-10.91:E. S Furby and C. E. Furby. 1977.  A Preliminary Analysis of Garawa phrases and clauses.  Canberra:
+
+doc_id=16.tetml page=17 block_id=17-22 bbox=66.8,306.7,150.3,317.6 665 665
+line=665  tag=O fonts=F37-10.91:Pacific Linguistics.
+
+doc_id=16.tetml page=17 block_id=17-23 bbox=66.8,284.3,377.0,295.2 666 666
+line=666  tag=O fonts=F37-10.91,F38-10.91:Evans, N. 1995. A Grammar of Kayardild. Berlin: Mouton de Gruyter.
+
+doc_id=16.tetml page=17 block_id=17-24 bbox=66.8,248.3,534.5,272.7 667 668
+line=667  tag=O fonts=F37-10.91,F38-10.91:Givón, T. 1976. Topic, pronoun, and grammatical agreement. In Charles N. Li (Ed.), Subject and Topic,
+line=668  tag=O fonts=F37-10.91          :149–88. New York: Academic Press.
+
+doc_id=16.tetml page=17 block_id=17-25 bbox=66.8,212.3,534.5,236.6 669 670
+line=669  tag=O fonts=F37-10.91,F38-10.91:Hale, K. 1997. Remarks on Lardil phonology and morphology. In Lardil Dictionary, 12–56. compiled by
+line=670  tag=O fonts=F37-10.91          :Ngalkulmungan Kangka Leman (Language Projects Steering Committee). Gununa, Queensland (Australia):
+
+doc_id=16.tetml page=17 block_id=17-26 bbox=66.8,198.7,184.6,209.6 671 671
+line=671  tag=O fonts=F37-10.91:Mornington Shire Council.
+
+doc_id=16.tetml page=17 block_id=17-27 bbox=66.8,162.6,534.6,187.1 672 673
+line=672  tag=O fonts=F37-10.91          :Halvorsen, P.-K., and R. M. Kaplan. 1988.  Projections and Semantic Description in Lexical-Functional
+line=673  tag=O fonts=F37-10.91,F38-10.91:Grammar. In Proceedings of the International Conference on Fifth Generation Computer Systems, 1116–
+
+doc_id=16.tetml page=17 block_id=17-28 bbox=66.8,149.0,124.3,159.9 674 674
+line=674  tag=O fonts=F37-10.91:1122, Tokyo.
+
+doc_id=16.tetml page=17 block_id=17-29 bbox=66.8,126.6,456.0,137.5 675 675
+line=675  tag=O fonts=F37-10.91,F38-10.91:King, T. H. 1995. Configuring Topic and Focus in Russian. Stanford: CSLI Publications.
+
+doc_id=16.tetml page=17 block_id=17-30 bbox=523.6,782.5,534.5,793.4 676 676
+line=676  tag=O fonts=F37-10.91:16
+
+doc_id=16.tetml page=18 block_id=18-1 bbox=0,0,0,0 0 0
+
+doc_id=16.tetml page=18 block_id=18-2 bbox=66.8,752.4,534.6,776.9 677 678
+line=677  tag=O fonts=F39-10.91          :Koenig, J.-P. 1998.  Inside-out constraints and description languages for HPSG.  In G. Webelhuth, J.-P.
+line=678  tag=O fonts=F39-10.91,F40-10.91:Koenig, and A. Kathol (Eds.), Lexical and Constructional basis of linguistic explanations. CSLI Publications
+
+doc_id=16.tetml page=18 block_id=18-3 bbox=88.1,738.8,90.8,749.7 679 679
+line=679  tag=O fonts=F39-10.91:.
+
+doc_id=16.tetml page=18 block_id=18-4 bbox=66.8,716.3,453.7,727.2 680 680
+line=680  tag=O fonts=F39-10.91,F40-10.91:Lambdin, T. O. 1983. Introduction to Sahidic Coptic. Georgia: Mercer University Press.
+
+doc_id=16.tetml page=18 block_id=18-5 bbox=66.8,680.3,534.4,704.7 681 682
+line=681  tag=O fonts=F39-10.91,F40-10.91:Lee, H. 1999.  Aspectual and thematic licensing of grammatical case.  In Papers from the 35th Chicago
+line=682  tag=O fonts=F39-10.91,F40-10.91:Linguistic Society. CLS.
+
+doc_id=16.tetml page=18 block_id=18-6 bbox=66.8,657.7,486.8,668.6 683 683
+line=683  tag=O fonts=F39-10.91,F40-10.91:Nordlinger, R. 1998. Constructive Case: Evidence from Australian Languages. Stanford: CSLI.
+
+doc_id=16.tetml page=18 block_id=18-7 bbox=66.8,635.1,475.6,646.0 684 684
+line=684  tag=O fonts=F39-10.91,F40-10.91:Parker, S. 1999. On the behavior of definite articles in Chamicuro. Language 75(3):552–562.
+
+doc_id=16.tetml page=18 block_id=18-8 bbox=66.8,612.7,534.5,623.6 685 685
+line=685  tag=O fonts=F39-10.91,F40-10.91:Pollard, C., and I. Sag. 1994. Head Driven Phrase Structure Grammar. Chicago: Chicago University Press.
+
+doc_id=16.tetml page=18 block_id=18-9 bbox=66.8,590.1,523.4,601.0 686 686
+line=686  tag=O fonts=F39-10.91,F40-10.91:Radford, A. 1988. Transformational Grammar: A first course. Cambridge: Cambridge University Press.
+
+doc_id=16.tetml page=18 block_id=18-10 bbox=66.8,567.7,534.5,578.6 687 687
+line=687  tag=O fonts=F39-10.91:Raible, W. to appear. Language universals and language typology. In Martin Haspelmath, Ekkehard Knig,
+
+doc_id=16.tetml page=18 block_id=18-11 bbox=66.8,540.6,534.5,565.0 688 689
+line=688  tag=O fonts=F39-10.91,F40-10.91:Wulf Oesterreicher and Wolfgang Raible (Ed.), Language Typology and Language Universals: An international
+line=689  tag=O fonts=F39-10.91,F40-10.91:      handbook.
+
+doc_id=16.tetml page=18 block_id=18-12 bbox=66.8,518.0,446.1,528.9 690 690
+line=690  tag=O fonts=F39-10.91,F40-10.91:Sadler, L. 1998. English auxiliaries as tense inflections. Essex Research Reports 1–16.
+
+doc_id=16.tetml page=18 block_id=18-13 bbox=66.8,495.5,470.0,506.4 691 691
+line=691  tag=O fonts=F39-10.91:Sells, P. 1998. Japanese postposing involved no movement. presented at LAGB, April 1998.
+
+doc_id=16.tetml page=18 block_id=18-14 bbox=66.8,459.5,534.6,483.9 692 693
+line=692  tag=O fonts=F39-10.91,F40-10.91:Sharma, D. 1999.  Nominal clitics and constructive morphology in Hindi.  In Proceedings of LFG99.
+line=693  tag=O fonts=F39-10.91          :http://www-csli.stanford.edu/publications.
+
+doc_id=16.tetml page=18 block_id=18-15 bbox=66.8,436.9,343.5,447.8 694 694
+line=694  tag=O fonts=F39-10.91,F40-10.91:Spencer, A. 1991. Morphological Theory. Oxford: Blackwells.
+
+doc_id=16.tetml page=18 block_id=18-16 bbox=66.8,414.5,345.9,425.4 695 695
+line=695  tag=O fonts=F39-10.91,F40-10.91:Tryon, D. T. 1968. Iai Grammar. Canberra: Pacific Linguistics.
+
+doc_id=16.tetml page=18 block_id=18-17 bbox=523.6,782.5,534.5,793.4 696 696
+line=696  tag=O fonts=F39-10.91:17
+
+doc_id=16.tetml page=18 block_id=18-18 bbox=66.8,391.9,534.5,402.8 697 697
+line=697  tag=O fonts=F39-10.91,F40-10.91:Wurm, S., and L. Hercus.  1976.  Tense-marking in Gurnu pronouns.  Papers in Australian Linguistics
+
+doc_id=16.tetml page=18 block_id=18-19 bbox=66.8,378.3,110.8,389.2 698 698
+line=698  tag=O fonts=F39-10.91:10:33–49.
+

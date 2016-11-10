@@ -6,8 +6,10 @@ from collections import defaultdict, Counter
 import argparse
 import logging
 
+import sys
+
 from freki.readers import tetml, pdfminer
-from freki.serialize import FrekiBlock, FrekiLine
+from freki.serialize import FrekiBlock, FrekiLine, FrekiDoc
 
 readers = {
     'tetml': tetml.TetmlReader,
@@ -19,31 +21,45 @@ def run(args):
     doc_id = path.splitext(path.basename(args.infile))[0]
     line_no = 1
 
-    dirs = os.path.dirname(args.outfile)
-    if dirs:
-        os.makedirs(dirs, exist_ok=True)
-    
-    outfile = open(args.outfile, 'w', encoding='utf-8')
+    # Initialize the freki document
+    fd = FrekiDoc()
+
+    if hasattr(args.outfile, 'write'):
+        outfile = args.outfile
+    elif args.outfile is not None:
+        dirs = os.path.dirname(args.outfile)
+        if dirs:
+            os.makedirs(dirs, exist_ok=True)
+        outfile = open(args.outfile, 'w', encoding='utf-8')
+    else:
+        outfile = sys.stdout
+
     for page in reader.pages():
         for blk in reader.blocks(page, coefficient=args.block):
             fb = FrekiBlock(doc_id=doc_id,
                             page=page.id,
                             block_id=blk.id,
-                            bbox='{},{},{},{}'.format(blk.llx,blk.lly,blk.urx,blk.ury))
+                            bbox='{},{},{},{}'.format(blk.llx,blk.lly,blk.urx,blk.ury),
+                            doc=fd)
 
             for i, line in enumerate(respace(blk, args.deindent_blocks)):
                 fonts = ','.join(sorted(set(['{}-{}'.format(t.font, t.size) for t in blk.lines[i].tokens])))
                 fl = FrekiLine(line,
                                line=line_no+i,
                                fonts=fonts)
-                fb.append(fl)
+                fb.add_line(fl)
+
+            fd.add_block(fb)
 
             line_no += len(blk.lines)
             #print('\n'.join(respace(blk)))
-            outfile.write(str(fb)+'\n\n')
+            # outfile.write(str(fb)+'\n\n')
 
-        # lines = reader.group_lines()
-        # respace(lines)
+            # lines = reader.group_lines()
+            # respace(lines)
+
+    outfile.write(str(fd))
+
 
 def tabularize(block):
     # more aggressively try to pigeonhole aligned tokens

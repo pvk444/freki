@@ -151,6 +151,14 @@ class FrekiDoc(object):
         fl.doc = self
         self.linemap[fl.lineno] = fl
 
+    def add_block(self, fb):
+        """:type fb: FrekiBlock"""
+        fb.doc = self
+        for line in fb.lines:
+            if line.lineno not in self.linemap.keys():
+                self.add_line(line)
+        self.blockmap[fb.block_id] = fb
+
 
 def linesort(a):
     """
@@ -166,10 +174,10 @@ class FrekiBlock(object):
     """
     The "Block" class, consisting of:
     """
-    def __init__(self, linenos=None, start_line=None, stop_line = None, **kwargs):
+    def __init__(self, linenos=None, start_line=None, stop_line = None, doc=None, **kwargs):
         self.linenos = [] if linenos is None else linenos
         self._attrs = kwargs
-        self.doc = None
+        self._doc = doc
 
     @property
     def doc(self) -> FrekiDoc: return self._doc
@@ -237,6 +245,7 @@ class FrekiBlock(object):
 
     def add_line(self, line):
         line.block = self
+        self.doc.add_line(line)
         self.linenos.append(line.lineno)
 
 
