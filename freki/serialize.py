@@ -142,7 +142,8 @@ class FrekiDoc(object):
         fonts = []
         for block in self.blocks:
             for font in block.fonts:
-                fonts.append(font)
+                if font is not None:
+                    fonts.append(font)
         return fonts
 
     def add_line(self, fl):
@@ -270,7 +271,10 @@ class FrekiLine(str):
         """
         :rtype: list[FrekiFont]
         """
-        return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
+        if self.attrs.get('fonts'):
+            return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
+        else:
+            return None
 
     @fonts.setter
     def fonts(self, fonts):
