@@ -296,7 +296,8 @@ class FrekiReader(object):
         else:
             return (longest_span / len(self.page_baselines(page))) >= 0.9
 
-    def lines_in_dual_column_order(self, page: Page):
+    def lines_in_dual_column_order(self, page):
+        """:type page: Page"""
         left_tokens  = [t for t in page.tokens if t.urx < self.page_xmiddle(page)]
         right_tokens = [t for t in page.tokens if t.llx > self.page_xmiddle(page)]
 
@@ -307,7 +308,8 @@ class FrekiReader(object):
 
 
 
-    def lines_in_tet_order(self, page: Page):
+    def lines_in_tet_order(self, page):
+        """:type page: Page"""
         page_lines = []
         for para in page.pgphs:
             para_lines = tokens_to_lines(para.tokens)

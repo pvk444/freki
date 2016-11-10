@@ -18,7 +18,7 @@ tasks.
 
 ## Requirements
 
-* Python 3.3+ (may work with Python 2.7, but it is not specifically tested)
+* Tested with python 2.7 and 3.5.
 
 ## Acknowledgements
 

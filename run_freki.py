@@ -5,6 +5,8 @@ from os import path
 from collections import defaultdict, Counter
 import argparse
 import logging
+from builtins import open
+from past.builtins import unicode
 
 import sys
 
@@ -24,13 +26,23 @@ def run(args):
     # Initialize the freki document
     fd = FrekiDoc()
 
+    # a) Is the outfile argument file-like?
+    #    if yes, use that stream directly.
     if hasattr(args.outfile, 'write'):
         outfile = args.outfile
+
+    # b) Is there an outfile path specified?
+    #    if yes, open that path
     elif args.outfile is not None:
         dirs = os.path.dirname(args.outfile)
         if dirs:
-            os.makedirs(dirs, exist_ok=True)
+            try:
+                os.makedirs(dirs)
+            except OSError as oe:
+                pass
         outfile = open(args.outfile, 'w', encoding='utf-8')
+
+    # Otherwise,
     else:
         outfile = sys.stdout
 
@@ -52,13 +64,8 @@ def run(args):
             fd.add_block(fb)
 
             line_no += len(blk.lines)
-            #print('\n'.join(respace(blk)))
-            # outfile.write(str(fb)+'\n\n')
 
-            # lines = reader.group_lines()
-            # respace(lines)
-
-    outfile.write(str(fd))
+    outfile.write(unicode(fd))
 
 
 def tabularize(block):
