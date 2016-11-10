@@ -180,7 +180,9 @@ class FrekiBlock(object):
         self._doc = doc
 
     @property
-    def doc(self) -> FrekiDoc: return self._doc
+    def doc(self):
+        """:rtype: FrekiDoc"""
+        return self._doc
 
     @doc.setter
     def doc(self, v): self._doc = v
@@ -257,7 +259,7 @@ class FrekiLine(str):
     The "Line" class
     """
     def __new__(cls, seq='', **kwargs):
-        s = super().__new__(cls, seq)
+        s = str.__new__(cls, seq)
         setattr(s, 'attrs', kwargs)
         s.block = kwargs.get('block')
         s.doc = kwargs.get('doc')
@@ -292,7 +294,8 @@ class FrekiLine(str):
 
 
     @property
-    def block(self) -> FrekiBlock:
+    def block(self):
+        """:rtype: FrekiBlock"""
         return self._block
 
     @block.setter
@@ -300,7 +303,9 @@ class FrekiLine(str):
         self._block = v
 
     @property
-    def doc(self) -> FrekiDoc: return self._doc
+    def doc(self):
+        """:rtype: FrekiDoc"""
+        return self._doc
 
     @doc.setter
     def doc(self, d): self._doc = d
