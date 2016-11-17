@@ -222,14 +222,15 @@ class FrekiReader(object):
         i = 1
 
         block = Block(id='{}-{}'.format(page.id, i))
-        last_y = lines[0].lly
-        for line in lines:
-            if last_y - line.ury > line_dy or last_y - line.ury < 0:
-                yield block
-                i += 1
-                block = Block(id='{}-{}'.format(page.id, i))
-            block.lines.append(line)
-            last_y = line.lly
+        if lines:
+            last_y = lines[0].lly
+            for line in lines:
+                if last_y - line.ury > line_dy or last_y - line.ury < 0:
+                    yield block
+                    i += 1
+                    block = Block(id='{}-{}'.format(page.id, i))
+                block.lines.append(line)
+                last_y = line.lly
 
         # If we still have an unreturned block...
         yield block
