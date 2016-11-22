@@ -29,6 +29,19 @@ class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
     def height(self):
         return self.ury - self.lly
 
+def set_coords_from_token(obj, token):
+    """
+    As tokens are iteratively added, compare their coordinates to that of
+    the container and extend as necessary.
+
+    :param obj:  The container object (block or line)
+    :param token:  The object (line or token) being added to the container.
+    """
+    obj._llx = token.llx if obj.llx is None else min(obj.llx, token.llx)
+    obj._lly = token.lly if obj.lly is None else min(obj.lly, token.lly)
+    obj._urx = token.urx if obj.urx is None else max(obj.urx, token.urx)
+    obj._ury = token.ury if obj.ury is None else max(obj.urx, token.urx)
+
 class TokContainer(object):
     def __init__(self, tokens=None):
         if tokens is None: tokens = []
@@ -37,49 +50,36 @@ class TokContainer(object):
         for token in tokens:
             self.append(token)
 
+
     def append(self, token):
         if not isinstance(token, Token):
             raise TypeError('Line objects can only contain Token objects.')
-        self._llx = self._lly = self._urx = self._ury = None  # reset
+        set_coords_from_token(self, token)
         self.tokens.append(token)
 
-    def extend(self, tokens):
-        for token in tokens:
-            self.append(token)
-
-
-    @property
-    def llx(self):
-        if self._llx is None and self.tokens:
-            self._llx = min(t.llx for t in self.tokens)
-        return self._llx
-
+    def extend(self, iterable):
+        for elt in iterable:
+            self.tokens.append(elt)
 
     @property
-    def lly(self):
-        if self._lly is None and self.tokens:
-            self._lly = min(t.lly for t in self.tokens)
-        return self._lly
-
+    def urx(self): return self._urx
 
     @property
-    def urx(self):
-        if self._urx is None and self.tokens:
-            self._urx = max(t.urx for t in self.tokens)
-        return self._urx
-
+    def ury(self): return self._ury
 
     @property
-    def ury(self):
-        if self._ury is None and self.tokens:
-            self._ury = max(t.ury for t in self.tokens)
-        return self._ury
+    def llx(self): return self._llx
 
+    @property
+    def lly(self): return self._lly
 
     @property
     def width(self):
         return self.urx - self.llx
 
+    @property
+    def bbox(self):
+        return (self.llx, self.lly, self.urx, self.ury)
 
     @property
     def height(self):
@@ -141,6 +141,12 @@ class Block(namedtuple('Block', ('id', 'lines'))):
     def tabular(self):
         return len(self.tabular_lines()) > 0
 
+    def append(self, line):
+        assert isinstance(line, Line)
+        set_coords_from_token(self, line)
+        self.lines.append(line)
+
+
     def tabular_lines(self):
         indices = set()
         for i, pair in enumerate(zip(self.lines[:-1], self.lines[1:])):
@@ -152,37 +158,22 @@ class Block(namedtuple('Block', ('id', 'lines'))):
                 indices.add(i+1)
         return indices
 
-    @property
-    def _llxs(self):
-        return list((line.llx for line in self.lines))
-
-    @property
-    def _llys(self):
-        return list((line.lly for line in self.lines))
-
-    @property
-    def _urxs(self):
-        return list((line.urx for line in self.lines))
-
-    @property
-    def _urys(self):
-        return list((line.ury for line in self.lines))
 
     @property
     def llx(self):
-        return  0 if not len(self._llxs) else min(self._llxs)
+        return getattr(self, '_llx', None)
 
     @property
     def lly(self):
-        return 0 if not self._llys else min(self._llys)
+        return getattr(self, '_lly', None)
 
     @property
     def urx(self):
-        return 0 if not self._urxs else max(self._urxs)
+        return getattr(self, '_urx', None)
 
     @property
     def ury(self):
-        return 0 if not self._urys else max(self._urys)
+        return getattr(self, '_ury', None)
 
 
 class FrekiReader(object):
@@ -191,7 +182,7 @@ class FrekiReader(object):
         all_line_diffs = []
         for page in self.pages():
             lines = self.lines(page)
-            line_diffs = [a.lly - b.ury for a, b in zip(lines[:-1], lines[1:])]
+            line_diffs = [a.ury - b.lly for a, b in zip(lines[:-1], lines[1:])]
             all_line_diffs.extend(line_diffs)
 
         if not all_line_diffs:
