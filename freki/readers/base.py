@@ -130,6 +130,30 @@ class Page (namedtuple('Page', ('id', 'width', 'height', 'pgphs'))):
             for t in p:
                 yield t
 
+    @property
+    def xmin(self):
+        if not hasattr(self, '_xmin'):
+            tok_list = [t.llx for t in self.tokens]
+            self._xmin = min(tok_list) if tok_list else 0
+        return self._xmin
+
+    @property
+    def xmax(self):
+        if not hasattr(self, '_xmax'):
+            tok_list = [t.urx for t in self.tokens]
+            self._xmax = max(tok_list) if tok_list else 0
+        return self._xmax
+
+    @property
+    def xmiddle(self):
+        return (self.xmin + self.xmax) / 2
+
+    @property
+    def width(self):
+        return (self.xmax - self.xmin)
+
+
+
 
 class Block(namedtuple('Block', ('id', 'lines'))):
     def __new__(cls, lines=None, page=None, id=None):
@@ -220,25 +244,13 @@ class FrekiReader(object):
                     yield block
                     i += 1
                     block = Block(id='{}-{}'.format(page.id, i))
-                block.lines.append(line)
+                block.append(line)
                 last_y = line.lly
 
         # If we still have an unreturned block...
         yield block
 
-    def page_xmin(self, page):
-        tokens = list(page.tokens)
-        if len(tokens) == 0:
-            return 0
-        else:
-            return sorted(tokens, key=lambda x: x.llx)[0].llx
 
-    def page_xmax(self, page):
-        tokens = list(page.tokens)
-        if len(tokens) == 0:
-            return 0
-        else:
-            return sorted(tokens, key=lambda x: x.urx)[-1].urx
 
     def page_baselines(self, page):
         return sorted(set([t.lly for t in page.tokens]))
@@ -249,13 +261,6 @@ class FrekiReader(object):
             basedict[token.lly].append(token)
         return basedict
 
-    def page_xmiddle(self, page):
-        """The point at the middle of the page"""
-        return (self.page_xmin(page) + self.page_xmax(page)) / 2
-
-    def page_width(self, page):
-        return self.page_xmax(page) - self.page_xmin(page)
-
     def crossing_tokens(self, page, x):
         """A list of tokens on the page that cross over point x"""
         return [t for t in page.tokens if t.llx < x < t.urx]
@@ -265,16 +270,17 @@ class FrekiReader(object):
         Return whether there is a gap that no tokens cross for an unbroken 2/3
         of the page or more.
 
+        :type page: Page
         :rtype: bool
         """
         basedict = self._baseline_dict(page)
-        middle_x = self.page_xmiddle(page)
+
 
         longest_span = 0
         current_span = 0
 
         for lly in self.page_baselines(page):
-            crossing_tokens = [t for t in basedict[lly] if t.llx < middle_x < t.urx]
+            crossing_tokens = [t for t in basedict[lly] if t.llx < page.xmiddle < t.urx]
             if not crossing_tokens:
                 current_span += 1
                 if current_span > longest_span:
@@ -290,8 +296,8 @@ class FrekiReader(object):
 
     def lines_in_dual_column_order(self, page):
         """:type page: Page"""
-        left_tokens  = [t for t in page.tokens if t.urx < self.page_xmiddle(page)]
-        right_tokens = [t for t in page.tokens if t.llx > self.page_xmiddle(page)]
+        left_tokens  = [t for t in page.tokens if t.urx < page.xmiddle]
+        right_tokens = [t for t in page.tokens if t.llx > page.xmiddle]
 
         left_lines  = tokens_to_lines(left_tokens)
         right_lines = tokens_to_lines(right_tokens)
