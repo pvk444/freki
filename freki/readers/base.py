@@ -48,7 +48,7 @@ def set_coords_from_token(obj, token):
     obj._urx = token.urx if obj.urx is None else max(obj.urx, token.urx)
     obj._ury = token.ury if obj.ury is None else max(obj.ury, token.ury)
 
-class TokContainer(object):
+class Line(object):
     def __init__(self, tokens=None):
         if tokens is None: tokens = []
         self.tokens = []
@@ -97,8 +97,6 @@ class TokContainer(object):
     def __repr__(self):
         return ' '.join([t.text for t in self.tokens])
 
-class Line(TokContainer):
-
     def sort(self):
         self.tokens.sort(key=lambda tok: tok.llx)
 
@@ -122,12 +120,6 @@ class Line(TokContainer):
             return (b.ury - a.lly) / b.height
 
 
-
-
-# class Para(TokContainer):
-#     pass
-
-
 class Page (namedtuple('Page', ('id', 'width', 'height', 'tokens'))):
 
     @property
@@ -147,12 +139,6 @@ class Page (namedtuple('Page', ('id', 'width', 'height', 'tokens'))):
     @property
     def xmiddle(self):
         return (self.xmin + self.xmax) / 2
-
-    # @property
-    # def width(self):
-    #     return (self.xmax - self.xmin)
-
-
 
 
 class Block(namedtuple('Block', ('id', 'lines'))):
@@ -244,7 +230,8 @@ class FrekiReader(object):
         if lines:
             last_y = lines[0].lly
             for line in lines:
-                if last_y - line.ury > line_dy or last_y - line.ury < 0:
+                if ((last_y - line.ury > line_dy or last_y - line.ury < 0)
+                        and block.lines):
                     yield block
                     i += 1
                     block = Block(id='{}-{}'.format(page.id, i))
@@ -252,17 +239,24 @@ class FrekiReader(object):
                 last_y = line.lly
 
         # If we still have an unreturned block...
-        yield block
+        if block.lines:
+            yield block
 
     def lines(self, page):
         if page.id not in self._lines:
             lines = []
-            for zone in _zones(page, debug=self._debug):
-                if not zone:
-                    continue
+            for llx, lly, urx, ury in _zones(page, debug=self._debug):
+
                 baselines = defaultdict(Line)
-                for token in zone:
-                    baselines[token.lly].append(token)
+                for token in page.tokens:
+                    if (token.llx >= llx and
+                            token.lly >= lly and
+                            token.urx <= urx and
+                            token.ury <= ury):
+                        baselines[token.lly].append(token)
+
+                if not baselines:
+                    continue
 
                 baselines = merge_lines(list(baselines.values()))
                 baselines.sort(key=lambda line: line.lly, reverse=True)
@@ -312,16 +306,10 @@ def _zones(page, debug=False):
                           edgecolor='w', facecolor='none')
             )
 
-        zone = []
-        for token in page.tokens:
-            if (token.llx >= llx and
-                    token.lly >= lly and
-                    token.urx <= urx and
-                    token.ury <= ury):
-                zone.append(token)
-        yield zone
+        yield llx, lly, urx, ury
 
-    plt.show()
+    if debug:
+        plt.show()
 
 
 def _find_zones(bitmap, llx, lly, urx, ury, min_gap, min_ratios, thresh=0, ax=None):
