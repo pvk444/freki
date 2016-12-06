@@ -11,7 +11,8 @@ from .base import FrekiReader, Token, Page
 max_char_dx = 0.05
 
 class PdfMinerReader(FrekiReader):
-    def __init__(self, xml_file):
+    def __init__(self, xml_file, debug=False):
+        FrekiReader.__init__(self, debug=debug)
         self.file = xml_file
         self._pages = {}
         self.init_pages()

@@ -27,4 +27,8 @@ setup(
     ],
     keywords='nlp pdf ie text',
     packages=['freki', 'freki.readers'],
+    install_requires=[
+        'numpy',
+        'matplotlib'
+    ]
 )

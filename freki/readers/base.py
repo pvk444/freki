@@ -1,5 +1,11 @@
 
 from collections import namedtuple, defaultdict, Counter
+from itertools import groupby
+import logging
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
 min_line_overlap = 0.01
 
@@ -40,7 +46,7 @@ def set_coords_from_token(obj, token):
     obj._llx = token.llx if obj.llx is None else min(obj.llx, token.llx)
     obj._lly = token.lly if obj.lly is None else min(obj.lly, token.lly)
     obj._urx = token.urx if obj.urx is None else max(obj.urx, token.urx)
-    obj._ury = token.ury if obj.ury is None else max(obj.urx, token.urx)
+    obj._ury = token.ury if obj.ury is None else max(obj.ury, token.ury)
 
 class TokContainer(object):
     def __init__(self, tokens=None):
@@ -107,7 +113,7 @@ class Line(TokContainer):
         if a.height < b.height:
             a, b = b, a
 
-        if b.height:
+        if not b.height:
             return 0.0
 
         if a.ury < b.ury:
@@ -118,17 +124,11 @@ class Line(TokContainer):
 
 
 
-class Para(TokContainer):
-    pass
+# class Para(TokContainer):
+#     pass
 
 
-class Page (namedtuple('Page', ('id', 'width', 'height', 'pgphs'))):
-
-    @property
-    def tokens(self):
-        for p in self.pgphs:
-            for t in p:
-                yield t
+class Page (namedtuple('Page', ('id', 'width', 'height', 'tokens'))):
 
     @property
     def xmin(self):
@@ -148,9 +148,9 @@ class Page (namedtuple('Page', ('id', 'width', 'height', 'pgphs'))):
     def xmiddle(self):
         return (self.xmin + self.xmax) / 2
 
-    @property
-    def width(self):
-        return (self.xmax - self.xmin)
+    # @property
+    # def width(self):
+    #     return (self.xmax - self.xmin)
 
 
 
@@ -202,6 +202,10 @@ class Block(namedtuple('Block', ('id', 'lines'))):
 
 class FrekiReader(object):
 
+    def __init__(self, debug=False):
+        self._lines = {}
+        self._debug = debug
+
     def _line_dy(self):
         all_line_diffs = []
         for page in self.pages():
@@ -250,129 +254,153 @@ class FrekiReader(object):
         # If we still have an unreturned block...
         yield block
 
-
-
-    def page_baselines(self, page):
-        return sorted(set([t.lly for t in page.tokens]))
-
-    def _baseline_dict(self, page):
-        basedict = defaultdict(list)
-        for token in page.tokens:
-            basedict[token.lly].append(token)
-        return basedict
-
-    def crossing_tokens(self, page, x):
-        """A list of tokens on the page that cross over point x"""
-        return [t for t in page.tokens if t.llx < x < t.urx]
-
-    def is_dual_column(self, page):
-        """
-        Return whether there is a gap that no tokens cross for an unbroken 2/3
-        of the page or more.
-
-        :type page: Page
-        :rtype: bool
-        """
-        basedict = self._baseline_dict(page)
-
-
-        longest_span = 0
-        current_span = 0
-
-        for lly in self.page_baselines(page):
-            crossing_tokens = [t for t in basedict[lly] if t.llx < page.xmiddle < t.urx]
-            if not crossing_tokens:
-                current_span += 1
-                if current_span > longest_span:
-                    longest_span = current_span
-            else:
-                current_span = 0
-
-        # Return true if the longest span of "lines" that do not cross
-        if len(self.page_baselines(page)) == 0:
-            return False
-        else:
-            return (longest_span / len(self.page_baselines(page))) >= 0.9
-
-    def lines_in_dual_column_order(self, page):
-        """:type page: Page"""
-        left_tokens  = [t for t in page.tokens if t.urx < page.xmiddle]
-        right_tokens = [t for t in page.tokens if t.llx > page.xmiddle]
-
-        left_lines  = tokens_to_lines(left_tokens)
-        right_lines = tokens_to_lines(right_tokens)
-
-        return merge_some_lines(left_lines) + merge_some_lines(right_lines)
-
-
-
-    def lines_in_tet_order(self, page):
-        """:type page: Page"""
-        page_lines = []
-        for para in page.pgphs:
-            para_lines = tokens_to_lines(para.tokens)
-            page_lines.extend(para_lines)
-
-        page_lines = merge_lines(page_lines)
-
-        return page_lines
-
     def lines(self, page):
-        # lines = merge_lines(self.lines_in_tet_order(page))
-        #
-        # for line in lines:
-        #     line.sort()
-        if self.is_dual_column(page):
-            return self.lines_in_dual_column_order(page)
-        else:
-            return self.lines_in_tet_order(page)
+        if page.id not in self._lines:
+            lines = []
+            for zone in _zones(page, debug=self._debug):
+                if not zone:
+                    continue
+                baselines = defaultdict(Line)
+                for token in zone:
+                    baselines[token.lly].append(token)
 
-def tokens_to_lines(tokens):
-    lines = []
-    last_llx = None
-    cur_line = Line()
-    for token in tokens:
-        if last_llx is None:
-            last_llx = token.llx
-            cur_line.append(token)
-            continue
-        if token.llx < last_llx:
-            lines.append(cur_line)
-            cur_line = Line(tokens=[token])
-        else:
-            cur_line.append(token)
-        last_llx = token.llx
+                baselines = merge_lines(list(baselines.values()))
+                baselines.sort(key=lambda line: line.lly, reverse=True)
 
-    lines.append(cur_line)
+                for line in baselines:
+                    line.sort()  # sort the tokens in each line
+                    lines.append(line)
 
-    for line in lines:
-        line.sort()
+            # and sort the lines in each page
+            # lines = sorted(lines, key=lambda line: line.lly, reverse=True)
+            self._lines[page.id] = lines
 
-    return lines
+        return self._lines[page.id]
 
-def merge_some_lines(lines):
-    if not lines:
-        return []
+def _zones(page, debug=False):
+    if not page.tokens:
+        return
 
-    new_lines = []
-    cur_line = lines.pop(0)
-    i = 1
-    while lines:
-        next_line = lines.pop(0)
-        if cur_line.overlap(next_line) >= min_line_overlap:
-            cur_line.extend(next_line)
-        # elif next_line.overlap(cur_line) >= min_line_overlap:
-        #     cur_line.extend(next_line)
-        else:
-            new_lines.append(cur_line)
-            i+= 1
-            cur_line = next_line
+    w, h = int(page.width), int(page.height)
+    bitmap = np.zeros((h, w))
 
-    new_lines.append(cur_line)
+    ch = []  # token heights as a heuristic for minimum gap
+    for token in page.tokens:
+        llx, lly = int(token.llx), int(token.lly)
+        urx, ury = int(token.urx), int(token.ury)
+        ch.append(token.height)
+        bitmap[lly:ury, llx:urx] = token.size
 
-    return new_lines
+    ax=None
+    if debug:
+        fig, ax = plt.subplots()
+        ax.imshow(bitmap, origin='lower')
+        ax.autoscale(False)
+
+    min_gap = sum(ch) / (len(ch)*2)
+    min_ratios = (1/4, 1/16)  # (vert, horiz) don't cut smaller than this
+    for llx, lly, urx, ury in _find_zones(
+            bitmap, 0, 0, w, h, min_gap, min_ratios, ax=ax):
+
+        logging.debug(
+            'Page {} zone: llx: {}\tlly: {}\turx: {}\tury: {}'
+            .format(page.id, llx, lly, urx, ury)
+        )
+        if ax is not None:
+            ax.add_patch(
+                Rectangle((llx, lly), (urx-llx), (ury-lly),
+                          edgecolor='w', facecolor='none')
+            )
+
+        zone = []
+        for token in page.tokens:
+            if (token.llx >= llx and
+                    token.lly >= lly and
+                    token.urx <= urx and
+                    token.ury <= ury):
+                zone.append(token)
+        yield zone
+
+    plt.show()
 
 
+def _find_zones(bitmap, llx, lly, urx, ury, min_gap, min_ratios, thresh=0, ax=None):
+    """
+    This is a modified implementation of the XY-Cut method of layout
+    analysis. https://en.wikipedia.org/wiki/Recursive_XY-cut
+    """
+    area = bitmap[lly:ury, llx:urx]
+    x_vec, y_vec = area.sum(axis=0), area.sum(axis=1)
+
+    lft, x_gap, rgt = _gaps((x_vec/max(x_vec))<=thresh, llx, min_gap)
+    btm, y_gap, top = _gaps((y_vec/max(y_vec))<=thresh, lly, min_gap)
+
+    if ax is not None and x_gap:
+        mid = sum(x_gap)/2
+        ax.add_patch(Rectangle((mid-3, btm), 6, top-btm, edgecolor='c', facecolor='c'))
+    if ax is not None and y_gap:
+        mid = sum(y_gap)/2
+        ax.add_patch(Rectangle((lft, mid-3), rgt-lft, 6, edgecolor='c', facecolor='c'))
+    
+    bbox = (lft, btm, rgt, top)
+
+    cut_axis = _best_cut_axis(x_gap, y_gap, bbox, bitmap.shape, min_ratios)
+    if cut_axis == 0:  # cut horizontally
+        mid = int(sum(y_gap)/2)
+        for zone in _find_zones(bitmap, llx, mid, urx, ury, min_gap,
+                                min_ratios, thresh, ax=ax):
+            yield zone
+        for zone in _find_zones(bitmap, llx, lly, urx, mid, min_gap,
+                                min_ratios, thresh, ax=ax):
+            yield zone
+
+    elif cut_axis == 1:  # cut vertically
+        mid = int(sum(x_gap)/2)
+        for zone in _find_zones(bitmap, llx, lly, mid, ury, min_gap,
+                                min_ratios, thresh, ax=ax):
+            yield zone
+        for zone in _find_zones(bitmap, mid, lly, urx, ury, min_gap,
+                                min_ratios, thresh, ax=ax):
+            yield zone
+
+    else:
+        yield llx, lly, urx, ury
+
+def _gaps(mask, offset, min_gap):
+    if len(mask) == 0:
+        return 0, None, 0
+
+    start, end = 0, len(mask)
+    while start < end and mask[start]:
+        start += 1
+    while end > start and mask[end-1]:
+        end -= 1
+
+    maxgap, gapstart, gapend, pos = 0, 0, 0, start
+    for key, group in groupby(mask[start:end]):
+        gaplen = len(list(group))
+        if key and maxgap < gaplen > min_gap:
+            maxgap, gapstart, gapend = gaplen, pos, pos+gaplen
+        pos += gaplen
+    gap = (gapstart+offset, gapend+offset) if maxgap else None
+
+    return start+offset, gap, end+offset
+
+def _best_cut_axis(x_gap, y_gap, bbox, shape, min_ratios):
+    cuts = []  # (size, axis, gap)
+    lft, btm, rgt, top = bbox
+    if x_gap:
+        smaller = min(x_gap[0]-lft, rgt-x_gap[1])
+        if (smaller/shape[1]) > min_ratios[0]:
+            cuts.append((x_gap[1]-x_gap[0], 1, x_gap))
+    if y_gap:
+        smaller = min(y_gap[0]-btm, top-y_gap[1])
+        if (smaller/shape[0]) > min_ratios[1]:
+            cuts.append((y_gap[1]-y_gap[0], 0, y_gap))
+    if cuts:
+        return max(cuts)[1]
+    else:
+        return None
 
 def merge_lines(lines):
     # merge lines that overlap (e.g. super/subscripts)

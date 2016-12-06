@@ -15,7 +15,7 @@ readers = {
 }
 
 def run(args):
-    reader = readers[args.format](args.infile)
+    reader = readers[args.format](args.infile, debug=args.debug)
 
     doc_id = _doc_id_from_path(args.infile)
 
@@ -174,6 +174,11 @@ def main(arglist=None):
         '-v', '--verbose',
         action='count', dest='verbosity', default=2,
         help='increase the verbosity (can be repeated: -vvv)'
+    )
+    parser.add_argument(
+        '--debug',
+        action='store_true',
+        help='show debugging visualizations'
     )
     parser.add_argument(
         '-f', '--format',

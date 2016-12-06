@@ -5,11 +5,12 @@ from collections import Counter
 from gzip import GzipFile
 from xml.etree import ElementTree as ET
 
-from .base import FrekiReader, Token, Page, Para
+from .base import FrekiReader, Token, Page
 
 
 class TetmlReader(FrekiReader):
-    def __init__(self, tetml_file):
+    def __init__(self, tetml_file, debug=False):
+        FrekiReader.__init__(self, debug=debug)
         if tetml_file.endswith('.gz'):
             f = GzipFile(tetml_file)
         else:
@@ -31,7 +32,7 @@ class TetmlReader(FrekiReader):
                     pagenum,
                     float(elem.get('width')),
                     float(elem.get('height')),
-                    pgphs=self.init_pgphs_for_page(elem)
+                    tokens=self.init_tokens_for_page(elem)
                 )
         #self.doc = xml_iter.root  # NOTE: non-documented attribute
 
@@ -82,48 +83,48 @@ class TetmlReader(FrekiReader):
         )
         return token
 
-
-    def init_pgphs_for_page(self, page_elem):
-        paras = []
-        for pgph_elem in page_elem.findall('.//Para'):
-            p = Para()
-            for word_elem in pgph_elem.findall('.//Word'):
-                tok = self.word_to_token(word_elem)
-                p.append(tok)
-            paras.append(p)
-        return paras
-
-
     def init_tokens_for_page(self, page):
         tokens = []
+        words = []
+        
         for word in page.findall('.//Word'):
             text = word.find('Text').text
-            box = word.find('Box')
-            glyphs = word.findall('.//Glyph')
+            # dehyphenated words have 2+ boxes; we care more about layout,
+            # so we will make separate tokens (this can also be done by
+            # changing the TET extraction settings).
+            for box in word.findall('Box'):
+                glyphs = box.findall('Glyph')
+                boxtext = ''.join(g.text for g in glyphs)
+                features = {}
 
-            font_info = Counter(
-                (g.get('font'), g.get('size')) for g in glyphs
-            ).most_common(1)[0][0]
+                if glyphs and glyphs[-1].get('dehyphenation') == 'pre':
+                    boxtext += '-'
+                    features['dehyphenation'] = 'pre'
+                elif glyphs and glyphs[0].get('dehyphenation') == 'post':
+                    features['dehyphenation'] = 'post'
 
-            # TETML detects if a glyph is a super/subscript; again,
-            # go with the most common for all glyphs in word
-            features = {}
-            sub_sup = Counter(
-                (g.get('sub', ''), g.get('sup', '')) for g in glyphs
-            ).most_common(1)[0][0]
-            if sub_sup[0]: features['sub'] = True
-            if sub_sup[1]: features['sup'] = True
-            token = Token(
-                text,
-                float(box.get('llx')),
-                float(box.get('lly')),
-                float(box.get('urx')),
-                float(box.get('ury')),
-                font=font_info[0],
-                size=float(font_info[1]),
-                features=features
-            )
-            tokens.append(token)
+                font_info = Counter(
+                    (g.get('font'), g.get('size')) for g in glyphs
+                ).most_common(1)[0][0]
+
+                # TETML detects if a glyph is a super/subscript; again,
+                # go with the most common for all glyphs in word
+                sub_sup = Counter(
+                    (g.get('sub', ''), g.get('sup', '')) for g in glyphs
+                ).most_common(1)[0][0]
+                if sub_sup[0]: features['sub'] = True
+                if sub_sup[1]: features['sup'] = True
+                token = Token(
+                    boxtext,
+                    float(box.get('llx')),
+                    float(box.get('lly')),
+                    float(box.get('urx')),
+                    float(box.get('ury')),
+                    font=font_info[0],
+                    size=float(font_info[1]),
+                    features=features
+                )
+                tokens.append(token)
         return tokens
 
     def pages(self, *page_ids):
