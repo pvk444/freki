@@ -285,13 +285,14 @@ def _zones(page, debug=False):
         ch.append(token.height)
         bitmap[lly:ury, llx:urx] = token.size
 
+    # debugging
     ax=None
     if debug:
         fig, ax = plt.subplots()
         ax.imshow(bitmap, origin='lower')
         ax.autoscale(False)
 
-    min_gap = sum(ch) / (len(ch)*2)
+    min_gap = sum(ch) / len(ch)
     min_ratios = (1/4, 1/16)  # (vert, horiz) don't cut smaller than this
     for llx, lly, urx, ury in _find_zones(
             bitmap, 0, 0, w, h, min_gap, min_ratios, ax=ax):
@@ -320,21 +321,29 @@ def _find_zones(bitmap, llx, lly, urx, ury, min_gap, min_ratios, thresh=0, ax=No
     area = bitmap[lly:ury, llx:urx]
     x_vec, y_vec = area.sum(axis=0), area.sum(axis=1)
 
-    lft, x_gap, rgt = _gaps((x_vec/max(x_vec))<=thresh, llx, min_gap)
-    btm, y_gap, top = _gaps((y_vec/max(y_vec))<=thresh, lly, min_gap)
+    lft, x_gaps, rgt = _gaps((x_vec/max(x_vec))<=thresh, llx, min_gap)
+    btm, y_gaps, top = _gaps((y_vec/max(y_vec))<=thresh, lly, min_gap)
 
-    if ax is not None and x_gap:
-        mid = sum(x_gap)/2
-        ax.add_patch(Rectangle((mid-3, btm), 6, top-btm, edgecolor='c', facecolor='c'))
-    if ax is not None and y_gap:
-        mid = sum(y_gap)/2
-        ax.add_patch(Rectangle((lft, mid-3), rgt-lft, 6, edgecolor='c', facecolor='c'))
+    # debugging
+    if ax is not None:
+        for x_gap in x_gaps:
+            mid = sum(x_gap)/2
+            ax.add_patch(
+                Rectangle((mid-3, btm), 6, top-btm,
+                          edgecolor='c', facecolor='c')
+            )
+    if ax is not None:
+        for y_gap in y_gaps:
+            mid = sum(y_gap)/2
+            ax.add_patch(
+                Rectangle((lft, mid-3), rgt-lft, 6,
+                          edgecolor='c', facecolor='c')
+            )
     
-    bbox = (lft, btm, rgt, top)
-
-    cut_axis = _best_cut_axis(x_gap, y_gap, bbox, bitmap.shape, min_ratios)
+    cut_axis, mid = _best_cut_axis(
+        x_gaps, y_gaps, (lft, btm, rgt, top), bitmap.shape, min_ratios
+    )
     if cut_axis == 0:  # cut horizontally
-        mid = int(sum(y_gap)/2)
         for zone in _find_zones(bitmap, llx, mid, urx, ury, min_gap,
                                 min_ratios, thresh, ax=ax):
             yield zone
@@ -343,7 +352,6 @@ def _find_zones(bitmap, llx, lly, urx, ury, min_gap, min_ratios, thresh=0, ax=No
             yield zone
 
     elif cut_axis == 1:  # cut vertically
-        mid = int(sum(x_gap)/2)
         for zone in _find_zones(bitmap, llx, lly, mid, ury, min_gap,
                                 min_ratios, thresh, ax=ax):
             yield zone
@@ -355,8 +363,10 @@ def _find_zones(bitmap, llx, lly, urx, ury, min_gap, min_ratios, thresh=0, ax=No
         yield llx, lly, urx, ury
 
 def _gaps(mask, offset, min_gap):
+    gaps = []
+
     if len(mask) == 0:
-        return 0, None, 0
+        return 0, gaps, 0
 
     start, end = 0, len(mask)
     while start < end and mask[start]:
@@ -364,31 +374,30 @@ def _gaps(mask, offset, min_gap):
     while end > start and mask[end-1]:
         end -= 1
 
-    maxgap, gapstart, gapend, pos = 0, 0, 0, start
+    pos = start
     for key, group in groupby(mask[start:end]):
         gaplen = len(list(group))
-        if key and maxgap < gaplen > min_gap:
-            maxgap, gapstart, gapend = gaplen, pos, pos+gaplen
+        if key and gaplen >= min_gap:
+            gaps.append((pos, pos+gaplen))
         pos += gaplen
-    gap = (gapstart+offset, gapend+offset) if maxgap else None
 
-    return start+offset, gap, end+offset
+    return start+offset, gaps, end+offset
 
-def _best_cut_axis(x_gap, y_gap, bbox, shape, min_ratios):
-    cuts = []  # (size, axis, gap)
+def _best_cut_axis(x_gaps, y_gaps, bbox, shape, min_ratios):
+    cuts = []  # (size, axis, mid)
     lft, btm, rgt, top = bbox
-    if x_gap:
+    for x_gap in x_gaps:
         smaller = min(x_gap[0]-lft, rgt-x_gap[1])
         if (smaller/shape[1]) > min_ratios[0]:
-            cuts.append((x_gap[1]-x_gap[0], 1, x_gap))
-    if y_gap:
+            cuts.append((x_gap[1]-x_gap[0], 1, int(sum(x_gap)/2)))
+    for y_gap in y_gaps:
         smaller = min(y_gap[0]-btm, top-y_gap[1])
         if (smaller/shape[0]) > min_ratios[1]:
-            cuts.append((y_gap[1]-y_gap[0], 0, y_gap))
+            cuts.append((y_gap[1]-y_gap[0], 0, int(sum(y_gap)/2)))
     if cuts:
-        return max(cuts)[1]
+        return max(cuts)[1:]
     else:
-        return None
+        return (None, None)
 
 def merge_lines(lines):
     # merge lines that overlap (e.g. super/subscripts)
