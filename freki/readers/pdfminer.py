@@ -6,7 +6,8 @@ from io import StringIO
 from collections import Counter
 from xml.etree import ElementTree as ET
 
-from .base import FrekiReader, Token, Page
+from freki.readers.base import FrekiReader
+from freki.structures import Token, Page
 
 max_char_dx = 0.05
 
@@ -44,10 +45,10 @@ class PdfMinerReader(FrekiReader):
                 i += 1
                 llx, lly, urx, ury = map(float, elem.get('bbox').split(','))
                 self._pages[i] = Page(
-                    i,
-                    urx - llx,
-                    ury - lly,
-                    tokens=self.init_tokens_for_page(elem)
+                    tokens=self.init_tokens_for_page(elem),
+                    id=i,
+                    page_width=urx - llx,
+                    page_height=ury - lly
                 )
         #self.doc = xml_iter.root  # NOTE: non-documented attribute
 

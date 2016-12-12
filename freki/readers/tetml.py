@@ -5,7 +5,8 @@ from collections import Counter
 from gzip import GzipFile
 from xml.etree import ElementTree as ET
 
-from .base import FrekiReader, Token, Page
+from freki.readers.base import FrekiReader
+from freki.structures import Token, Page
 
 
 class TetmlReader(FrekiReader):
@@ -29,10 +30,10 @@ class TetmlReader(FrekiReader):
             if elem.tag == 'Page':
                 pagenum = int(elem.get('number'))
                 self._pages[pagenum] = Page(
-                    pagenum,
-                    float(elem.get('width')),
-                    float(elem.get('height')),
-                    tokens=self.init_tokens_for_page(elem)
+                    tokens=self.init_tokens_for_page(elem),
+                    id=pagenum,
+                    page_width=float(elem.get('width')),
+                    page_height=float(elem.get('height'))
                 )
         #self.doc = xml_iter.root  # NOTE: non-documented attribute
 
