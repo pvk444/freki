@@ -57,7 +57,7 @@ def analyze(reader, outfile, doc_id, block_coefficient):
 
             for i, line in enumerate(respace(blk, xoffset=(l_margin * -1))):
                 fonts = ','.join(
-                    sorted(set(['{}-{}'.format(t.font, t.size)
+                    sorted(set(['{}-{}'.format(t.font, t.height)
                                 for t in blk.lines[i].tokens]))
                 )
                 fl = FrekiLine(

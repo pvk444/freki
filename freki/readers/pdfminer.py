@@ -86,12 +86,14 @@ class PdfMinerReader(FrekiReader):
         return [
             Token(
                 ''.join(g[0] for g in glyphs),  # text
-                min(g[2][0] for g in glyphs),  # llx
-                min(g[2][1] for g in glyphs),  # lly
-                max(g[2][2] for g in glyphs),  # urx
-                max(g[2][3] for g in glyphs),  # ury
+                (
+                    min(g[2][0] for g in glyphs),  # llx
+                    min(g[2][1] for g in glyphs),  # lly
+                    max(g[2][2] for g in glyphs),  # urx
+                    max(g[2][3] for g in glyphs)   # ury
+                ),
                 glyphs[0][1][0],  # font
-                glyphs[0][1][1],  # size
+                # glyphs[0][1][1],  # size
                 features
             )
             for glyphs, features in tokens

@@ -73,12 +73,14 @@ class TetmlReader(FrekiReader):
 
         token = Token(
             text,
-            float(box.get('llx')),
-            float(box.get('lly')),
-            float(box.get('urx')),
-            float(box.get('ury')),
+            (
+                float(box.get('llx')),
+                float(box.get('lly')),
+                float(box.get('urx')),
+                float(box.get('ury'))
+            ),
             font=font_info[0],
-            size=float(font_info[1]),
+            # size=float(font_info[1]),
             features=features
         )
         return token
@@ -116,12 +118,14 @@ class TetmlReader(FrekiReader):
                 if sub_sup[1]: features['sup'] = True
                 token = Token(
                     boxtext,
-                    float(box.get('llx')),
-                    float(box.get('lly')),
-                    float(box.get('urx')),
-                    float(box.get('ury')),
+                    (
+                        float(box.get('llx')),
+                        float(box.get('lly')),
+                        float(box.get('urx')),
+                        float(box.get('ury'))
+                    ),
                     font=font_info[0],
-                    size=float(font_info[1]),
+                    # size=float(font_info[1]),
                     features=features
                 )
                 tokens.append(token)

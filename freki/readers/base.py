@@ -9,23 +9,15 @@ from matplotlib.patches import Rectangle
 
 min_line_overlap = 0.01
 
-class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
-                                 'font', 'size', 'features'))):
-
-    def __new__(cls, text, llx, lly, urx, ury,
-                font=None, size=None, features=None):
-        # round positions to tenths
-        llx = round(llx, 1)
-        lly = round(lly, 1)
-        urx = round(urx, 1)
-        ury = round(ury, 1)
-        if size is None:
-            size = ury - lly  # estimate size if unknown
-        if features is None:
-            features = {}
-        return super(Token, cls).__new__(
-            cls, text, llx, lly, urx, ury, font, size, features
-        )
+class BBox(object):
+    """
+    Bounding boxes. For mixin methods for other classes, see Box.
+    """
+    def __init__(self, llx, lly, urx, ury):
+        self.llx = llx
+        self.lly = lly
+        self.urx = urx
+        self.ury = ury
 
     @property
     def width(self):
@@ -35,61 +27,103 @@ class Token(namedtuple('Token', ('text', 'llx', 'lly', 'urx', 'ury',
     def height(self):
         return self.ury - self.lly
 
-def set_coords_from_token(obj, token):
+    def merge(self, other):
+        """
+        Expand the box to contain itself and *other*.
+        """
+        self.llx = other.llx if self.llx is None else min(self.llx, other.llx)
+        self.lly = other.lly if self.lly is None else min(self.lly, other.lly)
+        self.urx = other.urx if self.urx is None else max(self.urx, other.urx)
+        self.ury = other.ury if self.ury is None else max(self.ury, other.ury)
+
+
+class Box(object):
     """
-    As tokens are iteratively added, compare their coordinates to that of
-    the container and extend as necessary.
-
-    :param obj:  The container object (block or line)
-    :param token:  The object (line or token) being added to the container.
+    Mixin class for things with bounding boxes.
     """
-    obj._llx = token.llx if obj.llx is None else min(obj.llx, token.llx)
-    obj._lly = token.lly if obj.lly is None else min(obj.lly, token.lly)
-    obj._urx = token.urx if obj.urx is None else max(obj.urx, token.urx)
-    obj._ury = token.ury if obj.ury is None else max(obj.ury, token.ury)
 
-class Line(object):
-    def __init__(self, tokens=None):
-        if tokens is None: tokens = []
-        self.tokens = []
-        self._llx = self._lly = self._urx = self._ury = None
-        for token in tokens:
-            self.append(token)
+    @property
+    def llx(self):
+        return self.bbox.llx
+        
+    @property
+    def lly(self):
+        return self.bbox.lly
+        
+    @property
+    def urx(self):
+        return self.bbox.urx
+        
+    @property
+    def ury(self):
+        return self.bbox.ury
+        
+    @property
+    def width(self):
+        width = getattr(self, '_width', None)
+        if width is None:
+            self._width = self.bbox.width
+        return self._width
 
+    @width.setter
+    def width(self, width):
+        self._width = width
 
-    def append(self, token):
-        if not isinstance(token, Token):
-            raise TypeError('Line objects can only contain Token objects.')
-        set_coords_from_token(self, token)
-        self.tokens.append(token)
+    @property
+    def height(self):
+        height = getattr(self, '_height', None)
+        if height is None:
+            self._height = self.bbox.height
+        return self._height
+
+    @height.setter
+    def height(self, height):
+        self._height = height
+
+class BoxContainer(Box):
+    contained_type = None
+
+    def __init__(self, items):
+        self.bbox = BBox(None, None, None, None)
+        self._items = []
+        if items is None:
+            items = []
+        for item in items:
+            self.append(item)
+
+    def append(self, item):
+        if (self.contained_type is not None
+                and not isinstance(item, self.contained_type)):
+            raise TypeError(
+                'Incompatible item type: {}'.format(item.__class__.__name__)
+            )
+        self.bbox.merge(item.bbox)
+        self._width, self._height = None, None  # invalidate old values
+        self._items.append(item)
 
     def extend(self, iterable):
-        for elt in iterable:
-            self.tokens.append(elt)
+        for item in iterable:
+            self.append(item)
+
+        
+class Token(Box):#namedtuple('Token', ('text', 'bbox', 'font', 'size', 'features'))):
+
+    def __init__(self, text, bbox, font=None, features=None):
+        self.text = text
+        self.bbox = BBox(*bbox)
+        self.font = font
+        self.features = {} if features is None else features
+
+
+class Line(BoxContainer):
+    contained_type = Token
+
+    def __init__(self, tokens=None):
+        BoxContainer.__init__(self, tokens)
 
     @property
-    def urx(self): return self._urx
-
-    @property
-    def ury(self): return self._ury
-
-    @property
-    def llx(self): return self._llx
-
-    @property
-    def lly(self): return self._lly
-
-    @property
-    def width(self):
-        return self.urx - self.llx
-
-    @property
-    def bbox(self):
-        return (self.llx, self.lly, self.urx, self.ury)
-
-    @property
-    def height(self):
-        return self.ury - self.lly
+    def tokens(self):
+        return self._items
 
     def __iter__(self):
         return iter(self.tokens)
@@ -101,7 +135,7 @@ class Line(object):
         self.tokens.sort(key=lambda tok: tok.llx)
 
     def overlap(self, other):
-        a, b = self, other
+        a, b = self.bbox, other.bbox
         if a.ury <= b.lly or a.lly >= b.ury:
             return 0.0
 
@@ -141,49 +175,25 @@ class Page (namedtuple('Page', ('id', 'width', 'height', 'tokens'))):
         return (self.xmin + self.xmax) / 2
 
 
-class Block(namedtuple('Block', ('id', 'lines'))):
-    def __new__(cls, lines=None, page=None, id=None):
-        if lines is None:
-            lines = []
-        return super(Block, cls).__new__(cls, id, lines)
+class Block(BoxContainer):
+    def __init__(self, lines=None, id=None):
+        self.id = id
+        BoxContainer.__init__(self, lines)
 
     @property
-    def tabular(self):
-        return len(self.tabular_lines()) > 0
+    def lines(self):
+        return self._items
 
-    def append(self, line):
-        assert isinstance(line, Line)
-        set_coords_from_token(self, line)
-        self.lines.append(line)
-
-
-    def tabular_lines(self):
-        indices = set()
-        for i, pair in enumerate(zip(self.lines[:-1], self.lines[1:])):
-            a, b = pair
-            a_locs = {t.llx: 1 for t in a.tokens}
-            algns = sum(a_locs.get(t.llx, 0) for t in b.tokens)
-            if algns / float(len(b.tokens)) >= 0.2:
-                indices.add(i)
-                indices.add(i+1)
-        return indices
-
-
-    @property
-    def llx(self):
-        return getattr(self, '_llx', None)
-
-    @property
-    def lly(self):
-        return getattr(self, '_lly', None)
-
-    @property
-    def urx(self):
-        return getattr(self, '_urx', None)
-
-    @property
-    def ury(self):
-        return getattr(self, '_ury', None)
+    # def tabular_lines(self):
+    #     indices = set()
+    #     for i, pair in enumerate(zip(self.lines[:-1], self.lines[1:])):
+    #         a, b = pair
+    #         a_locs = {t.llx: 1 for t in a.tokens}
+    #         algns = sum(a_locs.get(t.llx, 0) for t in b.tokens)
+    #         if algns / float(len(b.tokens)) >= 0.2:
+    #             indices.add(i)
+    #             indices.add(i+1)
+    #     return indices
 
 
 class FrekiReader(object):
@@ -283,7 +293,7 @@ def _zones(page, debug=False):
         llx, lly = int(token.llx), int(token.lly)
         urx, ury = int(token.urx), int(token.ury)
         ch.append(token.height)
-        bitmap[lly:ury, llx:urx] = token.size
+        bitmap[lly:ury, llx:urx] = token.height
 
     # debugging
     ax=None
