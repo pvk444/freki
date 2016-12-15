@@ -1,4 +1,5 @@
 
+import re
 import logging
 
 import numpy as np
@@ -24,10 +25,10 @@ class XYCutAnalyzer(base.FrekiAnalyzer):
             tokens = page.tokens
 
             if tokens:
-
-                for i, bbox in enumerate(_zones(bitmap, params, self._debug)):
+                for i, zone in enumerate(_zones(bitmap, params, self._debug)):
+                    bbox, path = zone
                     block = _zone_to_block(
-                        tokens, bitmap, bbox, id=i+1, debug=self._debug
+                        tokens, bitmap, bbox, i+1, path, debug=self._debug
                     )
                     blocks.append(block)
         
@@ -62,11 +63,13 @@ def _zones(bitmap, params, debug=False):
         ax.autoscale(False)
 
     h, w = bitmap.shape
-    for llx, lly, urx, ury in _find_zones(bitmap, 0, 0, w, h, params, ax=ax):
-
+    bbox = (0, 0, w, h)
+    for bbox, path in _find_zones(bitmap, bbox, '', params, ax=ax):
+        
+        llx, lly, urx, ury = bbox
         logging.debug(
-            '  zone found: ({}, {}, {}, {})\t(width: {}, height: {})'
-            .format(llx, lly, urx, ury, urx-llx, ury-lly)
+            '  zone found: ({}, {}, {}, {})\t(width: {}, height: {}, path={})'
+            .format(llx, lly, urx, ury, urx-llx, ury-lly, path)
         )
         if ax is not None:
             ax.add_patch(
@@ -74,7 +77,7 @@ def _zones(bitmap, params, debug=False):
                           edgecolor='w', facecolor='none')
             )
 
-        yield llx, lly, urx, ury
+        yield bbox, path
 
     if debug:
         plt.show()
@@ -118,7 +121,7 @@ def _parameters(bit_pages):
     return params
 
 
-def _find_zones(bitmap, llx, lly, urx, ury, params, ax=None):
+def _find_zones(bitmap, bbox, path, params, ax=None):
     """
     This is a modified implementation of the XY-Cut method of layout
     analysis. https://en.wikipedia.org/wiki/Recursive_XY-cut
@@ -126,6 +129,7 @@ def _find_zones(bitmap, llx, lly, urx, ury, params, ax=None):
     
     # possible optimization: check if area size is enough for any cut
 
+    llx, lly, urx, ury = bbox
     area = bitmap[lly:ury, llx:urx]
     x_vec, y_vec = area.sum(axis=0), area.sum(axis=1)
 
@@ -157,19 +161,23 @@ def _find_zones(bitmap, llx, lly, urx, ury, params, ax=None):
         params['min_vcut_size'], params['min_hcut_size']
     )
     if cut_axis == 0:  # cut horizontally
-        for zone in _find_zones(bitmap, llx, mid, urx, ury, params, ax=ax):
+        inner_bbox = (llx, mid, urx, ury)
+        for zone in _find_zones(bitmap, inner_bbox, path+'t', params, ax=ax):
             yield zone
-        for zone in _find_zones(bitmap, llx, lly, urx, mid, params, ax=ax):
+        inner_bbox = (llx, lly, urx, mid)
+        for zone in _find_zones(bitmap, inner_bbox, path+'b', params, ax=ax):
             yield zone
 
     elif cut_axis == 1:  # cut vertically
-        for zone in _find_zones(bitmap, llx, lly, mid, ury, params, ax=ax):
+        inner_bbox = (llx, lly, mid, ury)
+        for zone in _find_zones(bitmap, inner_bbox, path+'l', params, ax=ax):
             yield zone
-        for zone in _find_zones(bitmap, mid, lly, urx, ury, params, ax=ax):
+        inner_bbox = (mid, lly, urx, ury)
+        for zone in _find_zones(bitmap, inner_bbox, path+'r', params, ax=ax):
             yield zone
 
     else:
-        yield llx, lly, urx, ury
+        yield bbox, path
 
 
 def _gaps(vec, min_gap, max_density, offset):
@@ -209,10 +217,10 @@ def _best_cut_axis(x_gaps, y_gaps, bbox, shape, min_vcut_size, min_hcut_size):
     else:
         return (None, None)
 
-def _zone_to_block(tokens, bitmap, bbox, id, debug):
+def _zone_to_block(tokens, bitmap, bbox, id, path, debug):
     llx, lly, urx, ury = bbox
     tokens = list(filter(_bbox_filter(llx, lly, urx, ury), tokens))
-    block = Block(id=id)
+    block = Block(id=id, label=path)
 
     btm, y_gaps, top = _gaps(bitmap[lly:ury, llx:urx].sum(axis=1), 0, 0, lly)
     mids = [sum(gap)/2 for gap in y_gaps]

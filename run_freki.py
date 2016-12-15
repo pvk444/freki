@@ -58,7 +58,8 @@ def process(doc, outfile):
                 page=page.id,
                 block_id='{}-{}'.format(page.id, blk.id),
                 bbox='{},{},{},{}'.format(blk.llx, blk.lly, blk.urx, blk.ury),
-                doc=fd
+                doc=fd,
+                label=blk.label
             )
 
             for i, line in enumerate(respace(blk, xoffset=(l_margin * -1))):

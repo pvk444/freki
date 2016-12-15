@@ -229,15 +229,24 @@ class FrekiBlock(object):
     @property
     def doc_id(self): return self._attrs.get('doc_id')
 
+    @property
+    def label(self): return self._attrs.get('label')
+
     def __str__(self):
         start_line = self.lines[0].lineno if self.lines else 0  # Get the starting line number
         stop_line  = self.lines[-1].lineno if self.lines else 0 # Get the endling line number
 
-        ret_str = 'doc_id={} page={} block_id={} bbox={} {} {}\n'.format(self.doc_id,
-                                                                         self.page,
-                                                                         self.block_id,
-                                                                         self.bbox_str,
-                                                                         start_line, stop_line)
+        ret_str = (
+            'doc_id={} page={} block_id={} bbox={} label={} {} {}\n'.format(
+                self.doc_id,
+                self.page,
+                self.block_id,
+                self.bbox_str,
+                self.label,
+                start_line,
+                stop_line
+            )
+        )
 
         max_pre_len = max([len(l.preamble()) for l in self.lines]) if len(self.lines) else 0
 

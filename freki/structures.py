@@ -148,8 +148,9 @@ class Line(BoxContainer):
 
 
 class Block(BoxContainer):
-    def __init__(self, lines=None, id=None):
+    def __init__(self, lines=None, id=None, label=None):
         self.id = id
+        self.label = label
         BoxContainer.__init__(self, lines)
 
     @property
