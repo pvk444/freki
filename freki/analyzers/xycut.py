@@ -185,7 +185,8 @@ def _gaps(vec, min_gap, max_density, offset):
 
     start, end = offset, len(vec) + offset
     if end > start:
-        vec = np.pad(vec/max(vec), ((1,1)), 'constant', constant_values=1)
+        vec = np.pad(vec/(vec.max() or 1), ((1,1)),
+                     'constant', constant_values=1)
         gaps = np.reshape(np.where(np.diff(vec <= max_density)), (-1,2))
         gaps += offset
     if len(gaps) and gaps[0][0] == start:

@@ -22,10 +22,25 @@ class BBox(object):
         """
         Expand the box to contain itself and *other*.
         """
-        self.llx = other.llx if self.llx is None else min(self.llx, other.llx)
-        self.lly = other.lly if self.lly is None else min(self.lly, other.lly)
-        self.urx = other.urx if self.urx is None else max(self.urx, other.urx)
-        self.ury = other.ury if self.ury is None else max(self.ury, other.ury)
+        if None in (self.llx, other.llx):
+            self.llx = self.llx or other.llx
+        else:
+            self.llx = min(self.llx, other.llx)
+
+        if None in (self.lly, other.lly):
+            self.lly = self.lly or other.lly
+        else:
+            self.lly = min(self.lly, other.lly)
+
+        if None in (self.urx, other.urx):
+            self.urx = self.urx or other.urx
+        else:
+            self.urx = max(self.urx, other.urx)
+
+        if None in (self.ury, other.ury):
+            self.ury = self.ury or other.ury
+        else:
+            self.ury = max(self.ury, other.ury)
 
 
 class Box(object):
