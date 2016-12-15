@@ -96,7 +96,7 @@ def _parameters(bit_pages):
     tok_heights = []
     for page, bitmap in bit_pages:
         tok_heights.extend(t.height for t in page.tokens)
-    h = sum(tok_heights) / len(tok_heights)
+    h = (sum(tok_heights) / len(tok_heights)) if len(tok_heights) else 1
     params['min_x_gap'] = h
     params['min_y_gap'] = h
 
