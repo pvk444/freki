@@ -345,7 +345,7 @@ class FrekiFont(object):
     """
     def __init__(self, f_type, f_size):
         self.f_type = f_type
-        self.f_size = f_size
+        self.f_size = round(f_size, 1)
 
     def __repr__(self):
         return str(self)

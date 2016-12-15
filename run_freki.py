@@ -7,22 +7,28 @@ import argparse
 import logging
 
 from freki.readers import tetml, pdfminer
+from freki.analyzers import base as basic_analyzer, xycut
 from freki.serialize import FrekiBlock, FrekiLine, FrekiDoc
 
 readers = {
     'tetml': tetml.TetmlReader,
     'pdfminer': pdfminer.PdfMinerReader
 }
+analyzers = {
+    'xycut': xycut.XYCutAnalyzer
+}
 
 def run(args):
-    reader = readers[args.format](args.infile, debug=args.debug)
+    reader = readers[args.reader](args.infile, debug=args.debug)
+    analyzer = analyzers[args.analyzer](debug=args.debug)
 
     doc_id = _doc_id_from_path(args.infile)
+    doc = analyzer.analyze(reader, id=doc_id)
 
     if args.outfile is None or hasattr(args.outfile, 'write'):
         if args.gzip:
             raise Exception('Cannot gzip to an open stream.')
-        analyze(reader, args.outfile, doc_id, args.block)
+        process(doc, args.outfile)
     else:
         if args.gzip:
             openfile = gzip.open
@@ -34,30 +40,30 @@ def run(args):
         if dirs:
             os.makedirs(dirs, exist_ok=True)
         with openfile(args.outfile, 'wb') as outfile:
-            analyze(reader, outfile, doc_id, args.block)
+            process(doc, outfile)
 
-def analyze(reader, outfile, doc_id, block_coefficient):
+def process(doc, outfile):
     # Initialize the freki document
     fd = FrekiDoc()
     line_no = 1
 
     # find minimum left-coordinate if available
-    l_margin = [t.llx for p in reader.pages() for t in p.tokens]
+    l_margin = [t.llx for p in doc.pages for t in p.tokens]
     l_margin = min(l_margin) if l_margin else 0.0
 
-    for page in reader.pages():
-        for blk in reader.blocks(page, coefficient=block_coefficient):
+    for page in doc.pages:
+        for blk in page.blocks:
             fb = FrekiBlock(
-                doc_id=doc_id,
+                doc_id=doc.id,
                 page=page.id,
-                block_id=blk.id,
+                block_id='{}-{}'.format(page.id, blk.id),
                 bbox='{},{},{},{}'.format(blk.llx, blk.lly, blk.urx, blk.ury),
                 doc=fd
             )
 
             for i, line in enumerate(respace(blk, xoffset=(l_margin * -1))):
                 fonts = ','.join(
-                    sorted(set(['{}-{}'.format(t.font, t.height)
+                    sorted(set(['{}-{}'.format(t.font, round(t.height, 1))
                                 for t in blk.lines[i].tokens]))
                 )
                 fl = FrekiLine(
@@ -168,7 +174,7 @@ def main(arglist=None):
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description="Find IGTs in text extracted from a PDF",
         epilog='examples:\n'
-               '    freki.py --format tetml infile.xml > outfile.txt'
+               '    freki.py --reader tetml --analyzer=xycut in.xml > out.txt'
     )
     parser.add_argument(
         '-v', '--verbose',
@@ -181,13 +187,12 @@ def main(arglist=None):
         help='show debugging visualizations'
     )
     parser.add_argument(
-        '-f', '--format',
+        '-r', '--reader',
         choices=('tetml', 'pdfminer'), default='tetml'
     )
     parser.add_argument(
-        '-b', '--block',
-        type=float, default=0.0,
-        help='block grouping multiplier'
+        '-a', '--analyzer',
+        choices=('xycut'), default='xycut'
     )
     parser.add_argument(
         '-z', '--gzip',
