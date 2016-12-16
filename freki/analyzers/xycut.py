@@ -238,5 +238,13 @@ def _zone_to_block(tokens, bitmap, bbox, id, path, debug):
 
 def _bbox_filter(llx, lly, urx, ury):
     def bbox_filter(t):
-        return t.llx >= llx and t.lly >= lly and t.urx <= urx and t.ury <= ury
+        # +- 1 for rounding problems in the bitmap. This
+        # should not capture extra characters unless they already
+        # overlapped (1pt height characters are probably rare)
+        return (
+            t.llx >= llx - 1 and
+            t.lly >= lly - 1 and
+            t.urx <= urx + 1 and
+            t.ury <= ury + 1
+        )
     return bbox_filter

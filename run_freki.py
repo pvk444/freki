@@ -67,10 +67,12 @@ def process(doc, outfile):
                     sorted(set(['{}-{}'.format(t.font, round(t.height, 1))
                                 for t in blk.lines[i].tokens]))
                 )
+                bbox = blk.lines[i].bbox
                 fl = FrekiLine(
                     line,
                     line=line_no+i,
-                    fonts=fonts
+                    fonts=fonts,
+                    bbox='{0.llx},{0.lly},{0.urx},{0.ury}'.format(bbox)
                 )
                 fb.add_line(fl)
 
