@@ -25,6 +25,7 @@ import re
 # of blocks.
 # -------------------------------------------
 from collections import OrderedDict
+from gzip import GzipFile
 
 
 class FrekiDoc(object):
@@ -49,37 +50,41 @@ class FrekiDoc(object):
         # Create the blank document that will be returned.
         fd = cls()
 
-        # Open the path for reading.
-        with open(path, 'r', encoding='utf-8') as f:
+        # Load ".gz" files on-the-fly as necessary
+        if path.endswith('.gz'):
+            f = GzipFile(path, 'r')
+        else:
+            f = open(path, 'rb', encoding='utf-8')
+        cur_block = None
 
-            cur_block = None
+        for line in f:
+            line = line.decode(encoding='utf-8')
+            # Skip blank lines
+            if not line.strip():
+                continue
 
-            for line in f:
+            # If the line in the document
+            # is describing a new block,
+            # create the new block...
+            if line.startswith('doc_id'):
+                doc_preamble = {a.strip():b.strip() for a,b in [item.split('=') for item in line.split()[:-2]]}
+                cur_block = FrekiBlock(**doc_preamble)
 
-                # Skip blank lines
-                if not line.strip():
-                    continue
+                # Make the containing doc accessible
+                # to the block.
+                cur_block.doc = fd
 
-                # If the line in the document
-                # is describing a new block,
-                # create the new block...
-                if line.startswith('doc_id'):
-                    doc_preamble = {a.strip():b.strip() for a,b in [item.split('=') for item in line.split()[:-2]]}
-                    cur_block = FrekiBlock(**doc_preamble)
+                # Add this current block to the blockmap.
+                fd.blockmap[cur_block.block_id] = cur_block
 
-                    # Make the containing doc accessible
-                    # to the block.
-                    cur_block.doc = fd
+            # Otherwise, if we are passing a new line
+            # element..
+            elif line.startswith('line'):
+                fl = FrekiLine.reads(line)  # Parse it..
+                cur_block.add_line(fl)
+                fd.add_line(fl)
 
-                    # Add this current block to the blockmap.
-                    fd.blockmap[cur_block.block_id] = cur_block
-
-                # Otherwise, if we are passing a new line
-                # element..
-                elif line.startswith('line'):
-                    fl = FrekiLine.reads(line)  # Parse it..
-                    cur_block.add_line(fl)
-                    fd.add_line(fl)
+        f.close()
 
         return fd
 
