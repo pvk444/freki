@@ -54,7 +54,7 @@ class FrekiDoc(object):
         if path.endswith('.gz'):
             f = GzipFile(path, 'r')
         else:
-            f = open(path, 'rb', encoding='utf-8')
+            f = open(path, 'rb')
         cur_block = None
 
         for line in f:
