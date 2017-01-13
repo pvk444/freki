@@ -378,5 +378,5 @@ class FrekiFont(object):
 
     @classmethod
     def reads(cls, s):
-        f_type, f_size = s.split('-')
+        f_type, f_size = re.search('([^\-]+)\-([0-9\.\-]+)', s).groups()
         return cls(f_type, float(f_size))
