@@ -24,7 +24,7 @@ import re
 # Representation of a document, consisting of a collection
 # of blocks.
 # -------------------------------------------
-from collections import OrderedDict
+from collections import OrderedDict, Iterable
 from gzip import GzipFile
 
 
@@ -102,7 +102,7 @@ class FrekiDoc(object):
     def lines(self):
         """
         Return all the lines in this document.
-        :rtype: list[FrekiLine]
+        :rtype: Iterable[FrekiLine]
         """
         for line in self.linemap.values():
             yield line
@@ -150,6 +150,15 @@ class FrekiDoc(object):
                 if font is not None:
                     fonts.append(font)
         return fonts
+
+    @property
+    def pages(self):
+        if not hasattr(self, '_pages'):
+            pageset = set([])
+            for block in self.blocks:
+                pageset.add(block.page)
+            self._pages = pageset
+        return self._pages
 
     def add_line(self, fl):
         """:type fl: FrekiLine"""
