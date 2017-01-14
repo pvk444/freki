@@ -195,7 +195,7 @@ def main(arglist=None):
     )
     parser.add_argument(
         '-a', '--analyzer',
-        choices=('xycut'), default='xycut'
+        choices=(['xycut']), default='xycut'
     )
     parser.add_argument(
         '-z', '--gzip',
