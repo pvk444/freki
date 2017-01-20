@@ -22,6 +22,7 @@ def run(args):
     reader = readers[args.reader](args.infile, debug=args.debug)
     analyzer = analyzers[args.analyzer](debug=args.debug)
 
+    logging.debug('Analyzing {}'.format(args.infile))
     doc_id = _doc_id_from_path(args.infile)
     doc = analyzer.analyze(reader, id=doc_id)
 

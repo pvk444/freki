@@ -44,8 +44,29 @@ def _make_bitmap(page):
     for token in page.tokens:
         llx, lly = int(token.llx), int(token.lly)
         urx, ury = int(token.urx), int(token.ury)
-        bitmap[lly:ury, llx:urx] = token.height
+        height = ury - lly
+        dy = int(height/5)
+        bitmap[lly      :lly+dy   , llx:urx] = token.height * 0.1
+        bitmap[lly+dy   :lly+dy+dy, llx:urx] = token.height * 0.5
+        bitmap[lly+dy+dy:ury-dy-dy, llx:urx] = token.height
+        bitmap[ury-dy-dy:ury-dy   , llx:urx] = token.height * 0.5
+        bitmap[ury-dy   :ury      , llx:urx] = token.height * 0.1
+
+        # bitmap[lly:ury, llx:urx] = token.height
     return bitmap
+
+# def _make_bitmap(page):
+#     w, h = int(page.page_width), int(page.page_height)
+#     bitmap = np.zeros((h, w))
+#     for token in page.tokens:
+#         llx, lly = int(token.llx), int(token.lly)
+#         urx, ury = int(token.urx), int(token.ury)
+#         height = ury - lly
+#         rect = np.zeros((height + 2, urx - llx))
+#         rect[1:height, :] = token.height
+#         rect = ndimage.filters.gaussian_filter(rect, 1)
+#         bitmap[lly:ury, llx:urx] = rect[1:-1,:]
+#     return bitmap
 
 
 def _zones(bitmap, params, debug=False):
@@ -223,7 +244,7 @@ def _zone_to_block(tokens, bitmap, bbox, id, path, debug):
     tokens = list(filter(_bbox_filter(llx, lly, urx, ury), tokens))
     block = Block(id=id, label=path)
 
-    btm, y_gaps, top = _gaps(bitmap[lly:ury, llx:urx].sum(axis=1), 0, 0, lly)
+    btm, y_gaps, top = _gaps(bitmap[lly:ury, llx:urx].sum(axis=1), 0, 0.2, lly)
     mids = [sum(gap)/2 for gap in y_gaps]
     for btm, top in zip([lly] + mids, mids + [ury]):
         ts = list(filter(_bbox_filter(llx, btm, urx, top), tokens))
