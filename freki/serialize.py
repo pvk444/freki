@@ -308,7 +308,7 @@ class FrekiLine(str):
         if self.attrs.get('fonts'):
             return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
         else:
-            return None
+            return []
 
     @fonts.setter
     def fonts(self, fonts):
