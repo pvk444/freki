@@ -215,7 +215,14 @@ class FrekiBlock(object):
     def block_id(self): return self._attrs.get('block_id')
 
     @property
-    def bbox(self): return [float(i) if str(i)!='None' else 0 for i in self.bbox_str.split(',')]
+    def bbox(self):
+        dims = []
+        for elt in self.bbox_str.split(','):
+            try:
+                dims.append(float(elt))
+            except ValueError:
+                dims.append(0)
+        return dims
 
     @property
     def bbox_str(self): return self._attrs.get('bbox', '0,0,0,0')
