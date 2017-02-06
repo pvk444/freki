@@ -184,6 +184,7 @@ def linesort(a):
 # -------------------------------------------
 # FrekiBlock
 # -------------------------------------------
+
 class FrekiBlock(object):
     """
     The "Block" class, consisting of:
@@ -297,6 +298,9 @@ class FrekiLine(str):
 
     @property
     def tag(self): return self.attrs.get('tag', 'O')
+
+    @tag.setter
+    def tag(self, v): self.attrs['tag'] = v
 
     @property
     def lineno(self): return int(self.attrs.get('line'))
