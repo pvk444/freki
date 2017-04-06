@@ -23,6 +23,7 @@ class XYCutAnalyzer(base.FrekiAnalyzer):
             logging.debug('Analyzing page id={}'.format(page.id))
             blocks = []
             tokens = page.tokens
+            numtoks = len(tokens)
 
             if tokens:
                 for i, zone in enumerate(_zones(bitmap, params, self._debug)):
@@ -32,6 +33,13 @@ class XYCutAnalyzer(base.FrekiAnalyzer):
                     )
                     blocks.append(block)
         
+            numtoks_b = sum(len(l.tokens) for b in blocks for l in b.lines)
+            if numtoks_b != numtoks:
+                logging.warning(
+                    'Page {}: Different page-vs-block token counts: {} vs {}'
+                    .format(page.id, numtoks, numtoks_b)
+                )
+
             page.blocks = blocks
             doc.pages.append(page)
 
@@ -46,11 +54,11 @@ def _make_bitmap(page):
         urx, ury = int(token.urx), int(token.ury)
         height = ury - lly
         dy = int(height/5)
-        bitmap[lly      :lly+dy   , llx:urx] = token.height * 0.1
-        bitmap[lly+dy   :lly+dy+dy, llx:urx] = token.height * 0.5
+        bitmap[lly      :lly+dy   , llx:urx] = token.height * 0.0
+        bitmap[lly+dy   :lly+dy+dy, llx:urx] = token.height * 0.1
         bitmap[lly+dy+dy:ury-dy-dy, llx:urx] = token.height
-        bitmap[ury-dy-dy:ury-dy   , llx:urx] = token.height * 0.5
-        bitmap[ury-dy   :ury      , llx:urx] = token.height * 0.1
+        bitmap[ury-dy-dy:ury-dy   , llx:urx] = token.height * 0.1
+        bitmap[ury-dy   :ury      , llx:urx] = token.height * 0.0
 
         # bitmap[lly:ury, llx:urx] = token.height
     return bitmap
@@ -107,8 +115,8 @@ def _zones(bitmap, params, debug=False):
 def _parameters(bit_pages):
     params = {
         # min sizes are minimum (height, width) ratios of resulting cuts
-        'min_vcut_size': (1/32, 1/4),
-        'min_hcut_size': (1/128, 1/4),
+        'min_vcut_size': (1/32, 1/6),
+        'min_hcut_size': (1/128, 1/6),
         'max_x_density': 0.0,
         'max_y_density': 0.0,
     }
@@ -215,9 +223,7 @@ def _gaps(vec, min_gap, max_density, offset):
     if len(gaps) and gaps[-1][1] == end:
         end, gaps = gaps[-1][0], gaps[:-1]
     if len(gaps):
-        # print('before', gaps)
         gaps = [(a, b) for a, b in gaps if b-a >= min_gap]
-        # print('after', gaps)
     return start, gaps, end
 
 
@@ -244,7 +250,7 @@ def _zone_to_block(tokens, bitmap, bbox, id, path, debug):
     tokens = list(filter(_bbox_filter(llx, lly, urx, ury), tokens))
     block = Block(id=id, label=path)
 
-    btm, y_gaps, top = _gaps(bitmap[lly:ury, llx:urx].sum(axis=1), 0, 0.2, lly)
+    btm, y_gaps, top = _gaps(bitmap[lly:ury, llx:urx].max(axis=1), 0, 0, lly)
     mids = [sum(gap)/2 for gap in y_gaps]
     for btm, top in zip([lly] + mids, mids + [ury]):
         ts = list(filter(_bbox_filter(llx, btm, urx, top), tokens))
