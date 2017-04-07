@@ -1,0 +1,45 @@
+%YAML 1.2
+---
+name: Freki
+scope: text.freki
+file_extensions: [freki]
+
+contexts:
+  main:    
+    - match: (doc_id)=(\S+)
+      set: doc_id
+      captures:
+        1: variable
+        2: string
+    - match: ^(line)=(\S+)
+      set: line
+      captures:
+        1: variable
+        2: text
+  doc_id:
+    - match: (\S+)=([^\s+:]+)
+      captures:
+        1: keyword.control
+        2: string
+    - match: \n
+      set: main
+  line:
+    - match: (tag)=([^O])
+      captures:
+        1: keyword.control
+        2: markup.bold
+    - match: (span_id)=(\S+)
+      captures:
+        1: keyword.control
+        2: markup.bold
+    - match: (\S+)=([^\s+:]+)
+      captures:
+        1: keyword.control
+        2: string.quoted.triple
+    - match: ":"
+      set: line_text
+    - match: \n
+      set: main
+  line_text:
+    - match: \n
+      set: main
