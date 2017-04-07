@@ -24,7 +24,7 @@ contexts:
     - match: \n
       set: main
   line:
-    - match: (tag)=([^O])
+    - match: (tag)=([^O\s]+)
       captures:
         1: keyword.control
         2: markup.bold
