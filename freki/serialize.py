@@ -351,7 +351,7 @@ class FrekiLine(str):
         :return:
         """
         pre_data = ['{}={}'.format(k, v) for k, v in sorted(self.attrs.items(), key=lambda x: linesort(x[0])) if
-                    k != 'str_']
+                    k != 'str_' and v]
         return ' '.join(pre_data)
 
 
