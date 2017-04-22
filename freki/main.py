@@ -205,7 +205,7 @@ def _doc_id_from_path(path):
 def main(arglist=None):
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description="Find IGTs in text extracted from a PDF",
+        description="Analyze the document structure of text in a PDF",
         epilog='examples:\n'
                '    freki.py --reader tetml --analyzer=xycut in.xml > out.txt'
     )

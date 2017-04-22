@@ -3,14 +3,14 @@ from distutils.core import setup
 
 setup(
     name='freki',
-    version='0.1.0',
+    version='0.2.0',
     description='PDF-Extraction helper for RiPLEs pipeline.',
     author='Michael Goodman, Ryan Georgi',
     author_email='goodmami@uw.edu, rgeorgi@uw.edu',
     url='https://github.com/xigt/freki',
     license='MIT',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',
@@ -26,9 +26,15 @@ setup(
         'Topic :: Utilities'
     ],
     keywords='nlp pdf ie text',
-    packages=['freki', 'freki.readers'],
+    packages=['freki', 'freki.readers', 'freki.analyzers'],
     install_requires=[
         'numpy',
         'matplotlib'
-    ]
+    ],
+    entry_points={
+        'console_scripts': [
+            'freki=freki.main:main'
+        ]
+    },
+
 )

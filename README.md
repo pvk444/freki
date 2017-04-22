@@ -2,9 +2,10 @@
 
 Freki is a package that takes the markup-language formatted output of 
 a PDF-to-text extraction tool (Either [PDFLib TET][] or [PDFMiner][]),
-and outputs text blocks that can be used for the subsequent
-[IGT detection](https://github.com/xigt/igtdetect) and language ID
-tasks.
+and detects text *blocks* (e.g., paragraphs, headers, figures, etc.).
+The blocks are assigned attributes (identifiers, bounding boxes, etc.)
+for later analysis. This was developed for the detection of interlinear
+glossed text (IGT), but it could serve other purposes, as well.
 
 ## Sample Usage
 
@@ -18,7 +19,9 @@ tasks.
 
 ## Requirements
 
-* Tested with python 2.7 and 3.5.
+* Python 3.3+
+* [NumPy](http://www.numpy.org/)
+* [Matplotlib](https://matplotlib.org/)
 
 ## Acknowledgements
 
