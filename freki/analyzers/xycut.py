@@ -1,5 +1,4 @@
 
-import re
 import logging
 
 import numpy as np
@@ -13,6 +12,9 @@ from freki.structures import Line, Block, Document
 
 
 class XYCutAnalyzer(base.FrekiAnalyzer):
+    """
+    Analyze PDF pages using a modified XY-cut algorithm.
+    """
     def analyze(self, reader, id=None):
         doc = Document(id=id)
 
