@@ -20,7 +20,8 @@ class PdfMinerReader(FrekiReader):
     def _init_pages(self):
         # PDFMiner can return XML with bad characters. First fix those:
         lines = []
-        for line in open(self.file):
+        f = open(self.file) if not hasattr(self.file, 'readline') else self.file
+        for line in f:
             lines.append(replace_invalid_xml_chars(line))
         instream = StringIO(''.join(lines))
 
