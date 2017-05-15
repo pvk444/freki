@@ -351,7 +351,7 @@ class FrekiLine(str):
         :return:
         """
         pre_data = ['{}={}'.format(k, v) for k, v in sorted(self.attrs.items(), key=lambda x: linesort(x[0])) if
-                    k != 'str_' and v is not None]
+                    k != 'str_' and v]
         return ' '.join(pre_data)
 
 
@@ -363,7 +363,7 @@ class FrekiLine(str):
         :param line: The string, including preamble
         :rtype: FrekiLine
         """
-        preamble, text = re.search('(line.*?):(.*)', line).groups()
+        preamble, text = re.search('(line.*?bbox.*?):(.*)', line).groups()
         preamble_data = re.findall('\S+=[^=]+(?=(?:\s+\S+)|\s*$)', preamble)
         line_preamble = {k.strip():v.strip() for k, v in [item.split('=') for item in preamble_data]}
         return cls(text, **line_preamble)

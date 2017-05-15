@@ -8,7 +8,6 @@ import logging
 
 from freki.readers import tetml, pdfminer
 from freki.analyzers import base as basic_analyzer, xycut
-from freki.serialize import FrekiBlock, FrekiLine, FrekiDoc
 
 INTERLINEAR_THRESHOLD = 0.6
 
