@@ -181,7 +181,7 @@ def respace(block, xoffset=0.0):
         else:
             groups[-1].append((toklist, iscore))
         prev = toklist
-    
+
     lines = []
     for group in groups:
         _respace_group(group)
@@ -207,8 +207,9 @@ def main(arglist=None):
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description="Analyze the document structure of text in a PDF",
+        prog='freki',
         epilog='examples:\n'
-               '    freki.py --reader tetml --analyzer=xycut in.xml > out.txt'
+               '    freki --reader tetml --analyzer=xycut in.xml > out.txt'
     )
     parser.add_argument(
         '-v', '--verbose',

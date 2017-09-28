@@ -3,9 +3,26 @@
 ## [Unreleased][unreleased]
 
 ### Added
+
+* add method to convert plain text files to the Freki format
+* `doc/Format.md` file to replace `doc/Anatomy of a Freki Block.html`
+
 ### Removed
+
+* `doc/Anatomy of a Freki Block.html` (replaced with `doc/Format.md`)
+
 ### Fixed
+
+* fix serialization bugs with empty keys
+
 ### Changed
+
+* make the tetml and pdfminer readers accept file paths or file pointers
+* bbox field is now required and must precede line field
+  (but is this even a good idea?)
+* updated README
+* added python3-tk requirements
+
 ### Deprecated
 
 
