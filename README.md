@@ -87,7 +87,7 @@ optional arguments:
 
 For example, to analyze data from a [PDFLib TET][] extraction:
 
-	freki.sh --reader tetml sample/sample.tetml.gz sample/sample_tetml.txt
+	  freki.sh --reader tetml sample/sample.tetml.gz sample/sample_tetml.txt
 	
 For data from a [PDFMiner][] extraction:
 
@@ -136,7 +136,9 @@ Example:
 ## Requirements
 
 * Python 3.3+
+* Tkinter library (try installing the `python3-tk` package)
 * [NumPy](http://www.numpy.org/)
+* [SciPy](https://www.scipy.org/)
 * [Matplotlib](https://matplotlib.org/)
 * [Chardet](https://pypi.python.org/pypi/chardet)
 

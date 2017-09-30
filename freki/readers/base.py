@@ -1,18 +1,4 @@
 
-from collections import defaultdict, Counter
-from itertools import groupby
-import logging
-
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-from scipy import ndimage, spatial
-
-from freki.structures import Line, Block
-
-min_line_overlap = 0.01
-
-
 class FrekiReader(object):
 
     def __init__(self, debug=False):

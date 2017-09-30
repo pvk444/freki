@@ -12,10 +12,14 @@ from freki.structures import Token, Line, Block, Page
 class TetmlReader(FrekiReader):
     def __init__(self, tetml_file, debug=False):
         FrekiReader.__init__(self, debug=debug)
-        if tetml_file.endswith('.gz'):
-            f = GzipFile(tetml_file)
-        else:
+        if hasattr(tetml_file, 'read'):
             f = tetml_file
+        else:
+            if tetml_file.endswith('.gz'):
+                f = GzipFile(tetml_file)
+            else:
+                f = open(tetml_file, 'r')
+
         self.file = f
         self._pages = {}
         self._init_pages()
