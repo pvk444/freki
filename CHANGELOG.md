@@ -3,6 +3,9 @@
 ## [Unreleased][unreleased]
 
 ### Added
+
+Plain text to freki conversion
+
 ### Removed
 ### Fixed
 ### Changed

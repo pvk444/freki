@@ -7,6 +7,8 @@ The blocks are assigned attributes (identifiers, bounding boxes, etc.)
 for later analysis. This was developed for the detection of interlinear
 glossed text (IGT), but it could serve other purposes, as well.
 
+Freki also includes a method to convert plain text documents to the Freki format for the purposes of IGT detection and language identification.
+
 ## Example
 
 Shown below are an example page from a PDF (left), and a visualization
@@ -94,11 +96,49 @@ For data from a [PDFMiner][] extraction:
 Currently there is only one method for layout analysis (`xycut`), so
 it is not necessary to give the `--analyzer` option.
 
+## Plain Text to Freki Conversion
+
+`freki.text2freki.read_and_convert()` is the preferred method of converting a text file to a Freki object. It is currently only usable by importing the method into a Python file.
+
+The Chardet package is used to detect the encoding of the text file if reading using the given encoding causes an error, or if `detect_encoding` is set to True.
+
+Usage:
+
+```
+Arguments:
+
+path: path to the text file
+igt_path: path to the text file containing IGT span info
+encoding: name of the encoding of the file
+detect_encoding: setting to true will first detect an encoding rather than using the default.
+
+Returns:
+
+Freki object
+```
+
+The igt_path file is in the format:
+
+```
+startline endline tag1 tag2 ... tagN\n
+```
+
+Each line represents an individual IGT span.
+
+Example:
+
+```
+1 3 L G T
+10 13 M+LN L G T
+...
+```
+
 ## Requirements
 
 * Python 3.3+
 * [NumPy](http://www.numpy.org/)
 * [Matplotlib](https://matplotlib.org/)
+* [Chardet](https://pypi.python.org/pypi/chardet)
 
 ## Acknowledgements
 
