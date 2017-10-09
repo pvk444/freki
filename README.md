@@ -98,23 +98,29 @@ it is not necessary to give the `--analyzer` option.
 
 ## Plain Text to Freki Conversion
 
-`freki.text2freki.read_and_convert()` is the preferred method of converting a text file to a Freki object. It is currently only usable by importing the method into a Python file.
+`text-to-freki.sh` is the preferred method of converting a text file to a Freki object.
 
 The Chardet package is used to detect the encoding of the text file if reading using the given encoding causes an error, or if `detect_encoding` is set to True.
 
 Usage:
 
 ```
-Arguments:
+Convert a plain text file to Freki format
 
-path: path to the text file
-igt_path: path to the text file containing IGT span info
-encoding: name of the encoding of the file
-detect_encoding: setting to true will first detect an encoding rather than using the default.
+positional arguments:
+  infile                plain text file
+  outfile               path to freki output file
 
-Returns:
+optional arguments:
+  -h, --help            show this help message and exit
+  --igtfile IGTFILE     plain text file containing igt span info
+  --encoding ENCODING   encoding of the input file
+  -d DETECT, --detect-encoding DETECT
+                        automatically detects encoding when set to true
+  -v, --verbose         increase the verbosity (can be repeated: -vvv)
 
-Freki object
+examples:
+    text-to-freki in.txt out.freki --igtfile=igts.txt --detect-encoding=true
 ```
 
 The igt_path file is in the format:

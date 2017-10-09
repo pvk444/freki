@@ -2,6 +2,14 @@ from freki.serialize import FrekiDoc, FrekiBlock, FrekiLine
 import codecs
 import re
 import chardet
+import logging
+import argparse
+
+
+def run(args):
+    frek = read_and_convert(args.infile, args.igtfile, args.encoding, args.detect)
+    out = open(args.outfile, 'w')
+    out.write(str(frek))
 
 
 def convert_text(doc_id, text, span_text=None):
@@ -66,8 +74,8 @@ def read_and_convert(path, igt_path=None, encoding='utf-8', detect_encoding=Fals
         if igt_path:
             i_predict = chardet.detect(open(igt_path, 'rb').read())
             igt_text = codecs.open(igt_path, encoding=i_predict['encoding']).read()
-        print('Using encoding: ' + p_predict['encoding'])
-        print('Encoding detection uses the Chardet library: https://pypi.python.org/pypi/chardet')
+        logging.info('Using encoding: ' + p_predict['encoding'])
+        logging.info('Encoding detection uses the Chardet library: https://pypi.python.org/pypi/chardet')
     else:
         try:
             text = codecs.open(path, encoding=encoding, errors='strict').read()
@@ -80,13 +88,42 @@ def read_and_convert(path, igt_path=None, encoding='utf-8', detect_encoding=Fals
             if igt_path:
                 i_predict = chardet.detect(open(igt_path, 'rb').read())
                 igt_text = codecs.open(igt_path, encoding=i_predict['encoding']).read()
-            print('The file cannot be read using encoding ' + encoding + '. Instead using ' + p_predict['encoding'])
-            print('Encoding detection uses the Chardet library: https://pypi.python.org/pypi/chardet\n')
-            print("If encoding " + p_predict['encoding'] + ' is not correct please specify the encoding as an argument')
-            print('For a detailed list of encodings available in Python visit https://docs.python.org/2.4/lib/standard-encodings.html')
+            logging.info('The file cannot be read using encoding ' + encoding + '. Instead using ' + p_predict['encoding'])
+            logging.info('Encoding detection uses the Chardet library: https://pypi.python.org/pypi/chardet\n')
+            logging.info("If encoding " + p_predict['encoding'] + ' is not correct please specify the encoding as an argument')
+            logging.info('For a detailed list of encodings available in Python visit https://docs.python.org/2.4/lib/standard-encodings.html')
         except LookupError:
             print('Unknown encoding. If you want the system to automatically detect an encoding set detect_encoding=True')
             print('For a detailed list of encodings available in Python visit https://docs.python.org/2.4/lib/standard-encodings.html')
             raise
     frek = convert_text(name, text, igt_text)
     return frek
+
+
+def main(arglist=None):
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description="Convert a plain text file to Freki format",
+        prog='text-to-freki',
+        epilog='examples:\n'
+               '    text-to-freki in.txt out.freki --igtfile=igts.txt --detect-encoding=true'
+    )
+    parser.add_argument('infile', help='plain text file')
+    parser.add_argument('outfile', help='path to freki output file')
+    parser.add_argument('--igtfile', help='plain text file containing igt span info')
+    parser.add_argument('--encoding', default='utf-8', help='encoding of the input file')
+    parser.add_argument(
+        '-d', '--detect-encoding', dest='detect', default=False, help='automatically detects encoding when set to true'
+    )
+    parser.add_argument(
+        '-v', '--verbose',
+        action='count', dest='verbosity', default=2,
+        help='increase the verbosity (can be repeated: -vvv)'
+    )
+    args = parser.parse_args(arglist)
+    logging.basicConfig(level=50-(args.verbosity*10))
+    run(args)
+
+
+if __name__ == '__main__':
+    main()
