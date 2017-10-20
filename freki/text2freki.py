@@ -8,7 +8,7 @@ import argparse
 
 def run(args):
     frek = read_and_convert(args.infile, args.igtfile, args.encoding, args.detect)
-    out = open(args.outfile, 'w')
+    out = open(args.outfile, 'w', encoding='utf8')
     out.write(str(frek))
 
 
