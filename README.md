@@ -9,6 +9,17 @@ glossed text (IGT), but it could serve other purposes, as well.
 
 Freki also includes a method to convert plain text documents to the Freki format for the purposes of IGT detection and language identification.
 
+## PDFMiner
+
+PDFMiner converts PDF to text as its default setting. When using 
+PDFMiner to convert a document to the formatted input of Freki, 
+set the output type to be XML:
+
+```
+./tools/pdf2txt.py --output_file <output_file> --output_type xml
+```
+ 
+
 ## Example
 
 Shown below are an example page from a PDF (left), and a visualization
