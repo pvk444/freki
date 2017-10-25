@@ -29,7 +29,8 @@ setup(
     packages=['freki', 'freki.readers', 'freki.analyzers'],
     install_requires=[
         'numpy',
-        'matplotlib'
+        'matplotlib',
+        'chardet'
     ],
     entry_points={
         'console_scripts': [
