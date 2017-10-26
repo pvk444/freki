@@ -20,6 +20,14 @@ def convert_text(doc_id, text, span_text=None):
     :param span_text: text identifying IGT spans, if available
     :return: freki object
     """
+    w_index = 1
+    wo_index = 1
+    pre2post = {}
+    for line in re.split('\r\n|\n', text):
+        if not re.match('^\s*$', line):
+            pre2post[w_index] = wo_index
+            wo_index += 1
+        w_index += 1
     line_dict = {}
     s_index = 0
     if span_text:
@@ -28,7 +36,13 @@ def convert_text(doc_id, text, span_text=None):
             tags = parts[2:]
             start = int(parts[0])
             for i in range(start, int(parts[1]) + 1):
-                line_dict[i] = (tags[i - start], 's' + str(s_index))
+                try:
+                    print(pre2post)
+                    num = pre2post[i]
+                except KeyError:
+                    print("Warning: a line specified in the igt file is a blank line in the document. "
+                     "Check the line numbers in the igt file. Skipping the problem line.")
+                line_dict[num] = (tags[num - start], 's' + str(s_index))
             s_index += 1
     frek = FrekiDoc()
     text = re.sub(r'(\r\n|\n){2,}', '\n\n', text)
