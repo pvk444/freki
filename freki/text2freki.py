@@ -37,7 +37,6 @@ def convert_text(doc_id, text, span_text=None):
             start = int(parts[0])
             for i in range(start, int(parts[1]) + 1):
                 try:
-                    print(pre2post)
                     num = pre2post[i]
                 except KeyError:
                     print("Warning: a line specified in the igt file is a blank line in the document. "
