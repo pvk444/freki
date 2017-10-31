@@ -32,16 +32,18 @@ def convert_text(doc_id, text, span_text=None):
     s_index = 0
     if span_text:
         for line in span_text.split('\n'):
-            parts = line.split()
-            tags = parts[2:]
-            start = int(parts[0])
-            for i in range(start, int(parts[1]) + 1):
-                try:
-                    num = pre2post[i]
-                except KeyError:
-                    print("Warning: a line specified in the igt file is a blank line in the document. "
-                     "Check the line numbers in the igt file. Skipping the problem line.")
-                line_dict[num] = (tags[num - start], 's' + str(s_index))
+            if len(line):
+                parts = line.split()
+                tags = parts[2:]
+                start = int(parts[0])
+                for i in range(start, int(parts[1]) + 1):
+                    try:
+                        num = pre2post[i]
+                    except KeyError:
+                        print("Warning: a line specified in the igt file is a blank line in the document. "
+                         "Check the line numbers in the igt file. Skipping the problem line.")
+                        break
+                    line_dict[num] = (tags[num - start], 's' + str(s_index))
             s_index += 1
     frek = FrekiDoc()
     text = re.sub(r'(\r\n|\n){2,}', '\n\n', text)
