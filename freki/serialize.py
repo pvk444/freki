@@ -228,6 +228,25 @@ class FrekiBlock(object):
                 dims.append(0)
         return dims
 
+    # ad-hoc solution for storing user-defined variables
+    @property
+    def user_def_str(self):
+        # string to return
+        user_def_str = str()
+        # dict to store user-defined attribute-value pairs
+        user_def_pairs = self._attrs
+        # attributes already accounted for
+        list_attrs = list(['doc_id', 'page', 'block_id', 'bbox', 'label'])
+        for attr in list_attrs:
+            del user_def_pairs[attr]
+
+        # two conditions: (1) zero or (2) one or more user-defined attribute-value pairs
+        if len(user_def_pairs) == 0: # zero user-defined attribute-value pairs
+            return user_def_str # return empty string; will deal with later in an ad-hoc fashion
+        else: # one or more user-defined attribute-value pairs
+            user_def_str = " ".join(["=".join([k, str(v)]) for k, v in user_def_pairs.items()])
+            return user_def_str
+
     @property
     def bbox_str(self): return self._attrs.get('bbox', '0,0,0,0')
 
@@ -259,19 +278,34 @@ class FrekiBlock(object):
 
     def __str__(self):
         start_line = self.lines[0].lineno if self.lines else 0  # Get the starting line number
-        stop_line  = self.lines[-1].lineno if self.lines else 0 # Get the endling line number
+        stop_line = self.lines[-1].lineno if self.lines else 0 # Get the ending line number
 
-        ret_str = (
-            'doc_id={} page={} block_id={} bbox={} label={} {} {}\n'.format(
-                self.doc_id,
-                self.page,
-                self.block_id,
-                self.bbox_str,
-                self.label,
-                start_line,
-                stop_line
+        # dealing with user-defined variables in an ad-hoc fashion
+        if len(self.user_def_str) == 0: # no user-defined variables; exclude it
+            ret_str = (
+                'doc_id={} page={} block_id={} bbox={} label={} {} {}\n'.format(
+                    self.doc_id,
+                    self.page,
+                    self.block_id,
+                    self.bbox_str,
+                    self.label,
+                    start_line,
+                    stop_line
+                )
             )
-        )
+        else: # one or more user-defined variables; include them
+            ret_str = (
+                'doc_id={} page={} block_id={} bbox={} label={} {} {} {}\n'.format(
+                    self.doc_id,
+                    self.page,
+                    self.block_id,
+                    self.bbox_str,
+                    self.label,
+                    self.user_def_str,
+                    start_line,
+                    stop_line
+                )
+            )
 
         max_pre_len = max([len(l.preamble()) for l in self.lines]) if len(self.lines) else 0
 
