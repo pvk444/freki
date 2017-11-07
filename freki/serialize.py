@@ -15,7 +15,7 @@ concerning the label and span membership for IGT status,
 the fonts contained on that line, and language ID information.
 """
 
-from copy import deepcopy
+import copy
 import re
 
 
@@ -236,7 +236,7 @@ class FrekiBlock(object):
         # string to return
         user_def_str = str()
         # dict to store user-defined attribute-value pairs
-        user_def_pairs = deepcopy(self._attrs)
+        user_def_pairs = copy.deepcopy(self._attrs)
         # attributes already accounted for
         list_attrs = list(['doc_id', 'page', 'block_id', 'bbox', 'label'])
         for attr in list_attrs:
