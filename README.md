@@ -11,6 +11,14 @@ Freki also includes a method to convert plain text documents to the Freki format
 
 ## PDFMiner
 
+PDFMiner is a required package for running Freki using the `pdfminer` option.
+
+The following installation of PDFMiner is recommended, as using the Python Package Index (PyPI) installs a broken version:
+
+```
+pip install https://github.com/goulu/pdfminer/zipball/e6ad15af79a26c31f4e384d8427b375c93b03533#egg=pdfminer.six
+```
+
 PDFMiner converts PDF to text as its default setting. When using 
 PDFMiner to convert a document to the formatted input of Freki, 
 set the output type to be XML:
@@ -18,7 +26,6 @@ set the output type to be XML:
 ```
 ./tools/pdf2txt.py --output_file <output_file> --output_type xml
 ```
- 
 
 ## Example
 
