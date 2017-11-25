@@ -15,6 +15,7 @@ concerning the label and span membership for IGT status,
 the fonts contained on that line, and language ID information.
 """
 
+import copy
 import re
 
 
@@ -259,7 +260,7 @@ class FrekiBlock(object):
 
     def __str__(self):
         start_line = self.lines[0].lineno if self.lines else 0  # Get the starting line number
-        stop_line  = self.lines[-1].lineno if self.lines else 0 # Get the endling line number
+        stop_line = self.lines[-1].lineno if self.lines else 0 # Get the ending line number
 
         ret_str = (
             'doc_id={} page={} block_id={} bbox={} label={} {} {}\n'.format(
