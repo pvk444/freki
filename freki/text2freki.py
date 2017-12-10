@@ -56,7 +56,6 @@ def convert_text(doc_id, text, span_text=None):
         for line in lines:
             f_line = FrekiLine(line)
             f_line.attrs['line'] = index
-            f_line.attrs['bbox'] = '0,0,0,0'
             linenos.append(index)
             if index in line_dict:
                 f_line.attrs['tag'] = line_dict[index][0]
