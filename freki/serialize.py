@@ -15,6 +15,7 @@ concerning the label and span membership for IGT status,
 the fonts contained on that line, and language ID information.
 """
 
+import copy
 import re
 
 
@@ -66,7 +67,10 @@ class FrekiDoc(object):
             # If the line in the document
             # is describing a new block,
             # create the new block...
-            if line.startswith('doc_id'):
+
+            # both `doc_id` and `block_id` are required attributes
+            pattern = re.compile("(^doc_id.*?block_id.*?)")
+            if pattern.match(line): 
                 doc_preamble = {a.strip():b.strip() for a,b in [item.split('=') for item in line.split()[:-2]]}
                 cur_block = FrekiBlock(**doc_preamble)
 
@@ -256,7 +260,7 @@ class FrekiBlock(object):
 
     def __str__(self):
         start_line = self.lines[0].lineno if self.lines else 0  # Get the starting line number
-        stop_line  = self.lines[-1].lineno if self.lines else 0 # Get the endling line number
+        stop_line = self.lines[-1].lineno if self.lines else 0 # Get the ending line number
 
         ret_str = (
             'doc_id={} page={} block_id={} bbox={} label={} {} {}\n'.format(
@@ -363,7 +367,7 @@ class FrekiLine(str):
         :param line: The string, including preamble
         :rtype: FrekiLine
         """
-        preamble, text = re.search('(line.*?bbox.*?):(.*)', line).groups()
+        preamble, text = re.search('(line.*?):(.*)', line).groups()
         preamble_data = re.findall('\S+=[^=]+(?=(?:\s+\S+)|\s*$)', preamble)
         line_preamble = {k.strip():v.strip() for k, v in [item.split('=') for item in preamble_data]}
         return cls(text, **line_preamble)
