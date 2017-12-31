@@ -1,11 +1,35 @@
-# Freki Format
+# Freki
+
+The following document explains the format of a Freki file. In addition, it notes a requirement for the installation of the Freki package.
+
+## pdfminer.six
+
+`pdfminer.six` is required in order to successfully run Freki using the `pdfminer` option.
+
+### Installation
+
+The following installation is recommended, as using the Python Package Index (PyPI) installs a broken version.
+
+```
+pip install https://github.com/goulu/pdfminer/zipball/e6ad15af79a26c31f4e384d8427b375c93b03533#egg=pdfminer.six
+```
+
+### Usage
+
+To use `pdfminer.six`, run the following line in the Terminal: 
+
+```
+    pdf2txt.py -t xml input_pdf_file > output_xml_file
+```
+
+## Freki Format
 
 The format of a Freki file is as follows:
 
 A Freki file is divided into *blocks*. Blocks consist of a preamble (or 
 header) as well as a following list of *lines*.
 
-## Blocks
+### Blocks
 
 Each block begins with a preamble. The format of the preamble is the following:
 
@@ -42,7 +66,7 @@ Within the preamble are the following attributes:
 
 The last two values, `start_line` and `end_line`, are optional. Although the following lines contain the start and end line information, they are redundantly listed for grepability.
 
-## Lines
+### Lines
 
 The format of a line is the following:
 
@@ -86,7 +110,7 @@ Each line has the following attributes:
 * `tabscore`: [pre-defined]
   * Real value between 0 and 1, inclusive
 
-## Creating other attributes
+### Creating other attributes
 
 Users can create other attributes, as needed.
 
@@ -94,7 +118,7 @@ For creating one's own attributes and values, there are a couple of requirements
 * Attribute names can be any string that does not contain whitespace, colons, or equal signs
 * Values for other attributes can be any string that do not contain whitespace, colons, or equal signs
 
-## Example
+### Example
 
 ```
 doc_id=3009.tetml page=11 block_id=11-6 bbox=42.5,660.3,500.4,672.3 365 365
