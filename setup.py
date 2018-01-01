@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='freki',
-    version='0.3.0-develop',
+    version='0.3.0',
     description='PDF-Extraction helper for RiPLEs pipeline.',
     author='Michael Goodman, Ryan Georgi',
     author_email='goodmami@uw.edu, rgeorgi@uw.edu',
