@@ -321,7 +321,8 @@ class FrekiLine(str):
         :rtype: list[FrekiFont]
         """
         if self.attrs.get('fonts'):
-            return [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
+            font_list = [FrekiFont.reads(f) for f in self.attrs.get('fonts', '').split(',')]
+            return [x for x in font_list if x is not None]
         else:
             return []
 
@@ -402,5 +403,9 @@ class FrekiFont(object):
 
     @classmethod
     def reads(cls, s):
-        f_type, f_size = re.search('([^\-]+)\-([0-9\.\-]+)', s).groups()
-        return cls(f_type, float(f_size))
+        try:
+            f_type, f_size = re.search('([^\-]+)\-([0-9\.\-]+)', s).groups()
+            return cls(f_type, float(f_size))
+        # handle when the regex search finds no match
+        except AttributeError:
+            return None
