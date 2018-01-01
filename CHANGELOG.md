@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased][unreleased]
+## [v0.3.0][]
 
 ### Added
 * add method to convert plain text files to the Freki format
@@ -61,5 +61,5 @@ to be v0.1.0.
 Also, Freki does not have CHANGELOG info prior to [v0.2.0]. Please see
 the [commit history](https://github.com/xigt/freki/commits/master).
 
-[unreleased]: https://github.com/xigt/freki/tree/develop
+[v0.3.0]: https://github.com/xigt/freki/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/xigt/freki/releases/tag/v0.2.0
